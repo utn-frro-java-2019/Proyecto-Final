@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class Empleado {
 
 	private String usuario;
@@ -8,6 +10,8 @@ public class Empleado {
 	private String dni;
 	private String nombre;
 	private String apellido;
+	private ArrayList<Cochera> cocheras;
+	
 	public String getUsuario() {
 		return usuario;
 	}
@@ -44,5 +48,13 @@ public class Empleado {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	public ArrayList<Cochera> getCocheras() {
+		return cocheras;
+	}
+	public void setCocheras(ArrayList<Cochera> cocheras) {
+		this.cocheras = cocheras;
+	}
+
+	
 	
 }

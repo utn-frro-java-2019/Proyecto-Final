@@ -1,10 +1,13 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class Cochera {
 
 	private int idCochera;
 	private String ubicacion;
 	private String descripcion;
+	private ArrayList<Empleado> empleados;
 	
 	public int getIdCochera() {
 		return idCochera;
@@ -24,4 +27,12 @@ public class Cochera {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	public ArrayList<Empleado> getEmpleados() {
+		return empleados;
+	}
+	public void setEmpleados(ArrayList<Empleado> empleados) {
+		this.empleados = empleados;
+	}
+	
+	
 }

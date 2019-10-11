@@ -6,7 +6,7 @@ public class Vehiculo {
 	private String modelo;
 	private String descripcion;
 	private String marca;
-	private int idTipo;
+	private TipoVehiculo tipo;
 	public String getPatente() {
 		return patente;
 	}
@@ -31,11 +31,11 @@ public class Vehiculo {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-	public int getIdTipo() {
-		return idTipo;
+	public TipoVehiculo getTipo() {
+		return tipo;
 	}
-	public void setIdTipo(int idTipo) {
-		this.idTipo = idTipo;
+	public void setTipo(TipoVehiculo tipo) {
+		this.tipo = tipo;
 	}
 	
 	

@@ -1,34 +1,31 @@
 package data;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
+import domain.*;
 
-import domain.Vehiculo;
-
-public class vehiculoData {
+public class empleadoData {
 private static String driver="com.mysql.jdbc.Driver";
 	
-	public static ArrayList<Vehiculo> getAll() {
-		ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+	public static ArrayList<Empleado> getAll() {
+		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		try {
 
 			Class.forName(driver);
 			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
 			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.vehiculos");
+			ResultSet rs= stmt.executeQuery("select * from cocheradb.empleados");
 
 			while(rs.next()) {
-				Vehiculo v=new Vehiculo();
+				Empleado e=new Empleado();
 				
-				v.setPatente(rs.getString("patente"));
-				v.setMarca(rs.getString("marca"));
-				v.setModelo(rs.getString("modelo"));
+				e.setNombre(rs.getString("nombre"));
+				e.setApellido(rs.getString("apellido"));
+				e.setEmail(rs.getString("email"));
+				e.setUsuario(rs.getString("usuario"));
+				e.setContraseña(rs.getString("contraseña"));
+				e.setDni(rs.getString("dni"));
 				
-				vehiculos.add(v);
+				empleados.add(e);
 				
 			}
 			
@@ -45,6 +42,7 @@ private static String driver="com.mysql.jdbc.Driver";
 			e.printStackTrace();
 		}
 
-		return vehiculos;
+		return empleados;
 	}
+
 }
