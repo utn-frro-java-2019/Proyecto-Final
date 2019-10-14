@@ -171,6 +171,7 @@ CREATE TABLE `multiplicadores_estadias` (
 
 LOCK TABLES `multiplicadores_estadias` WRITE;
 /*!40000 ALTER TABLE `multiplicadores_estadias` DISABLE KEYS */;
+INSERT INTO `multiplicadores_estadias` VALUES (3,13),(6,25),(12,50),(24,100);
 /*!40000 ALTER TABLE `multiplicadores_estadias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,6 +194,7 @@ CREATE TABLE `precio_por_hora` (
 
 LOCK TABLES `precio_por_hora` WRITE;
 /*!40000 ALTER TABLE `precio_por_hora` DISABLE KEYS */;
+INSERT INTO `precio_por_hora` VALUES (60);
 /*!40000 ALTER TABLE `precio_por_hora` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -313,4 +315,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-11 14:17:38
+-- Dump completed on 2019-10-14  1:46:24

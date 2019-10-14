@@ -3,7 +3,7 @@ package domain;
 public class Lugar {
 
 	private int nroLugar;
-	private String tipoVehiculoPermitido;
+	private Cochera cochera;
 	private boolean ocupado;
 	
 	public int getNroLugar() {
@@ -12,11 +12,12 @@ public class Lugar {
 	public void setNroLugar(int nroLugar) {
 		this.nroLugar = nroLugar;
 	}
-	public String getTipoVehiculoPermitido() {
-		return tipoVehiculoPermitido;
+	
+	public Cochera getCochera() {
+		return cochera;
 	}
-	public void setTipoVehiculoPermitido(String tipoVehiculoPermitido) {
-		this.tipoVehiculoPermitido = tipoVehiculoPermitido;
+	public void setCochera(Cochera cochera) {
+		this.cochera = cochera;
 	}
 	public boolean isOcupado() {
 		return ocupado;
