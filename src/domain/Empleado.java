@@ -1,6 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
 
 public class Empleado {
 
@@ -10,7 +9,21 @@ public class Empleado {
 	private String dni;
 	private String nombre;
 	private String apellido;
+	private Cochera cochera;
+	private Turno turno;
 	
+	public Cochera getCochera() {
+		return cochera;
+	}
+	public void setCochera(Cochera cochera) {
+		this.cochera = cochera;
+	}
+	public Turno getTurno() {
+		return turno;
+	}
+	public void setTurno(Turno turno) {
+		this.turno = turno;
+	}
 	public String getUsuario() {
 		return usuario;
 	}

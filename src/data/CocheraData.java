@@ -7,7 +7,7 @@ import domain.*;
 public class CocheraData {
 	private static String driver="com.mysql.jdbc.Driver";
 	
-	public static ArrayList<Cochera> getAll() {
+	public ArrayList<Cochera> getAll() {
 		ArrayList<Cochera> cocheras = new ArrayList<Cochera>();
 		try {
 
@@ -25,7 +25,8 @@ public class CocheraData {
 				
 				c.setIdCochera(rs.getInt("idCochera"));
 				c.setDescripcion(rs.getString("descripcion"));
-				c.setUbicacion(rs.getString("ubicacion"));				
+				c.setUbicacion(rs.getString("ubicacion"));
+				
 				
 				cocheras.add(c);
 				
@@ -47,7 +48,7 @@ public class CocheraData {
 		return cocheras;
 	}
 	
-	public static Cochera getOne(int idCochera) {
+	public Cochera getOne(int idCochera) {
 		Cochera c=null;
 		try {
 

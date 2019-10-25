@@ -12,7 +12,7 @@ import domain.MultiplicadorEstadia;
 public class MultiplicadorEstadiaData {
 private static String driver="com.mysql.jdbc.Driver";
 	
-	public static ArrayList<MultiplicadorEstadia> getAll() {
+	public ArrayList<MultiplicadorEstadia> getAll() {
 		ArrayList<MultiplicadorEstadia> multiplicadoresEstadias = new ArrayList<MultiplicadorEstadia>();
 		try {
 
@@ -49,7 +49,7 @@ private static String driver="com.mysql.jdbc.Driver";
 	}
 
 	
-	public static MultiplicadorEstadia getOne(int multiplicadorDesde) {
+	public MultiplicadorEstadia getOne(int multiplicadorDesde) {
 		MultiplicadorEstadia me=null;
 		try {
 

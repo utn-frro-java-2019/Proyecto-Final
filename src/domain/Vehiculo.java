@@ -7,6 +7,20 @@ public class Vehiculo {
 	private String descripcion;
 	private String marca;
 	private TipoVehiculo tipo;
+	private String propietario;
+	private String telefonoContacto;
+	public String getPropietario() {
+		return propietario;
+	}
+	public void setPropietario(String propietario) {
+		this.propietario = propietario;
+	}
+	public String getTelefonoContacto() {
+		return telefonoContacto;
+	}
+	public void setTelefonoContacto(String telefonoContacto) {
+		this.telefonoContacto = telefonoContacto;
+	}
 	public String getPatente() {
 		return patente;
 	}

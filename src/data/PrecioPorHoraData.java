@@ -12,7 +12,7 @@ import domain.PrecioPorHora;
 public class PrecioPorHoraData {
 private static String driver="com.mysql.jdbc.Driver";
 	
-	public static PrecioPorHora getPrecio() {
+	public PrecioPorHora getPrecio() {
 		PrecioPorHora p = null;
 		try {
 

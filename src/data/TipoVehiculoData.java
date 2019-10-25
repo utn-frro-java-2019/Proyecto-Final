@@ -12,7 +12,7 @@ import domain.*;
 public class TipoVehiculoData {
 private static String driver="com.mysql.jdbc.Driver";
 	
-public static ArrayList<TipoVehiculo> getAll() {
+public ArrayList<TipoVehiculo> getAll() {
 	ArrayList<TipoVehiculo> tiposVehiculos = new ArrayList<TipoVehiculo>();
 	try {
 
@@ -49,7 +49,7 @@ public static ArrayList<TipoVehiculo> getAll() {
 }
 
 
-	public static TipoVehiculo getOne(int idTipo) {
+	public TipoVehiculo getOne(int idTipo) {
 		TipoVehiculo tv=null;
 		try {
 

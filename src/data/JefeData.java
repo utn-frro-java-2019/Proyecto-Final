@@ -12,7 +12,7 @@ import domain.Jefe;
 public class JefeData {
 private static String driver="com.mysql.jdbc.Driver";
 	
-	public static ArrayList<Jefe> getAll() {
+	public ArrayList<Jefe> getAll() {
 		ArrayList<Jefe> jefes = new ArrayList<Jefe>();
 		try {
 
@@ -52,7 +52,7 @@ private static String driver="com.mysql.jdbc.Driver";
 	}
 
 	
-	public static Jefe getOne(int dni) {
+	public Jefe getOne(int dni) {
 		Jefe j=null;
 		try {
 

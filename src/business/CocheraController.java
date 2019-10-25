@@ -5,20 +5,13 @@ import domain.*;
 
 public class CocheraController {
 	
-	CocheraData coData;
-	
-	public CocheraController() {
-		coData = new CocheraData();	
-	}
-	
-	public ArrayList<Cochera> getAll(){
-		//return coData.getAll();
-		return CocheraData.getAll();
+	public static ArrayList<Cochera> getAll(){
+		return new CocheraData().getAll();
+
 	}
 
-	public Cochera getOne(int idCochera){
-		//return coData.getOne(idCochera);
-		return CocheraData.getOne(idCochera);
+	public static Cochera getOne(int idCochera){
+		return new CocheraData().getOne(idCochera);
 	}
 
 }

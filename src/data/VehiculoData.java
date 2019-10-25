@@ -14,7 +14,7 @@ import data.*;
 public class VehiculoData {
 private static String driver="com.mysql.jdbc.Driver";
 	
-	public static ArrayList<Vehiculo> getAll() {
+	public ArrayList<Vehiculo> getAll() {
 		ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 		try {
 
@@ -30,7 +30,7 @@ private static String driver="com.mysql.jdbc.Driver";
 				v.setMarca(rs.getString("marca"));
 				v.setModelo(rs.getString("modelo"));
 				v.setDescripcion(rs.getString("descripcion"));
-				v.setTipo(TipoVehiculoData.getOne(rs.getInt("idTipo")));
+				v.setTipo(new TipoVehiculoData().getOne(rs.getInt("idTipo")));
 				
 				vehiculos.add(v);
 				
@@ -52,7 +52,7 @@ private static String driver="com.mysql.jdbc.Driver";
 		return vehiculos;
 	}
 	
-	public static Vehiculo getOne(int patente) {
+	public Vehiculo getOne(String patente) {
 		Vehiculo v=null;
 		try {
 
@@ -67,7 +67,7 @@ private static String driver="com.mysql.jdbc.Driver";
 				v.setMarca(rs.getString("marca"));
 				v.setModelo(rs.getString("modelo"));
 				v.setDescripcion(rs.getString("descripcion"));
-				v.setTipo(TipoVehiculoData.getOne(rs.getInt("idTipo")));
+				v.setTipo(new TipoVehiculoData().getOne(rs.getInt("idTipo")));
 				
 			}
 			

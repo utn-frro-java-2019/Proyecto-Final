@@ -2,11 +2,13 @@ package data;
 import java.sql.*;
 import java.util.ArrayList;
 import domain.*;
+import data.CocheraData;
+import data.TurnoData;
 
 public class EmpleadoData {
 private static String driver="com.mysql.jdbc.Driver";
 	
-	public static ArrayList<Empleado> getAll() {
+	public ArrayList<Empleado> getAll() {
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		try {
 
@@ -24,6 +26,8 @@ private static String driver="com.mysql.jdbc.Driver";
 				e.setUsuario(rs.getString("usuario"));
 				e.setContraseña(rs.getString("contraseña"));
 				e.setDni(rs.getString("dni"));
+				e.setCochera(new CocheraData().getOne(rs.getInt("idCochera")));
+				e.setTurno(new TurnoData().getOne(rs.getInt("idTurno")));
 				
 				empleados.add(e);
 				
@@ -46,7 +50,7 @@ private static String driver="com.mysql.jdbc.Driver";
 	}
 
 	
-	public static Empleado getOne(int dni) {
+	public Empleado getOne(int dni) {
 		Empleado e=null;
 		try {
 
@@ -63,6 +67,8 @@ private static String driver="com.mysql.jdbc.Driver";
 				e.setEmail(rs.getString("email"));
 				e.setUsuario(rs.getString("usuario"));
 				e.setContraseña(rs.getString("contraseña"));
+				e.setCochera(new CocheraData().getOne(rs.getInt("idCochera")));
+				e.setTurno(new TurnoData().getOne(rs.getInt("idTurno")));
 			
 			}
 			

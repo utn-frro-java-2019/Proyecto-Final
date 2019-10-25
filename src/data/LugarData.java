@@ -13,7 +13,7 @@ public class LugarData {
 
 private static String driver="com.mysql.jdbc.Driver";
 	
-	public static ArrayList<Lugar> getAll() {
+	public ArrayList<Lugar> getAll() {
 		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
 		try {
 
@@ -29,7 +29,7 @@ private static String driver="com.mysql.jdbc.Driver";
 				boolean ocupado = false;
 				if(rs.getString("ocupado") == "true") ocupado = true;
 				l.setOcupado(ocupado);
-				l.setCochera(data.CocheraData.getOne(rs.getInt("idCochera")));
+				l.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				
 				lugares.add(l);
 				
@@ -51,7 +51,7 @@ private static String driver="com.mysql.jdbc.Driver";
 		return lugares;
 	}
 	
-	public static Lugar getOne(int nroLugar) {
+	public Lugar getOne(int nroLugar) {
 		Lugar l=null;
 		try {
 
@@ -66,7 +66,7 @@ private static String driver="com.mysql.jdbc.Driver";
 				boolean ocupado = false;
 				if(rs.getString("ocupado") == "true") ocupado = true;
 				l.setOcupado(ocupado);
-				l.setCochera(data.CocheraData.getOne(rs.getInt("idCochera")));
+				l.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				
 			}
 			
