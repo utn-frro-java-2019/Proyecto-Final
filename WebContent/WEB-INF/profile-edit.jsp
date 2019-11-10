@@ -27,7 +27,6 @@
                 <label class="mb-0 ml-1" for="Marca">Dni</label>
                 <input class="form-control form-control-user" type="text" name="Marca" value="">
               </div>
-
               <div class="col-sm-4 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="Marca">Usuario</label>
                 <input class="form-control form-control-user" type="text" name="Marca" value="">

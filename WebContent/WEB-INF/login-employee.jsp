@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Login</title>
+  <title>Cocheras - Login</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -21,14 +21,10 @@
 </head>
 
 <body class="bg-gradient-primary h-100 d-flex flex-column justify-content-center align-items-center">
-
   <div class="container">
-
     <!-- Outer Row -->
     <div class="row justify-content-center">
-
       <div class="col-xl-5 col-lg-6 col-md-8">
-
         <div class="card o-hidden border-0 shadow-lg my-5">
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
@@ -48,7 +44,7 @@
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Recuérdame</label>
+                        <label class="custom-control-label" for="customCheck">RecuÃ©rdame</label>
                       </div>
                     </div>
                     <a href="index.html" class="btn btn-primary btn-user btn-block">
@@ -57,18 +53,16 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">¿Olvidaste tu contraseña?</a>
+                    <a class="small" href="forgot-password.html">Olvidaste tu contraseÃ±a?</a>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
-
+    <a href="#" class="text-warning position-absolute mb-3 mr-4" style="bottom: 0; right:0;"><i class="fas fa-user-tie"></i></a>
   </div>
 
   <!-- Bootstrap core JavaScript-->
