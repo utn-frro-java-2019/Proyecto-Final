@@ -24,7 +24,7 @@ public class CocheraServlet extends HttpServlet {
     	ArrayList<Cochera> cocheras = CocheraController.getAll();
     	
     	request.setAttribute("listaCochera", cocheras);
-    	request.getRequestDispatcher("/index.jsp").forward(request,response);
+    	request.getRequestDispatcher("WEB-INF/cocheras.jsp").forward(request,response);
     }
  
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

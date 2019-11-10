@@ -1,9 +1,7 @@
+<%@tag description="Template" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
-<%@page import="domain.Cochera"%>
-<%@page import="java.util.ArrayList"%>
-<%ArrayList<Cochera> lc = (ArrayList<Cochera>)request.getAttribute("listaCochera");%>
-
 
 <head>
 
@@ -13,23 +11,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>Cocheras</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+  <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-  <style media="screen">
-    .nw {
-      white-space: nowrap;
-    }
-  </style>
 
 </head>
 
@@ -64,7 +53,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Dueño de cochera
+        DueÃ±o de cochera
       </div>
 
       <!-- Nav Item - Cocheras -->
@@ -81,24 +70,24 @@
           <span>Administrar Empleados</span></a>
       </li>
 
-      <!-- Nav Item - Estadísticas Collapse Menu -->
+      <!-- Nav Item - EstadÃ­sticas Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStats" aria-expanded="true" aria-controls="collapseStats">
           <i class="fas fa-chart-area"></i>
-          <span>Estadísticas</span>
+          <span>EstadÃ­sticas</span>
         </a>
         <div id="collapseStats" class="collapse" aria-labelledby="headingStats" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Estadísticas de tipo X</h6>
-            <a class="collapse-item" href="#">Estadística 1</a>
-            <a class="collapse-item" href="#">Estadística 2</a>
-            <a class="collapse-item" href="#">Estadística 3</a>
+            <h6 class="collapse-header">EstadÃ­sticas de tipo X</h6>
+            <a class="collapse-item" href="#">EstadÃ­stica 1</a>
+            <a class="collapse-item" href="#">EstadÃ­stica 2</a>
+            <a class="collapse-item" href="#">EstadÃ­stica 3</a>
             <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Estadísticas de tipo Y</h6>
-            <a class="collapse-item" href="#">Estadística 1</a>
-            <a class="collapse-item" href="#">Estadística 2</a>
-            <a class="collapse-item" href="#">Estadística 3</a>
-          </div>
+            <h6 class="collapse-header">EstadÃ­sticas de tipo Y</h6>
+            <a class="collapse-item" href="#">EstadÃ­stica 1</a>
+            <a class="collapse-item" href="#">EstadÃ­stica 2</a>
+            <a class="collapse-item" href="#">EstadÃ­stica 3</a>
+        </div>
       </li>
 
       <!-- Divider -->
@@ -127,12 +116,12 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEstadia" aria-expanded="true" aria-controls="collapseEstadia">
           <i class="fas fa-clipboard-list"></i>
-          <span>Estadías</span>
+          <span>EstadÃ­as</span>
         </a>
         <div id="collapseEstadia" class="collapse" aria-labelledby="headingEstadia" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#"><i class="far fa-calendar-check"></i> Registrar estadía</a>
-            <a class="collapse-item" href="#"><i class="far fa-list-alt"></i> Listar estadías</a>
+            <a class="collapse-item" href="#"><i class="far fa-calendar-check"></i> Registrar estadÃ­a</a>
+            <a class="collapse-item" href="#"><i class="far fa-list-alt"></i> Listar estadÃ­as</a>
           </div>
         </div>
       </li>
@@ -199,63 +188,9 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <h1 class="h3 mb-4 text-gray-800">Administrar Cocheras</h1>
-          <div class="row  mb-3">
-            <div class="col col-auto d-flex">
-              <button class="btn btn-primary" type="button" name="button">Añadir Cochera</button>
-            </div>
-            <form class="col">
-              <div class="input-group">
-                <input type="text" class="form-control bg-light border border-primary p-4" placeholder="Buscar Cochera" aria-label="Search" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="card shadow mb-4">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th class="nw">Id</th>
-                      <th class="nw">Descripción</th>
-                      <th class="nw">Ubicación</th>
-                      <th class="nw">Capacidad</th>
-                      <th class="nw">Opciones</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  <%for(Cochera c: lc){%>
-                    <tr>
-                      <td class="nw"><%=c.getIdCochera()%></td>
-                      <td class="nw"><%=c.getDescripcion()%></td>
-                      <td class="nw"><%=c.getUbicacion()%></td>
-                      <td class="nw">xx</td>
-                      <td class="d-flex align-items-center p-0">
-                        <button type="button" class="d-flex align-items-center btn btn-warning m-1">
-                          <i class="fas fa-edit fa-xs m-1"></i>
-                          <p class="d-none d-md-block m-0">Editar</p>
-                        </button>
-                        <button type="button" class="d-flex align-items-center btn btn-danger m-1">
-                          <i class="fas fa-trash-alt fa-xs m-1"></i>
-                          <p class="d-none d-md-block m-0">Eliminar</p>
-                        </button>
-                        <button type="button" class="d-flex align-items-center btn btn-primary m-1">
-                          <i class="fas fa-map-marker-alt fa-xs m-1"></i>
-                          <p class="d-none d-md-block m-0" style="white-space: nowrap">Estado actual de los lugares</p>
-                        </button>
-                      </td>
-                     </tr> 
-                     <% } %>                   
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+
+          <!-- Page Body -->
+            <jsp:doBody/>
 
         </div>
         <!-- /.container-fluid -->
@@ -294,13 +229,6 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
 
 </body>
 
