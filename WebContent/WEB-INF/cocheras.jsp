@@ -73,7 +73,6 @@
         </div>
       </div>
     </div>
-
 </c:set>
 
 <t:template>
