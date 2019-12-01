@@ -1,25 +1,19 @@
 package data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import domain.Jefe;
+import domain.*;
 
 public class JefeData {
-private static String driver="com.mysql.jdbc.Driver";
 	
 	public ArrayList<Jefe> getAll() {
 		ArrayList<Jefe> jefes = new ArrayList<Jefe>();
 		try {
-
-			Class.forName(driver);
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.jefes");
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs= stmt.executeQuery("select * from jefes");
 
 			while(rs.next()) {
 				Jefe j=new Jefe();
@@ -37,12 +31,9 @@ private static String driver="com.mysql.jdbc.Driver";
 			
 			if(rs!=null){rs.close();}
 			if(stmt!=null){stmt.close();}
-			conn.close(); 
+			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -55,11 +46,8 @@ private static String driver="com.mysql.jdbc.Driver";
 	public Jefe getOne(int dni) {
 		Jefe j=null;
 		try {
-
-			Class.forName(driver);
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.jefes where dni ="+ dni);
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs= stmt.executeQuery("select * from jefes where dni ="+ dni);
 			while(rs.next()) {
 				j=new Jefe();
 				
@@ -74,12 +62,9 @@ private static String driver="com.mysql.jdbc.Driver";
 			
 			if(rs!=null){rs.close();}
 			if(stmt!=null){stmt.close();}
-			conn.close(); 
+			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException ee) {
-			ee.printStackTrace();
-		} catch (ClassNotFoundException ee) {
-			// TODO Auto-generated catch block
 			ee.printStackTrace();
 		}catch (Exception ee) {
 			ee.printStackTrace();

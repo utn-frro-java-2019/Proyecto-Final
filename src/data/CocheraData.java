@@ -1,20 +1,17 @@
 package data;
+
 import java.sql.*;
 import java.util.ArrayList;
 
 import domain.*;
 
 public class CocheraData {
-	private static String driver="com.mysql.jdbc.Driver";
-	
+
 	public ArrayList<Cochera> getAll() {
 		ArrayList<Cochera> cocheras = new ArrayList<Cochera>();
 		try {
-
-			Class.forName(driver);
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.cocheras");
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs= stmt.executeQuery("select * from cocheras");
 
 			while(rs.next()) {
 				Cochera c=new Cochera();
@@ -34,12 +31,9 @@ public class CocheraData {
 			
 			if(rs!=null){rs.close();}
 			if(stmt!=null){stmt.close();}
-			conn.close(); 
+			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -51,11 +45,8 @@ public class CocheraData {
 	public Cochera getOne(int idCochera) {
 		Cochera c=null;
 		try {
-
-			Class.forName(driver);
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.cocheras where idCochera ="+ idCochera);
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs= stmt.executeQuery("select * from cocheras where idCochera ="+ idCochera);
 			while(rs.next()) {
 				c=new Cochera();
 				
@@ -67,12 +58,9 @@ public class CocheraData {
 			
 			if(rs!=null){rs.close();}
 			if(stmt!=null){stmt.close();}
-			conn.close(); 
+			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();

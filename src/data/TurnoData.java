@@ -1,7 +1,5 @@
 package data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,16 +8,12 @@ import java.util.ArrayList;
 import domain.*;
 
 public class TurnoData {
-	private static String driver="com.mysql.jdbc.Driver";
 	
 	public ArrayList<Turno> getAll() {
 		ArrayList<Turno> turnos = new ArrayList<Turno>();
 		try {
-
-			Class.forName(driver);
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.turnos");
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs= stmt.executeQuery("select * from turnos");
 
 			while(rs.next()) {
 				Turno t=new Turno();
@@ -35,12 +29,9 @@ public class TurnoData {
 			
 			if(rs!=null){rs.close();}
 			if(stmt!=null){stmt.close();}
-			conn.close(); 
+			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -52,11 +43,8 @@ public class TurnoData {
 	public Turno getOne(int id) {
 		Turno t=null;
 		try {
-
-			Class.forName(driver);
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.turnos where idTurno="+id);
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs= stmt.executeQuery("select * from turnos where idTurno="+id);
 			while(rs.next()) {
 				t = new Turno();
 				
@@ -69,12 +57,9 @@ public class TurnoData {
 			
 			if(rs!=null){rs.close();}
 			if(stmt!=null){stmt.close();}
-			conn.close(); 
+			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();

@@ -1,7 +1,5 @@
 package data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,16 +8,12 @@ import java.util.ArrayList;
 import domain.*;
 
 public class TipoVehiculoData {
-private static String driver="com.mysql.jdbc.Driver";
 	
 public ArrayList<TipoVehiculo> getAll() {
 	ArrayList<TipoVehiculo> tiposVehiculos = new ArrayList<TipoVehiculo>();
 	try {
-
-		Class.forName(driver);
-		Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-		Statement stmt = conn.createStatement();
-		ResultSet rs= stmt.executeQuery("select * from cocheradb.tipos_vehiculos");
+		Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+		ResultSet rs= stmt.executeQuery("select * from tipos_vehiculos");
 
 		while(rs.next()) {		
 			TipoVehiculo tv=new TipoVehiculo();
@@ -34,12 +28,9 @@ public ArrayList<TipoVehiculo> getAll() {
 		
 		if(rs!=null){rs.close();}
 		if(stmt!=null){stmt.close();}
-		conn.close(); 
+		FactoryConnection.getInstancia().releaseConn();
 		
 	} catch (SQLException e) {
-		e.printStackTrace();
-	} catch (ClassNotFoundException e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}catch (Exception e) {
 		e.printStackTrace();
@@ -52,11 +43,8 @@ public ArrayList<TipoVehiculo> getAll() {
 	public TipoVehiculo getOne(int idTipo) {
 		TipoVehiculo tv=null;
 		try {
-
-			Class.forName(driver);
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.tipos_vehiculos where idTipo ="+ idTipo);
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs= stmt.executeQuery("select * from tipos_vehiculos where idTipo ="+ idTipo);
 			while(rs.next()) {
 				tv=new TipoVehiculo();
 				
@@ -67,12 +55,9 @@ public ArrayList<TipoVehiculo> getAll() {
 			
 			if(rs!=null){rs.close();}
 			if(stmt!=null){stmt.close();}
-			conn.close(); 
+			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();

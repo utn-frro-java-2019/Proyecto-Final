@@ -1,27 +1,20 @@
 package data;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import domain.Cochera;
-import domain.Vehiculo;
-import data.*;
+import domain.*;
 
 public class VehiculoData {
-private static String driver="com.mysql.jdbc.Driver";
 	
 	public ArrayList<Vehiculo> getAll() {
 		ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
 		try {
-
-			Class.forName(driver);
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.vehiculos");
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs= stmt.executeQuery("select * from vehiculos");
 
 			while(rs.next()) {
 				Vehiculo v=new Vehiculo();
@@ -38,12 +31,9 @@ private static String driver="com.mysql.jdbc.Driver";
 			
 			if(rs!=null){rs.close();}
 			if(stmt!=null){stmt.close();}
-			conn.close(); 
+			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -55,11 +45,8 @@ private static String driver="com.mysql.jdbc.Driver";
 	public Vehiculo getOne(String patente) {
 		Vehiculo v=null;
 		try {
-
-			Class.forName(driver);
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/cocheradb?serverTimezone=UTC", "root", "admin");
-			Statement stmt = conn.createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheradb.vehiculos where patente ="+ patente);
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs= stmt.executeQuery("select * from vehiculos where patente ="+ patente);
 			while(rs.next()) {
 				v=new Vehiculo();
 				
@@ -73,12 +60,9 @@ private static String driver="com.mysql.jdbc.Driver";
 			
 			if(rs!=null){rs.close();}
 			if(stmt!=null){stmt.close();}
-			conn.close(); 
+			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}catch (Exception e) {
 			e.printStackTrace();
