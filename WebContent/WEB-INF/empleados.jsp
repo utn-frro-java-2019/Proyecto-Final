@@ -10,7 +10,7 @@
   <h1 class="h3 mb-4 text-gray-800">Administrar Empleados</h1>
   <div class="row  mb-3">
     <div class="col col-auto d-flex">
-      <button class="btn btn-primary" type="button" name="button">Añadir Empleado</button>
+      <a class="d-flex align-items-center btn btn-primary" href="http://localhost:8080/Cocheras/empleados/create">Añadir Empleado</a>
     </div>
     <form class="col">
       <div class="input-group">
@@ -62,14 +62,12 @@
                 <td class="nw">12566521</td>
                 <td class="nw">55211256</td>
                 <td class="d-flex align-items-center p-0">
-                  <button type="button" class="d-flex align-items-center btn btn-warning m-1">
-                    <i class="fas fa-edit fa-xs m-1"></i>
-                    <p class="d-none d-md-block m-0">Editar</p>
-                  </button>
-                  <button type="button" class="d-flex align-items-center btn btn-danger m-1">
-                    <i class="fas fa-trash-alt fa-xs m-1"></i>
-                    <p class="d-none d-md-block m-0">Eliminar</p>
-                  </button>
+                  <a href="http://localhost:8080/Cocheras/empleados/details/<%=e.getDni()%>"class="d-flex align-items-center btn btn-warning m-1">
+                    <i class="fas fa-edit fa-xs m-1"></i>Editar
+                  </a>
+                  <a href="http://localhost:8080/Cocheras/empleados/delete/<%=e.getDni()%>"class="d-flex align-items-center btn btn-danger m-1">
+                    <i class="fas fa-trash-alt fa-xs m-1"></i>Eliminar
+                  </a>
                   <button type="button" class="d-flex align-items-center btn btn-primary m-1">
                     <i class="fas fa-envelope fa-xs m-1"></i>
                     <p class="d-none d-md-block m-0" style="white-space: nowrap">Enviar Correo</p>

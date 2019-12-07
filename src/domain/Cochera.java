@@ -25,5 +25,4 @@ public class Cochera {
 		this.descripcion = descripcion;
 	}
 	
-	
 }

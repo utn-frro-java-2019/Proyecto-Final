@@ -18,42 +18,34 @@ public class Example extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		switch (request.getPathInfo()) {
-		case "/all":
-			this.all(request,response);
-			break;
-			
-		case "/details":
-			this.details(request,response);
-			break;
-
-		case "/create":
+		String path = request.getPathInfo();
+		if(path.equals("/all")) {
+		 	this.all(request,response);
+		}
+		else if(path.equals("/create")) {
 			this.create(request,response);
-			break;
-			
-		case "/delete":
+		}
+		else if(path.startsWith("/details")) {
+			this.details(request,response);
+		}
+		else if(path.startsWith("/delete")) {
 			this.delete(request,response);
-			break;
-
-		default:
+		}
+		else {
 			this.error(request,response);
-			break;
 		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		switch (request.getPathInfo()) {
-		case "/add":
-			this.add(request,response);
-			break;
-			
-		case "/edit":
+		String path = request.getPathInfo();
+		if(path.equals("/add")) {
+		 	this.add(request,response);
+		}
+		else if(path.equals("/edit")) {
 			this.edit(request,response);
-			break;
-
-		default:
+		}
+		else {
 			this.error(request,response);
-			break;
 		}
 	}
 

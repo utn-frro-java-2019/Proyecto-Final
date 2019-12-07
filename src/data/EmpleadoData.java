@@ -75,4 +75,18 @@ public class EmpleadoData {
 
 		return e;
 	}
+	
+	public void deleteOne(int dni) {
+		try {
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt.executeUpdate("delete from empleados where dni ="+ dni);
+			if(stmt!=null){stmt.close();}
+			FactoryConnection.getInstancia().releaseConn();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

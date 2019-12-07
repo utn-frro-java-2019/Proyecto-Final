@@ -68,4 +68,18 @@ public class CocheraData {
 
 		return c;
 	}
+	
+	public void deleteOne(int idCochera) {
+		try {
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt.executeUpdate("delete from cocheras where idCochera ="+ idCochera);
+			if(stmt!=null){stmt.close();}
+			FactoryConnection.getInstancia().releaseConn();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

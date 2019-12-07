@@ -10,7 +10,7 @@
   <h1 class="h3 mb-4 text-gray-800">Administrar Cocheras</h1>
   <div class="row  mb-3">
     <div class="col col-auto d-flex">
-      <button class="btn btn-primary" type="button" name="button">Añadir Cochera</button>
+      <a class="d-flex align-items-center btn btn-primary" href="http://localhost:8080/Cocheras/cocheras/create">Añadir Cochera</a>
     </div>
     <form class="col">
       <div class="input-group">
@@ -53,14 +53,12 @@
                 <td class="nw"><%=c.getUbicacion()%></td>
                 <td class="nw">xx</td>
                 <td class="d-flex align-items-center p-0">
-                  <button type="button" class="d-flex align-items-center btn btn-warning m-1">
-                    <i class="fas fa-edit fa-xs m-1"></i>
-                    <p class="d-none d-md-block m-0">Editar</p>
-                  </button>
-                  <button type="button" class="d-flex align-items-center btn btn-danger m-1">
-                    <i class="fas fa-trash-alt fa-xs m-1"></i>
-                    <p class="d-none d-md-block m-0">Eliminar</p>
-                  </button>
+                  <a href="http://localhost:8080/Cocheras/cocheras/details/<%=c.getIdCochera()%>"class="d-flex align-items-center btn btn-warning m-1">
+                    <i class="fas fa-edit fa-xs m-1"></i>Editar
+                  </a>
+                  <a href="http://localhost:8080/Cocheras/cocheras/delete/<%=c.getIdCochera()%>"class="d-flex align-items-center btn btn-danger m-1">
+                    <i class="fas fa-trash-alt fa-xs m-1"></i>Eliminar
+                  </a>
                   <button type="button" class="d-flex align-items-center btn btn-primary m-1">
                     <i class="fas fa-map-marker-alt fa-xs m-1"></i>
                     <p class="d-none d-md-block m-0" style="white-space: nowrap">Estado actual de los lugares</p>
