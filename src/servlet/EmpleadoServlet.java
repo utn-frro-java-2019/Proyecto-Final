@@ -45,7 +45,7 @@ public class EmpleadoServlet extends HttpServlet {
 		if(path.equals("/add")) {
 		 	this.add(request,response);
 		}
-		else if(path.equals("/edit")) {
+		else if(path.startsWith("/edit")) {
 			this.edit(request,response);
 		}
 		else {

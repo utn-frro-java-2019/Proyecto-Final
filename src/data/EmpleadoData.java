@@ -20,6 +20,8 @@ public class EmpleadoData {
 				e.setNombre(rs.getString("nombre"));
 				e.setApellido(rs.getString("apellido"));
 				e.setEmail(rs.getString("email"));
+				e.setTelefono1(rs.getString("telefono1"));
+				e.setTelefono2(rs.getString("telefono2"));
 				e.setUsuario(rs.getString("usuario"));
 				e.setContraseña(rs.getString("contraseña"));
 				e.setDni(rs.getString("dni"));
@@ -56,6 +58,8 @@ public class EmpleadoData {
 				e.setNombre(rs.getString("nombre"));
 				e.setApellido(rs.getString("apellido"));
 				e.setEmail(rs.getString("email"));
+				e.setTelefono1(rs.getString("telefono1"));
+				e.setTelefono2(rs.getString("telefono2"));
 				e.setUsuario(rs.getString("usuario"));
 				e.setContraseña(rs.getString("contraseña"));
 				e.setCochera(new CocheraData().getOne(rs.getInt("idCochera")));

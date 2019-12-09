@@ -51,7 +51,7 @@
                 <td class="nw"><%=c.getIdCochera()%></td>
                 <td class="nw"><%=c.getDescripcion()%></td>
                 <td class="nw"><%=c.getUbicacion()%></td>
-                <td class="nw">xx</td>
+                <td class="nw"><%=c.getCapacidad()%></td>
                 <td class="d-flex align-items-center p-0">
                   <a href="http://localhost:8080/Cocheras/cocheras/details/<%=c.getIdCochera()%>"class="d-flex align-items-center btn btn-warning m-1">
                     <i class="fas fa-edit fa-xs m-1"></i>Editar

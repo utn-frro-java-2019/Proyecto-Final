@@ -9,6 +9,8 @@ public class Empleado {
 	private String dni;
 	private String nombre;
 	private String apellido;
+	private String telefono1;
+	private String telefono2;
 	private Cochera cochera;
 	private Turno turno;
 	
@@ -59,6 +61,18 @@ public class Empleado {
 	}
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+	public String getTelefono1() {
+		return telefono1;
+	}
+	public void setTelefono1(String telefono1) {
+		this.telefono1 = telefono1;
+	}
+	public String getTelefono2() {
+		return telefono2;
+	}
+	public void setTelefono2(String telefono2) {
+		this.telefono2 = telefono2;
 	}
 	
 }

@@ -23,6 +23,7 @@ public class CocheraData {
 				c.setIdCochera(rs.getInt("idCochera"));
 				c.setDescripcion(rs.getString("descripcion"));
 				c.setUbicacion(rs.getString("ubicacion"));
+				c.setCapacidad(rs.getInt("capacidad"));
 				
 				
 				cocheras.add(c);
@@ -53,6 +54,7 @@ public class CocheraData {
 				c.setIdCochera(rs.getInt("idCochera"));
 				c.setDescripcion(rs.getString("descripcion"));	
 				c.setUbicacion(rs.getString("ubicacion"));
+				c.setCapacidad(rs.getInt("capacidad"));
 				
 			}
 			
@@ -73,6 +75,41 @@ public class CocheraData {
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			stmt.executeUpdate("delete from cocheras where idCochera ="+ idCochera);
+			if(stmt!=null){stmt.close();}
+			FactoryConnection.getInstancia().releaseConn();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertOne(Cochera c) {
+		String u = c.getUbicacion();
+		String d = c.getDescripcion();
+		int ca = c.getCapacidad();
+		try {
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt.executeUpdate("insert into cocheras (ubicacion, descripcion, capacidad) values (\""+u+"\",\""+d+"\",\""+ca+"\")");
+			if(stmt!=null){stmt.close();}
+			FactoryConnection.getInstancia().releaseConn();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateOne(Cochera c) {
+		int id = c.getIdCochera();
+		String u = c.getUbicacion();
+		String d = c.getDescripcion();
+		int ca = c.getCapacidad();
+		try {
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt.executeUpdate("update cocheras set ubicacion = \""+u+"\", descripcion = \""+d+"\", capacidad = \""+ca+"\"  where idCochera = "+id+" ");
 			if(stmt!=null){stmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
 			

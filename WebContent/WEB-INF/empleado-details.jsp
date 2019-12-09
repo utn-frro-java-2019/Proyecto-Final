@@ -42,11 +42,11 @@
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="Tel1">Teléfono 1</label>
-                <input class="form-control form-control-user" type="text" name="Tel1" value="">
+                <input class="form-control form-control-user" type="text" name="Tel1" value="<%=e.getTelefono1()%>">
               </div>
               <div class="col-sm-6">
                 <label class="mb-0 ml-1" for="Tel2">Teléfono 2</label>
-                <input class="form-control form-control-user" type="text" name="Tel2" value="">
+                <input class="form-control form-control-user" type="text" name="Tel2" value="<%=e.getTelefono2()%>">
               </div>
             </div>
           </div>

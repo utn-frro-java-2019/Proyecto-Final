@@ -45,7 +45,7 @@ public class CocheraServlet extends HttpServlet {
 		if(path.equals("/add")) {
 		 	this.add(request,response);
 		}
-		else if(path.equals("/edit")) {
+		else if(path.startsWith("/edit")) {
 			this.edit(request,response);
 		}
 		else {
@@ -75,17 +75,27 @@ public class CocheraServlet extends HttpServlet {
 		String path = request.getPathInfo();
 		int id = Integer.parseInt(path.replace("/delete/", ""));
 		CocheraController.deleteOne(id);
-    	request.getRequestDispatcher("/WEB-INF/cocheras.jsp").forward(request,response);
+		this.all(request, response);
 	}
 	
 	private void add(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// Crear nueva instancia.
-		// POST
+		String ubicacion = request.getParameter("ubicacion");
+		String descripcion = request.getParameter("descripcion");
+		int capacidad = Integer.parseInt(request.getParameter("capacidad"));
+		Cochera c = new Cochera(ubicacion, descripcion, capacidad);
+		CocheraController.insertOne(c);
+		this.all(request, response);
 	}
 		
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// Editar instancia.
-		// POST
+		String path = request.getPathInfo();
+		int id = Integer.parseInt(path.replace("/edit/", ""));
+		String ubicacion = request.getParameter("ubicacion");
+		String descripcion = request.getParameter("descripcion");
+		int capacidad = Integer.parseInt(request.getParameter("capacidad"));
+		Cochera c = new Cochera(id, ubicacion, descripcion, capacidad);
+		CocheraController.updateOne(c);
+		this.all(request, response);
 	}
 	
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

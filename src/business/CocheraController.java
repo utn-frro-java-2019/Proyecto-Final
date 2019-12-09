@@ -16,5 +16,13 @@ public class CocheraController {
 	public static void deleteOne(int idCochera){
 		new CocheraData().deleteOne(idCochera);
 	}
+	
+	public static void insertOne(Cochera c){
+		new CocheraData().insertOne(c);
+	}
+	
+	public static void updateOne(Cochera c){
+		new CocheraData().updateOne(c);
+	}
 
 }

@@ -1,13 +1,15 @@
--- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `cocheras` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `cocheras`;
+-- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
--- Host: localhost    Database: cocheradb
+-- Host: 127.0.0.1    Database: cocheras
 -- ------------------------------------------------------
--- Server version	8.0.17
+-- Server version	8.0.18
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
- SET NAMES utf8 ;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -21,11 +23,12 @@
 
 DROP TABLE IF EXISTS `cocheras`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cocheras` (
   `idCochera` int(11) NOT NULL AUTO_INCREMENT,
   `ubicacion` varchar(45) NOT NULL,
   `descripcion` varchar(45) NOT NULL,
+  `capacidad` int(11) NOT NULL,
   PRIMARY KEY (`idCochera`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -36,7 +39,7 @@ CREATE TABLE `cocheras` (
 
 LOCK TABLES `cocheras` WRITE;
 /*!40000 ALTER TABLE `cocheras` DISABLE KEYS */;
-INSERT INTO `cocheras` VALUES (1,'Zona Norte','2 pisos y acceso para vehiculos pesados'),(2,'Zona Sur','4 pisos para vehiculos livianos'),(3,'Zona Centro','2 pisos para vehiculos livianos');
+INSERT INTO `cocheras` VALUES (1,'Zona Norte','2 pisos y acceso para vehiculos pesados',150),(2,'Zona Sur','4 pisos para vehiculos livianos',37),(3,'Zona Centro','2 pisos para vehiculos livianos',70);
 /*!40000 ALTER TABLE `cocheras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -46,14 +49,16 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `empleados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `empleados` (
   `dni` varchar(8) NOT NULL,
-  `idCochera` int(11) NOT NULL,
-  `idTurno` int(11) NOT NULL,
+  `idCochera` int(11) DEFAULT NULL,
+  `idTurno` int(11) DEFAULT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
   `email` varchar(90) NOT NULL,
+  `telefono1` varchar(45) DEFAULT NULL,
+  `telefono2` varchar(45) DEFAULT NULL,
   `usuario` varchar(45) NOT NULL,
   `contraseña` varchar(45) NOT NULL,
   PRIMARY KEY (`dni`),
@@ -70,7 +75,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES ('11111111',1,1,'franco','giannassi','drazerjx@gmail.com','drazerjx','12345'),('22222222',1,2,'Martin','Oliva','MartinOliva@gmail.com','Zileanswagger','54321'),('33333333',2,3,'Vittorio','Retrivi','VitoRetrivi@gmail.com','Vito','24680');
+INSERT INTO `empleados` VALUES ('11111111',1,1,'franco','giannassi','drazerjx@gmail.com','753421869','682435179','drazerjx','12345'),('22222222',1,2,'Martin','Oliva','MartinOliva@gmail.com','123456789',NULL,'Zileanswagger','54321'),('33333333',2,3,'Vittorio','Retrivi','VitoRetrivi@gmail.com','2477582031','159263487','Vito','24680');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,7 +85,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `estadias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estadias` (
   `idEstadia` int(11) NOT NULL,
   `fechaRetiro` datetime NOT NULL,
@@ -112,7 +117,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `jefes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `jefes` (
   `dni` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
@@ -140,7 +145,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `lugares`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `lugares` (
   `idCochera` int(11) NOT NULL,
   `nroLugar` int(11) NOT NULL,
@@ -165,7 +170,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `multiplicadores_estadias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `multiplicadores_estadias` (
   `multiplicadorDesde` int(11) NOT NULL,
   `porcentajeMultiplicador` decimal(3,0) NOT NULL,
@@ -189,7 +194,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `precio_por_hora`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `precio_por_hora` (
   `precio` decimal(5,0) NOT NULL,
   PRIMARY KEY (`precio`)
@@ -212,7 +217,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tipos_vehiculos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipos_vehiculos` (
   `idTipo` int(11) NOT NULL,
   `descripcion` varchar(45) NOT NULL,
@@ -236,7 +241,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `turnos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `turnos` (
   `idTurno` int(11) NOT NULL,
   `descripcion` varchar(6) NOT NULL,
@@ -262,7 +267,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `vehiculos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `vehiculos` (
   `patente` varchar(7) NOT NULL,
   `modelo` varchar(45) NOT NULL,
@@ -296,4 +301,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-10-25 14:12:47
+-- Dump completed on 2019-12-09 18:51:58
