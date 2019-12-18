@@ -46,7 +46,8 @@ public class PrincipalTP {
 		}
 		PrecioPorHora p = PrecioPorHoraController.getPrecio();
 		System.out.println("PrecioPorHora: "+p.getPrecio());
-
+		
+		
 	}
 
 }
