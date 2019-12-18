@@ -46,8 +46,9 @@ public class CocheraData {
 	public Cochera getOne(int idCochera) {
 		Cochera c=null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheras where idCochera ="+ idCochera);
+			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement("select * from cocheras where idCochera = ?");
+			pstmt.setInt(1, idCochera);
+			ResultSet rs= pstmt.executeQuery();
 			while(rs.next()) {
 				c=new Cochera();
 				
@@ -59,7 +60,7 @@ public class CocheraData {
 			}
 			
 			if(rs!=null){rs.close();}
-			if(stmt!=null){stmt.close();}
+			if(pstmt!=null){pstmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
@@ -73,10 +74,10 @@ public class CocheraData {
 	
 	public void deleteOne(int idCochera) {
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			stmt.executeUpdate("delete from cocheras where idCochera ="+ idCochera);
-			if(stmt!=null){stmt.close();}
-			FactoryConnection.getInstancia().releaseConn();
+			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement("delete from cocheras where idCochera = ?");
+			pstmt.setInt(1, idCochera);
+			pstmt.executeUpdate();
+			if(pstmt!=null){pstmt.close();}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -90,9 +91,12 @@ public class CocheraData {
 		String d = c.getDescripcion();
 		int ca = c.getCapacidad();
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			stmt.executeUpdate("insert into cocheras (ubicacion, descripcion, capacidad) values (\""+u+"\",\""+d+"\",\""+ca+"\")");
-			if(stmt!=null){stmt.close();}
+			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
+			("insert into cocheras (ubicacion, descripcion, capacidad) values (?,?,?)");
+			
+			pstmt.executeUpdate();
+			
+			if(pstmt!=null){pstmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
@@ -108,9 +112,16 @@ public class CocheraData {
 		String d = c.getDescripcion();
 		int ca = c.getCapacidad();
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			stmt.executeUpdate("update cocheras set ubicacion = \""+u+"\", descripcion = \""+d+"\", capacidad = \""+ca+"\"  where idCochera = "+id+" ");
-			if(stmt!=null){stmt.close();}
+			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
+			("update cocheras set ubicacion = ? , descripcion = ? , capacidad = ? where idCochera = ? ");
+			pstmt.setString(1, u);
+			pstmt.setString(2, d);
+			pstmt.setInt(3, ca);
+			pstmt.setInt(4, id);
+			
+			pstmt.executeUpdate();
+			
+			if(pstmt!=null){pstmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {

@@ -14,6 +14,39 @@ public class Empleado {
 	private Cochera cochera;
 	private Turno turno;
 	
+	public Empleado() {};
+	
+	public Empleado(String usuario, String contraseña, String email, String dni, String nombre, String apellido,
+			String telefono1, String telefono2, Cochera cochera, Turno turno) {
+		super();
+		this.usuario = usuario;
+		this.contraseña = contraseña;
+		this.email = email;
+		this.dni = dni;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.telefono1 = telefono1;
+		this.telefono2 = telefono2;
+		this.cochera = cochera;
+		this.turno = turno;
+	}
+	
+	public Empleado(String usuario, String contraseña, String email, String nombre, String apellido, String telefono1,
+			String telefono2, Cochera cochera, Turno turno) {
+		super();
+		this.usuario = usuario;
+		this.contraseña = contraseña;
+		this.email = email;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.telefono1 = telefono1;
+		this.telefono2 = telefono2;
+		this.cochera = cochera;
+		this.turno = turno;
+	}
+
+
+
 	public Cochera getCochera() {
 		return cochera;
 	}

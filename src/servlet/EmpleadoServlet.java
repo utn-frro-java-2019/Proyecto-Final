@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.Cochera;
 import domain.Empleado;
+import business.CocheraController;
 import business.EmpleadoController;
 
 @WebServlet("/empleados/*")
@@ -79,13 +81,37 @@ public class EmpleadoServlet extends HttpServlet {
 	}
 	
 	private void add(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// Crear nueva instancia.
-		// POST
+		/*
+		String dni = request.getParameter("Dni");
+		String nombre = request.getParameter("Nombre");
+		String apellido = request.getParameter("Apellido");
+		String email = request.getParameter("Email");
+		String telefono1 = request.getParameter("Tel1");
+		String telefono2 = request.getParameter("Tel2");
+		String usuario = request.getParameter("Usuario");
+		String contraseña = request.getParameter("Contraseña");
+		Empleado e = new Empleado(usuario,contraseña,dni,email,nombre,apellido,telefono1,telefono2,null,null);
+		//Falta agregar controles para la cochera y el turno (por eso los nulls)
+		EmpleadoController.insertOne(e);
+		this.all(request, response);
+		*/
 	}
 		
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// Editar instancia.
-		// POST
+		/*
+		String path = request.getPathInfo();
+		String id = path.replace("/edit/", "");
+		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
+		String email = request.getParameter("email");
+		String telefono1 = request.getParameter("tel1");
+		String telefono2 = request.getParameter("tel2");
+		String usuario = request.getParameter("usuario");
+		String contraseña = request.getParameter("contraseña");
+		Empleado e = new Empleado(usuario,contraseña,email,id,nombre,apellido,telefono1,telefono2,null,null);
+		EmpleadoController.updateOne(e);
+		this.all(request, response);
+		*/
 	}
 	
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
