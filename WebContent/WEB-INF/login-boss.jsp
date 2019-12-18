@@ -33,22 +33,22 @@
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-1">Cocheras</h1>
-                    <p class="mb-4">Usted est√° accediendo como: <span class="badge badge-secondary">Jefe de cocheras</span></p>
+                    <p class="mb-4">Usted est· accediendo como: <span class="badge badge-secondary">Jefe de cocheras</span></p>
                   </div>
                   <form class="user">
                     <div class="form-group">
                       <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingrese su email...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contrase√±a">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="ContraseÒa">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Recu√©rdame</label>
+                        <label class="custom-control-label" for="customCheck">RecuÈrdame</label>
                       </div>
                     </div>
-                    <a href="index.html" class="btn btn-success btn-user btn-block">
+                    <a href="http://localhost:8080/Cocheras/home" class="btn btn-success btn-user btn-block">
                       Ingresar
                     </a>
                   </form>
@@ -59,7 +59,7 @@
         </div>
       </div>
     </div>
-    <a href="#" class="text-white position-absolute mb-3 mr-4" style="bottom: 0; right:0;"><i class="fas fa-user"></i></a>
+    <a href="http://localhost:8080/Cocheras/loginEmpleado" class="text-white position-absolute mb-3 mr-4" style="bottom: 0; right:0;"><i class="fas fa-user"></i> - Acceder como empleado</a>
   </div>
 
   <!-- Bootstrap core JavaScript-->

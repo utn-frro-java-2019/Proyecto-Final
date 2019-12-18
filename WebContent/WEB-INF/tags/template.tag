@@ -44,7 +44,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="http://localhost:8080/Cocheras/home">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tablero</span></a>
       </li>
@@ -107,8 +107,8 @@
         </a>
         <div id="collapseDiario" class="collapse" aria-labelledby="headingDiario" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#"><i class="fas fa-arrow-circle-right"></i> Registrar ingreso</a>
-            <a class="collapse-item" href="#"><i class="fas fa-arrow-circle-left"></i> Registrar salida y cobro</a>
+            <a class="collapse-item" href="http://localhost:8080/Cocheras/diarios/ingreso"><i class="fas fa-arrow-circle-right"></i> Registrar ingreso</a>
+            <a class="collapse-item" href="http://localhost:8080/Cocheras/diarios/salida"><i class="fas fa-arrow-circle-left"></i> Registrar salida y cobro</a>
             <a class="collapse-item" href="#"><i class="far fa-list-alt"></i> Listar ingresos y salidas</a>
           </div>
         </div>
