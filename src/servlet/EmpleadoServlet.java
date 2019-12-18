@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import domain.Cochera;
 import domain.Empleado;
-import business.CocheraController;
 import business.EmpleadoController;
 
 @WebServlet("/empleados/*")

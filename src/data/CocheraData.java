@@ -93,6 +93,9 @@ public class CocheraData {
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
 			("insert into cocheras (ubicacion, descripcion, capacidad) values (?,?,?)");
+			pstmt.setString(1, u);
+			pstmt.setString(2, d);
+			pstmt.setInt(3, ca);
 			
 			pstmt.executeUpdate();
 			

@@ -48,8 +48,11 @@ public class DiariosServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getPathInfo();
-		if(path.equals("/add")) {
-		 	this.add(request,response);
+		if(path.equals("/ingreso")) {
+		 	this.diarioNew(request,response);
+		}
+		else if(path.equals("/salida")) {
+		 	this.diarioFinish(request,response);
 		}
 		else if(path.equals("/edit")) {
 			this.edit(request,response);
@@ -64,9 +67,6 @@ public class DiariosServlet extends HttpServlet {
 
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 	}
-	
-	private void add(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-	}
 		
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 	}
@@ -77,6 +77,14 @@ public class DiariosServlet extends HttpServlet {
 	
 	private void salida(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	request.getRequestDispatcher("/WEB-INF/diario-salida.jsp").forward(request,response);
+	}
+	
+	private void diarioNew(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    	request.getRequestDispatcher("/WEB-INF/diario-ingreso-comprobante.jsp").forward(request,response);
+	}
+	
+	private void diarioFinish(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    	request.getRequestDispatcher("/WEB-INF/diario-salida-comprobante.jsp").forward(request,response);
 	}
 	
 	private void comprobanteI(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {

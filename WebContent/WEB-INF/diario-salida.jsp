@@ -19,9 +19,10 @@
           </div>
         </form>
       </div>
+      <form name="diario-salida" method="post" action="http://localhost:8080/Cocheras/diarios/salida">
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Datos del Vehículo</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Datos del vehículo</h6>
         </div>
         <div class="card-body">
           <div class="form-group row">
@@ -62,7 +63,7 @@
       </div>
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Datos del Ingreso</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Datos del ingreso</h6>
         </div>
         <div class="card-body">
           <div class="form-group row">
@@ -75,7 +76,7 @@
               <input class="form-control form-control-user" type="text" name="Hora" value="">
             </div>
             <div class="col-sm-5">
-              <label class="mb-0 ml-1" for="Id de Ingreso">Id de Ingreso</label>
+              <label class="mb-0 ml-1" for="Id de Ingreso">Id de ingreso</label>
               <input class="form-control form-control-user" type="text" name="Id de Ingreso" value="">
             </div>
           </div>
@@ -85,10 +86,9 @@
         Monto a Cobrar: <b>$150</b>
       </div>
       <div class="row justify-content-end">
-        <a href="#" class="btn btn-danger mr-3 mb-4">
-          Registrar salida
-        </a>
+      	<button class="btn btn-success mr-3 mb-4" type="submit">Registrar salida</button>
       </div>
+      </form>
     </div>
   </div>
 </c:set>

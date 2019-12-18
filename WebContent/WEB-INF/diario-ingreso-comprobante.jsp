@@ -92,13 +92,25 @@
         </button>
       </div>
       <div class="row justify-content-center">
-        <a href="#" class="btn btn-primary">
+        <a href="http://localhost:8080/Cocheras/diarios/ingreso" class="btn btn-primary">
           <i class="fas fa-arrow-circle-left m-1"></i>
           Registrar otro ingreso
         </a>
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+    function printComprobante() {
+      let printContents = document.getElementById('toPrint').innerHTML;
+      w = window.open();
+      w.document.write(printContents);
+      w.document.close(); // necessary for IE >= 10
+      w.focus(); // necessary for IE >= 10
+      w.print();
+      //w.close();
+      return true;
+    }
+  </script>
 </c:set>
 
 <t:template>

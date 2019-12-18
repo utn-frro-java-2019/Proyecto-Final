@@ -19,12 +19,13 @@
           </div>
         </form>
         <div class="col col-auto d-flex">
-          <button class="btn btn-primary" type="button" name="button">Registrar nuevo vehículo</button>
+          <a class="d-flex justify-content-center align-items-center btn btn-primary" href="http://localhost:8080/Cocheras/vehiculos/create">Registrar nuevo vehículo</a>
         </div>
       </div>
+      <form name="diario-ingreso" method="post" action="http://localhost:8080/Cocheras/diarios/ingreso">
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">Datos del Vehículo</h6>
+          <h6 class="m-0 font-weight-bold text-primary">Datos del vehículo</h6>
         </div>
         <div class="card-body">
           <div class="form-group row">
@@ -64,10 +65,9 @@
         </div>
       </div>
       <div class="row justify-content-end">
-        <a href="#" class="btn btn-success mr-3 mb-4">
-          Generar ingreso
-        </a>
+      	<button class="btn btn-success mr-3 mb-4" type="submit">Generar ingreso</button>
       </div>
+      </form>
     </div>
   </div>
 </c:set>
