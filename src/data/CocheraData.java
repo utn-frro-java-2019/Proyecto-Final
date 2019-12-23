@@ -87,15 +87,12 @@ public class CocheraData {
 	}
 	
 	public void insertOne(Cochera c) {
-		String u = c.getUbicacion();
-		String d = c.getDescripcion();
-		int ca = c.getCapacidad();
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
 			("insert into cocheras (ubicacion, descripcion, capacidad) values (?,?,?)");
-			pstmt.setString(1, u);
-			pstmt.setString(2, d);
-			pstmt.setInt(3, ca);
+			pstmt.setString(1, c.getUbicacion());
+			pstmt.setString(2, c.getDescripcion());
+			pstmt.setInt(3, c.getCapacidad());
 			
 			pstmt.executeUpdate();
 			
@@ -110,17 +107,13 @@ public class CocheraData {
 	}
 	
 	public void updateOne(Cochera c) {
-		int id = c.getIdCochera();
-		String u = c.getUbicacion();
-		String d = c.getDescripcion();
-		int ca = c.getCapacidad();
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
 			("update cocheras set ubicacion = ? , descripcion = ? , capacidad = ? where idCochera = ? ");
-			pstmt.setString(1, u);
-			pstmt.setString(2, d);
-			pstmt.setInt(3, ca);
-			pstmt.setInt(4, id);
+			pstmt.setString(1, c.getUbicacion());
+			pstmt.setString(2, c.getDescripcion());
+			pstmt.setInt(3, c.getCapacidad());
+			pstmt.setInt(4, c.getIdCochera());
 			
 			pstmt.executeUpdate();
 			

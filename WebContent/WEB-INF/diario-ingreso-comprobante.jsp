@@ -62,26 +62,26 @@
           </div>
           <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="Fecha">Fecha</label>
-              <input class="form-control form-control-user" type="text" name="Fecha" value="">
+              <label class="mb-0 ml-1" for="fechaI">Fecha</label>
+              <input class="form-control form-control-user" type="text" name="fechaI" value="">
             </div>
             <div class="col-sm-6">
-              <label class="mb-0 ml-1" for="Hora">Hora</label>
-              <input class="form-control form-control-user" type="text" name="Hora" value="">
+              <label class="mb-0 ml-1" for="horaI">Hora</label>
+              <input class="form-control form-control-user" type="text" name="horaI" value="">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="Patente">Patente</label>
-              <input class="form-control form-control-user" type="text" name="Patente" value="">
+              <label class="mb-0 ml-1" for="patente">Patente</label>
+              <input class="form-control form-control-user" type="text" name="patente" value="">
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="Lugar">Lugar</label>
-              <input class="form-control form-control-user" type="text" name="Lugar" value="">
+              <label class="mb-0 ml-1" for="lugar">Lugar</label>
+              <input class="form-control form-control-user" type="text" name="lugar" value="">
             </div>
             <div class="col-sm-5">
-              <label class="mb-0 ml-1" for="Id de Ingreso">Id de Ingreso</label>
-              <input class="form-control form-control-user" type="text" name="Id de Ingreso" value="">
+              <label class="mb-0 ml-1" for="id">Id de Ingreso</label>
+              <input class="form-control form-control-user" type="text" name="id" value="">
             </div>
           </div>
         </div>

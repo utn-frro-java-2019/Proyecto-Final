@@ -93,6 +93,7 @@ public class EmpleadoServlet extends HttpServlet {
 		EmpleadoController.insertOne(e);
 		this.all(request, response);
 		*/
+		//TODO
 	}
 		
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -110,6 +111,7 @@ public class EmpleadoServlet extends HttpServlet {
 		EmpleadoController.updateOne(e);
 		this.all(request, response);
 		*/
+		//TODO
 	}
 	
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

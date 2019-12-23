@@ -38,7 +38,7 @@ public class PrincipalTP {
 		}
 		ArrayList<TipoVehiculo> tiposVehiculos = TipoVehiculoController.getAll();
 		for(TipoVehiculo tv: tiposVehiculos) {
-			System.out.println("TipoVehiculo: "+tv.getIdTipo()+" - "+tv.getDescripcion());		
+			System.out.println("TipoVehiculo: "+tv.getIdTipo()+" - "+tv.getDescripcion()+" - "+tv.getPorcentajeMultiplicador());		
 		}
 		ArrayList<MultiplicadorEstadia> multiplicadoresEstadias = MultiplicadorEstadiaController.getAll();
 		for(MultiplicadorEstadia me: multiplicadoresEstadias) {

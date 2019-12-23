@@ -7,9 +7,7 @@ public class Cochera {
 	private String descripcion;
 	private int capacidad;
 	
-	public Cochera() {
-
-	}
+	public Cochera() {}
 	
 	public Cochera(int id, String ubicacion, String descripcion, int capacidad) {
 		this.setIdCochera(id);

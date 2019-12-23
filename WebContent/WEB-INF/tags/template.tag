@@ -20,6 +20,9 @@
     .nw {
       white-space: nowrap;
     }
+    .nw:empty:before{
+		content: "-";
+    }
   </style>
 </head>
 
@@ -129,7 +132,17 @@
 
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider my-0">
+      
+      <!-- Nav Item - Cocheras -->
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/Cocheras/vehiculos/all">
+          <i class="fas fa-car-alt"></i>
+          <span>Listado de Vehículos</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">

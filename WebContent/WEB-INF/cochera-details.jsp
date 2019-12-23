@@ -17,17 +17,17 @@
           <div class="card-body">
             <div class="form-group row">
               <div class="col-sm-12 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="Descripcion">Descripción</label>
+                <label class="mb-0 ml-1" for="descripcion">Descripción</label>
                 <input class="form-control form-control-user" type="text" name="descripcion" value="<%=c.getDescripcion()%>" required>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-8 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="Ubicacion">Ubicación</label>
+                <label class="mb-0 ml-1" for="ubicacion">Ubicación</label>
                 <input class="form-control form-control-user" type="text" name="ubicacion" value="<%=c.getUbicacion()%>" required>
               </div>
               <div class="col-sm-4">
-                <label class="mb-0 ml-1" for="Capacidad">Capacidad</label>
+                <label class="mb-0 ml-1" for="capacidad">Capacidad</label>
                 <input class="form-control form-control-user" type="number" name="capacidad" value="<%=c.getCapacidad()%>" required>
               </div>
             </div>

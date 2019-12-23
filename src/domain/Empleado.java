@@ -1,6 +1,5 @@
 package domain;
 
-
 public class Empleado {
 
 	private String usuario;
@@ -44,8 +43,6 @@ public class Empleado {
 		this.cochera = cochera;
 		this.turno = turno;
 	}
-
-
 
 	public Cochera getCochera() {
 		return cochera;

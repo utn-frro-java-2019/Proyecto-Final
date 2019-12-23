@@ -27,36 +27,36 @@
         <div class="card-body">
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="Patente">Patente</label>
-              <input class="form-control form-control-user" type="text" name="Patente" value="">
+              <label class="mb-0 ml-1" for="patente">Patente</label>
+              <input class="form-control form-control-user" type="text" name="patente" value="">
             </div>
             <div class="col-sm-8">
-              <label class="mb-0 ml-1" for="Propietario">Propietario</label>
-              <input class="form-control form-control-user" type="text" name="Propietario" value="">
+              <label class="mb-0 ml-1" for="propietario">Propietario</label>
+              <input class="form-control form-control-user" type="text" name="propietario" value="">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="Tipo">Tipo</label>
-              <input class="form-control form-control-user" type="text" name="Tipo" value="">
+              <label class="mb-0 ml-1" for="tipo">Tipo</label>
+              <input class="form-control form-control-user" type="text" name="tipo" value="">
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="Marca">Marca</label>
-              <input class="form-control form-control-user" type="text" name="Marca" value="">
+              <label class="mb-0 ml-1" for="marca">Marca</label>
+              <input class="form-control form-control-user" type="text" name="marca" value="">
             </div>
             <div class="col-sm-4">
-              <label class="mb-0 ml-1" for="Modelo">Modelo</label>
-              <input class="form-control form-control-user" type="text" name="Modelo" value="">
+              <label class="mb-0 ml-1" for="modelo">Modelo</label>
+              <input class="form-control form-control-user" type="text" name="modelo" value="">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-7 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="Desc">Descripción</label>
-              <input class="form-control form-control-user" type="text" name="Desc" value="">
+              <label class="mb-0 ml-1" for="desc">Descripción</label>
+              <input class="form-control form-control-user" type="text" name="desc" value="">
             </div>
             <div class="col-sm-5">
-              <label class="mb-0 ml-1" for="Tel">Teléfono de contacto</label>
-              <input class="form-control form-control-user" type="text" name="Tel" value="">
+              <label class="mb-0 ml-1" for="tel">Teléfono de contacto</label>
+              <input class="form-control form-control-user" type="text" name="tel" value="">
             </div>
           </div>
         </div>
@@ -68,16 +68,16 @@
         <div class="card-body">
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="Fecha">Fecha</label>
-              <input class="form-control form-control-user" type="text" name="Fecha" value="">
+              <label class="mb-0 ml-1" for="fechaI">Fecha</label>
+              <input class="form-control form-control-user" type="text" name="fecha" value="">
             </div>
             <div class="col-sm-3 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="Hora">Hora</label>
-              <input class="form-control form-control-user" type="text" name="Hora" value="">
+              <label class="mb-0 ml-1" for="horaI">Hora</label>
+              <input class="form-control form-control-user" type="text" name="hora" value="">
             </div>
             <div class="col-sm-5">
-              <label class="mb-0 ml-1" for="Id de Ingreso">Id de ingreso</label>
-              <input class="form-control form-control-user" type="text" name="Id de Ingreso" value="">
+              <label class="mb-0 ml-1" for="id">Id de ingreso</label>
+              <input class="form-control form-control-user" type="text" name="id" value="">
             </div>
           </div>
         </div>

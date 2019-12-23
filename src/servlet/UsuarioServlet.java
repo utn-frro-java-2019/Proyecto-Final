@@ -52,9 +52,11 @@ public class UsuarioServlet extends HttpServlet {
 	}
 	
 	private void editProfile(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//TODO
 	}
 		
 	private void editPassword(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//TODO
 	}
 	
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

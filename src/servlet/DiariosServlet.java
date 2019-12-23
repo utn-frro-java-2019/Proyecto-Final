@@ -63,34 +63,43 @@ public class DiariosServlet extends HttpServlet {
 	}
 
 	private void all(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//TODO	
 	}
 
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//TODO	
 	}
 		
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//TODO	
 	}
 	
 	private void ingreso(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	request.getRequestDispatcher("/WEB-INF/diario-ingreso.jsp").forward(request,response);
+		//TODO
 	}
 	
 	private void salida(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	request.getRequestDispatcher("/WEB-INF/diario-salida.jsp").forward(request,response);
+		//TODO
 	}
 	
 	private void diarioNew(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	request.getRequestDispatcher("/WEB-INF/diario-ingreso-comprobante.jsp").forward(request,response);
+		//TODO
 	}
 	
 	private void diarioFinish(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	request.getRequestDispatcher("/WEB-INF/diario-salida-comprobante.jsp").forward(request,response);
+		//TODO
 	}
 	
 	private void comprobanteI(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//TODO
 	}
 	
 	private void comprobanteS(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//TODO
 	}
 	
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

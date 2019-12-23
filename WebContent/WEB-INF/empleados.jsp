@@ -14,7 +14,7 @@
     </div>
     <form class="col">
       <div class="input-group">
-        <input type="text" class="form-control bg-light border border-primary p-4" placeholder="Buscar Empleado" aria-label="Search" aria-describedby="basic-addon2">
+        <input type="text" class="form-control bg-light border border-primary p-4" placeholder="Buscar empleado" aria-label="Search" aria-describedby="basic-addon2">
           <div class="input-group-append">
             <button class="btn btn-primary" type="button">
               <i class="fas fa-search"></i>
@@ -62,16 +62,15 @@
                 <td class="nw"><%=e.getTelefono1()%></td>
                 <td class="nw"><%=e.getTelefono2()%></td>
                 <td class="d-flex align-items-center p-0">
-                  <a href="http://localhost:8080/Cocheras/empleados/details/<%=e.getDni()%>"class="d-flex align-items-center btn btn-warning m-1">
+                  <a href="http://localhost:8080/Cocheras/empleados/details/<%=e.getDni()%>" class="d-flex align-items-center btn btn-warning m-1">
                     <i class="fas fa-edit fa-xs m-1"></i>Editar
                   </a>
-                  <a href="http://localhost:8080/Cocheras/empleados/delete/<%=e.getDni()%>"class="d-flex align-items-center btn btn-danger m-1">
+                  <a href="http://localhost:8080/Cocheras/empleados/delete/<%=e.getDni()%>" class="d-flex align-items-center btn btn-danger m-1">
                     <i class="fas fa-trash-alt fa-xs m-1"></i>Eliminar
                   </a>
-                  <button type="button" class="d-flex align-items-center btn btn-primary m-1">
-                    <i class="fas fa-envelope fa-xs m-1"></i>
-                    <p class="d-none d-md-block m-0" style="white-space: nowrap">Enviar Correo</p>
-                  </button>
+                  <a href="mailto:<%=e.getEmail()%>" style="white-space: nowrap" class="d-flex align-items-center btn btn-primary m-1">
+                    <i class="fas fa-envelope fa-xs m-1"></i>Enviar Correo
+                  </a>
                 </td>
               </tr>
               <%}%>
