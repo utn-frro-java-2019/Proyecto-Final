@@ -5,7 +5,7 @@
 <c:set var="bodyContent">
   <div class="row justify-content-md-center">
     <div class="col-lg-11">
-      <h1 class="h5 text-gray-800">Estacionamiento Diario</h1>
+      <h5 class="h5 text-gray-800">Estacionamiento Diario</h5>
       <h1 class="h3 mb-4 text-gray-800">Registrar Salida de Vehículo</h1>
       <div class="row  mb-4">
         <form class="col">

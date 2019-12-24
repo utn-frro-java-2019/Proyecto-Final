@@ -6,8 +6,8 @@
 <%Empleado u = (Empleado)request.getAttribute("usuario");%>
 
 <c:set var="bodyContent">
-  <div class="row justify-content-md-center">
-    <div class="col-lg-11">
+  <div class="row mb-3">
+    <div class="col-lg-12">
       <!-- Basic Card Example -->
       <div class="card shadow mb-4">
         <div class="card-header py-3">

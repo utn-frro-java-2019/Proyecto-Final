@@ -5,7 +5,7 @@
 <c:set var="bodyContent">
   <div class="row justify-content-md-center">
     <div class="col-lg-11" style="max-width: 800px">
-      <h1 class="h5 text-gray-800">Estacionamiento Diario</h1>
+      <h5 class="h5 text-gray-800">Estacionamiento Diario</h5>
       <h1 class="h3 mb-4 text-gray-800">Comprobante de Salida</h1>
       <div class="card shadow mb-4">
         <div class="card-header py-3">

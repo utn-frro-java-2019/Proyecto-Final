@@ -73,6 +73,13 @@
           <i class="fas fa-user-edit"></i>
           <span>Administrar empleados</span></a>
       </li>
+      
+      <!-- Nav Item - Configuraciones -->
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/Cocheras/configuration/config">
+          <i class="fas fa-sliders-h"></i>
+          <span>Editar precios y otros</span></a>
+      </li>
 
       <!-- Nav Item - Estadísticas Collapse Menu -->
       <li class="nav-item">
@@ -239,7 +246,14 @@
   <script src="http://localhost:8080/Cocheras/js/sb-admin-2.min.js"></script>
   <script src="http://localhost:8080/Cocheras/vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="http://localhost:8080/Cocheras/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-  <script src="http://localhost:8080/Cocheras/js/demo/datatables-demo.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+		$('.dataTable').DataTable({
+			"bFilter": false,
+			"lengthChange": false
+		});
+	});
+  </script>
 
 </body>
 
