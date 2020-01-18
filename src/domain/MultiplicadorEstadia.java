@@ -2,7 +2,14 @@ package domain;
 
 public class MultiplicadorEstadia {
 	private int multiplicadorDesde;
-	private Double porcentajeMultiplicador;
+	private double porcentajeMultiplicador;
+	
+	public MultiplicadorEstadia() {}
+	
+	public MultiplicadorEstadia(int md, double pm) {
+		this.setMultiplicadorDesde(md);
+		this.setPorcentajeMultiplicador(pm);
+	}
 	
 	public int getMultiplicadorDesde() {
 		return multiplicadorDesde;
@@ -13,7 +20,7 @@ public class MultiplicadorEstadia {
 	public Double getPorcentajeMultiplicador() {
 		return porcentajeMultiplicador;
 	}
-	public void setPorcentajeMultiplicador(Double porcentajeMultiplicador) {
+	public void setPorcentajeMultiplicador(double porcentajeMultiplicador) {
 		this.porcentajeMultiplicador = porcentajeMultiplicador;
 	}
 }

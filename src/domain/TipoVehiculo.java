@@ -6,6 +6,19 @@ public class TipoVehiculo {
 	private String descripcion;
 	private Double porcentajeMultiplicador;
 	
+	public TipoVehiculo() {}
+	
+	public TipoVehiculo(int id, String d, double pm) {
+		this.setIdTipo(id);
+		this.setDescripcion(d);
+		this.setPorcentajeMultiplicador(pm);
+	}
+	
+	public TipoVehiculo(String d, double pm) {
+		this.setDescripcion(d);
+		this.setPorcentajeMultiplicador(pm);
+	}
+	
 	public Double getPorcentajeMultiplicador() {
 		return porcentajeMultiplicador;
 	}

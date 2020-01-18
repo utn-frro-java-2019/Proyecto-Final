@@ -87,12 +87,17 @@ public class ConfigurationServlet extends HttpServlet {
 	}
 	
 	private void deleteME(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO
+		String path = request.getPathInfo();
+		int multiplicadorDesde = Integer.parseInt(path.replace("/deleteME/", ""));
+		MultiplicadorEstadiaController.deleteOne(multiplicadorDesde);
 		this.config(request, response);
 	}
 	
 	private void addME(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO
+		int multiplicadorDesde = Integer.parseInt(request.getParameter("multiplicadorDesde"));
+		double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
+		MultiplicadorEstadia me = new MultiplicadorEstadia(multiplicadorDesde, porcentajeMultiplicador);
+		MultiplicadorEstadiaController.insertOne(me);
 		this.config(request, response);
 	}
 	
@@ -104,21 +109,36 @@ public class ConfigurationServlet extends HttpServlet {
 	}
 	
 	private void deleteTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO
+		String path = request.getPathInfo();
+		int idTipo = Integer.parseInt(path.replace("/deleteTV/", ""));
+		TipoVehiculoController.deleteOne(idTipo);
 		this.config(request, response);
 	}
 	
 	private void detailsTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO
+		String path = request.getPathInfo();
+		int idTipo = Integer.parseInt(path.replace("/detailsTV/", ""));
+		TipoVehiculo tv = TipoVehiculoController.getOne(idTipo);
+    	request.setAttribute("TipoVehiculo", tv);
+    	request.getRequestDispatcher("/WEB-INF/tipoVehiculo-details.jsp").forward(request,response);
 	}
 	
 	private void addTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO
+		String descripcion = request.getParameter("descripcion");
+		double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
+		TipoVehiculo tv = new TipoVehiculo(descripcion, porcentajeMultiplicador);
+		TipoVehiculoController.insertOne(tv);
 		this.config(request, response);
 	}
 	
 	private void editTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO
+		String path = request.getPathInfo();
+		int idTipo = Integer.parseInt(path.replace("/editTV/", ""));
+		String descripcion = request.getParameter("descripcion");
+		double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
+		TipoVehiculo tv = new TipoVehiculo(idTipo, descripcion, porcentajeMultiplicador);
+		TipoVehiculoController.updateOne(tv);
+		this.config(request, response);
 	}
 	
 	// ------------------------------------------------------------------------------------------

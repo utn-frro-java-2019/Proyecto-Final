@@ -68,4 +68,58 @@ public ArrayList<TipoVehiculo> getAll() {
 
 		return tv;
 	}
+	
+	public void deleteOne(int idTipo) {
+		try {
+			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement("delete from tipos_vehiculos where idTipo = ?");
+			pstmt.setInt(1, idTipo);
+			pstmt.executeUpdate();
+			if(pstmt!=null){pstmt.close();}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void insertOne(TipoVehiculo tv) {
+		try {
+			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
+			("insert into tipos_vehiculos (descripcion, porcentajeMultiplicador) values (?,?)");
+			pstmt.setString(1, tv.getDescripcion());
+			pstmt.setDouble(2, tv.getPorcentajeMultiplicador());
+			
+			pstmt.executeUpdate();
+			
+			if(pstmt!=null){pstmt.close();}
+			FactoryConnection.getInstancia().releaseConn();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateOne(TipoVehiculo tv) {
+		try {
+			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
+			("update tipos_vehiculos set descripcion = ? , porcentajeMultiplicador = ? where idTipo = ? ");
+			pstmt.setString(1, tv.getDescripcion());
+			pstmt.setDouble(2, tv.getPorcentajeMultiplicador());
+			pstmt.setInt(3, tv.getIdTipo());
+			
+			pstmt.executeUpdate();
+			
+			if(pstmt!=null){pstmt.close();}
+			FactoryConnection.getInstancia().releaseConn();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
