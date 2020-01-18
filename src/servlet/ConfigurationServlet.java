@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import business.MultiplicadorEstadiaController;
+import business.PrecioPorHoraController;
 import business.TipoVehiculoController;
 import domain.MultiplicadorEstadia;
 import domain.TipoVehiculo;
@@ -66,6 +67,9 @@ public class ConfigurationServlet extends HttpServlet {
 
 	private void config(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
+		double precioPorHora = PrecioPorHoraController.getPrecioPorHora().getPrecio();
+		request.setAttribute("precioPorHora", precioPorHora);
+		
     	ArrayList<MultiplicadorEstadia> multiplicadoresEstadia = MultiplicadorEstadiaController.getAll();
     	request.setAttribute("listaMultiplicadoresEstadia", multiplicadoresEstadia);
     	
@@ -79,26 +83,29 @@ public class ConfigurationServlet extends HttpServlet {
 	// Multiplicador Estadía --------------------------------------------------------------------
 	
 	private void createME(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO
+		request.getRequestDispatcher("/WEB-INF/multiplicadorEstadia-create.jsp").forward(request,response);
 	}
 	
 	private void deleteME(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//TODO
+		this.config(request, response);
 	}
 	
 	private void addME(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//TODO
+		this.config(request, response);
 	}
 	
 	// ------------------------------------------------------------------------------------------
 	// Tipo de Vehículo -------------------------------------------------------------------------
 	
 	private void createTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO
+		request.getRequestDispatcher("/WEB-INF/tipoVehiculo-create.jsp").forward(request,response);
 	}
 	
 	private void deleteTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//TODO
+		this.config(request, response);
 	}
 	
 	private void detailsTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -107,6 +114,7 @@ public class ConfigurationServlet extends HttpServlet {
 	
 	private void addTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//TODO
+		this.config(request, response);
 	}
 	
 	private void editTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

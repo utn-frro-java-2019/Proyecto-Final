@@ -44,9 +44,8 @@ public class PrincipalTP {
 		for(MultiplicadorEstadia me: multiplicadoresEstadias) {
 			System.out.println("MultiplicadorEstadia: "+me.getMultiplicadorDesde()+" - "+me.getPorcentajeMultiplicador());
 		}
-		PrecioPorHora p = PrecioPorHoraController.getPrecio();
+		PrecioPorHora p = PrecioPorHoraController.getPrecioPorHora();
 		System.out.println("PrecioPorHora: "+p.getPrecio());
-		
 		
 	}
 

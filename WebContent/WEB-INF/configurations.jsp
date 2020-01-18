@@ -6,6 +6,7 @@
 <%@page import="domain.TipoVehiculo"%>
 <%@page import="java.util.ArrayList"%>
 
+<%double precioPorHora = (double)request.getAttribute("precioPorHora");%>
 <%ArrayList<MultiplicadorEstadia> me = (ArrayList<MultiplicadorEstadia>)request.getAttribute("listaMultiplicadoresEstadia");%>
 <%ArrayList<TipoVehiculo> tv = (ArrayList<TipoVehiculo>)request.getAttribute("listaTiposVehiculos");%>
 
@@ -26,7 +27,7 @@
                     <form>
                       <div class="form-group row">
                         <div class="col-sm-12 mb-3 mb-sm-0">
-                          <input type="password" class="form-control form-control-user" id="contraseña1" placeholder="Precio base por hora">
+                          <input type="text" class="form-control form-control-user" id="precioBase" value="<%=precioPorHora%>">
                         </div>
                       </div>
                       <a href="#" class="btn btn-danger">
@@ -64,7 +65,7 @@
                         </thead>
                         <tfoot>
                           <tr>
-                            <th class="nw">A partir de X días</th>
+                            <th class="nw">A partir de</th>
                             <th class="nw">Porcentaje sobre el precio base</th>
                             <th class="nw">Opciones</th>
                           </tr>

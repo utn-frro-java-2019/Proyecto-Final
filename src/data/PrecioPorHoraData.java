@@ -8,7 +8,7 @@ import domain.*;
 
 public class PrecioPorHoraData {
 	
-	public PrecioPorHora getPrecio() {
+	public PrecioPorHora getPrecioPorHora() {
 		PrecioPorHora p = null;
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
