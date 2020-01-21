@@ -32,7 +32,7 @@ public class CocheraData {
 			}
 			
 			if(rs!=null){rs.close();}
-			if(stmt!=null){stmt.close();}
+			if(sentencia!=null){sentencia.close();}
 			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
