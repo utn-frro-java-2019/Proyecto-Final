@@ -10,9 +10,10 @@ public class CocheraData {
 	public ArrayList<Cochera> getAll() {
 		ArrayList<Cochera> cocheras = new ArrayList<Cochera>();
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheras");
-
+			String consulta = "select * from cocheras ";
+			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
+			PreparedStatement sentencia= conexion.prepareStatement(consulta);
+			ResultSet rs = sentencia.executeQuery();
 			while(rs.next()) {
 				Cochera c=new Cochera();
 				
@@ -46,8 +47,11 @@ public class CocheraData {
 	public Cochera getOne(int idCochera) {
 		Cochera c=null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs= stmt.executeQuery("select * from cocheras where idCochera ="+ idCochera);
+			String consulta = "select * from cocheras where idCochera = ? ";
+			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
+			PreparedStatement sentencia= conexion.prepareStatement(consulta);
+			sentencia.setString(1, Integer.toString(idCochera));
+			ResultSet rs = sentencia.executeQuery();
 			while(rs.next()) {
 				c=new Cochera();
 				
@@ -59,7 +63,7 @@ public class CocheraData {
 			}
 			
 			if(rs!=null){rs.close();}
-			if(stmt!=null){stmt.close();}
+			if(sentencia!=null){sentencia.close();}
 			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
@@ -73,9 +77,14 @@ public class CocheraData {
 	
 	public void deleteOne(int idCochera) {
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			stmt.executeUpdate("delete from cocheras where idCochera ="+ idCochera);
-			if(stmt!=null){stmt.close();}
+			String consulta = "delete * from cocheras where idCochera = ? ";
+			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
+			PreparedStatement sentencia= conexion.prepareStatement(consulta);
+			sentencia.setString(1, Integer.toString(idCochera));
+			ResultSet rs = sentencia.executeQuery();
+			
+			if(rs!=null){rs.close();}
+			if(sentencia!=null){sentencia.close();}
 			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
@@ -90,11 +99,16 @@ public class CocheraData {
 		String d = c.getDescripcion();
 		int ca = c.getCapacidad();
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			stmt.executeUpdate("insert into cocheras (ubicacion, descripcion, capacidad) values (\""+u+"\",\""+d+"\",\""+ca+"\")");
-			if(stmt!=null){stmt.close();}
-			FactoryConnection.getInstancia().releaseConn();
 			
+			String consulta = " insert into cocheras (ubicacion, descripcion, capacidad)" + " values (?, ?, ?)";
+			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
+			PreparedStatement sentencia= conexion.prepareStatement(consulta);
+			sentencia.setString(1,u);
+			sentencia.setString(2,d);
+			sentencia.setString(3,Integer.toString(ca));
+			ResultSet rs = sentencia.executeQuery();
+			
+			if(rs!=null){rs.close();}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}catch (Exception e) {
@@ -108,10 +122,16 @@ public class CocheraData {
 		String d = c.getDescripcion();
 		int ca = c.getCapacidad();
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			stmt.executeUpdate("update cocheras set ubicacion = \""+u+"\", descripcion = \""+d+"\", capacidad = \""+ca+"\"  where idCochera = "+id+" ");
-			if(stmt!=null){stmt.close();}
-			FactoryConnection.getInstancia().releaseConn();
+			
+			String consulta = " update  cocheras set ubicacion = ?, descripcion = ?, capacidad = ? where id=?" ;
+			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
+			PreparedStatement sentencia= conexion.prepareStatement(consulta);
+			sentencia.setString(1,u);
+			sentencia.setString(2,d);
+			sentencia.setString(3,Integer.toString(ca));
+			sentencia.setString(4,Integer.toString(id));
+			ResultSet rs = sentencia.executeQuery();
+			if(rs!=null){rs.close();}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
