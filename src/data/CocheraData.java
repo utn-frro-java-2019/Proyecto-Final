@@ -47,11 +47,13 @@ public class CocheraData {
 	public Cochera getOne(int idCochera) {
 		Cochera c=null;
 		try {
+
 			String consulta = "select * from cocheras where idCochera = ? ";
 			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
 			PreparedStatement sentencia= conexion.prepareStatement(consulta);
 			sentencia.setString(1, Integer.toString(idCochera));
 			ResultSet rs = sentencia.executeQuery();
+
 			while(rs.next()) {
 				c=new Cochera();
 				
@@ -65,6 +67,7 @@ public class CocheraData {
 			if(rs!=null){rs.close();}
 			if(sentencia!=null){sentencia.close();}
 			FactoryConnection.getInstancia().releaseConn();
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -77,6 +80,7 @@ public class CocheraData {
 	
 	public void deleteOne(int idCochera) {
 		try {
+
 			String consulta = "delete * from cocheras where idCochera = ? ";
 			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
 			PreparedStatement sentencia= conexion.prepareStatement(consulta);
@@ -86,6 +90,8 @@ public class CocheraData {
 			if(rs!=null){rs.close();}
 			if(sentencia!=null){sentencia.close();}
 			FactoryConnection.getInstancia().releaseConn();
+
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -95,20 +101,20 @@ public class CocheraData {
 	}
 	
 	public void insertOne(Cochera c) {
-		String u = c.getUbicacion();
-		String d = c.getDescripcion();
-		int ca = c.getCapacidad();
 		try {
+
 			
 			String consulta = " insert into cocheras (ubicacion, descripcion, capacidad)" + " values (?, ?, ?)";
 			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
 			PreparedStatement sentencia= conexion.prepareStatement(consulta);
-			sentencia.setString(1,u);
-			sentencia.setString(2,d);
-			sentencia.setString(3,Integer.toString(ca));
+			sentencia.setString(1,c.getUbicacion());
+			sentencia.setString(2, c.getDescripcion());
+			sentencia.setString(3,Integer.toString(c.getCapacidad()));
 			ResultSet rs = sentencia.executeQuery();
 			
 			if(rs!=null){rs.close();}
+			if(sentencia!=null){sentencia.close();}
+			FactoryConnection.getInstancia().releaseConn();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}catch (Exception e) {
@@ -117,21 +123,22 @@ public class CocheraData {
 	}
 	
 	public void updateOne(Cochera c) {
-		int id = c.getIdCochera();
-		String u = c.getUbicacion();
-		String d = c.getDescripcion();
-		int ca = c.getCapacidad();
 		try {
+
 			
 			String consulta = " update  cocheras set ubicacion = ?, descripcion = ?, capacidad = ? where id=?" ;
 			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
 			PreparedStatement sentencia= conexion.prepareStatement(consulta);
-			sentencia.setString(1,u);
-			sentencia.setString(2,d);
-			sentencia.setString(3,Integer.toString(ca));
-			sentencia.setString(4,Integer.toString(id));
+			sentencia.setString(1,c.getUbicacion());
+			sentencia.setString(2,c.getDescripcion());
+			sentencia.setString(3,Integer.toString(c.getCapacidad()));
+			sentencia.setString(4,Integer.toString(c.getIdCochera()));
 			ResultSet rs = sentencia.executeQuery();
+			
 			if(rs!=null){rs.close();}
+			if(sentencia!=null){sentencia.close();}
+			FactoryConnection.getInstancia().releaseConn();
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

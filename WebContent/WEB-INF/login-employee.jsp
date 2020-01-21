@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="css/sb-admin-2-custom.min.css" rel="stylesheet">
 
 </head>
 
@@ -39,21 +39,21 @@
                       <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingrese su email...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="ContraseÃ±a">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">RecuÃ©rdame</label>
+                        <label class="custom-control-label" for="customCheck">Recuérdame</label>
                       </div>
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    <a href="http://localhost:8080/Cocheras/home" class="btn btn-primary btn-user btn-block">
                       Ingresar
                     </a>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Olvidaste tu contraseÃ±a?</a>
+                    <a class="small" href="http://localhost:8080/Cocheras/passwordRecovery">Olvidaste tu contraseña?</a>
                   </div>
                 </div>
               </div>
@@ -62,7 +62,7 @@
         </div>
       </div>
     </div>
-    <a href="#" class="text-warning position-absolute mb-3 mr-4" style="bottom: 0; right:0;"><i class="fas fa-user-tie"></i></a>
+    <a href="http://localhost:8080/Cocheras/loginJefe" class="text-white position-absolute mb-3 mr-4" style="bottom: 0; right:0;"><i class="fas fa-user-tie"></i> - Acceder como jefe de cocheras</a>
   </div>
 
   <!-- Bootstrap core JavaScript-->

@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Forgot Password</title>
+  <title>cocheras - Forgot Password</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,20 +36,20 @@
               <div class="col">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-2">Â¿Olvidaste tu contraseÃ±a?</h1>
-                    <p class="mb-4">Lo entendemos, estas cosas suelen suceder. Simplemente ingrese su direcciÃ³n de correo electrÃ³nico a continuaciÃ³n y le enviaremos un enlace para restablecer su contraseÃ±a.</p>
+                    <h1 class="h4 text-gray-900 mb-2">¿Olvidaste tu contraseña?</h1>
+                    <p class="mb-4">Lo entendemos, estas cosas suelen suceder. Simplemente ingrese su dirección de correo electrónico a continuación y le enviaremos un enlace para restablecer su contraseña.</p>
                   </div>
                   <form class="user">
                     <div class="form-group">
                       <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingrese su email...">
                     </div>
                     <a href="#" class="btn btn-primary btn-user btn-block">
-                      Restablecer ContraseÃ±a
+                      Restablecer Contraseña
                     </a>
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="#">Â¿Ya sabes tu contraseÃ±a? Â¡Logueate!</a>
+                    <a class="small" href="http://localhost:8080/Cocheras/loginEmpleado">¿Ya sabes tu contraseña? ¡Logueate!</a>
                   </div>
                 </div>
               </div>

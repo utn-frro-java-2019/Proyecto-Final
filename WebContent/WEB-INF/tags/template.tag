@@ -14,11 +14,14 @@
 
   <link href="http://localhost:8080/Cocheras/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link href="http://localhost:8080/Cocheras/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="http://localhost:8080/Cocheras/css/sb-admin-2-custom.min.css" rel="stylesheet">
   <link href="http://localhost:8080/Cocheras/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <style media="screen">
     .nw {
       white-space: nowrap;
+    }
+    .nw:empty:before{
+		content: "-";
     }
   </style>
 </head>
@@ -44,7 +47,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="http://localhost:8080/Cocheras/home">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tablero</span></a>
       </li>
@@ -69,6 +72,13 @@
         <a class="nav-link" href="http://localhost:8080/Cocheras/empleados/all">
           <i class="fas fa-user-edit"></i>
           <span>Administrar empleados</span></a>
+      </li>
+      
+      <!-- Nav Item - Configuraciones -->
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/Cocheras/configuration/config">
+          <i class="fas fa-sliders-h"></i>
+          <span>Editar precios y otros</span></a>
       </li>
 
       <!-- Nav Item - Estadísticas Collapse Menu -->
@@ -107,8 +117,8 @@
         </a>
         <div id="collapseDiario" class="collapse" aria-labelledby="headingDiario" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#"><i class="fas fa-arrow-circle-right"></i> Registrar ingreso</a>
-            <a class="collapse-item" href="#"><i class="fas fa-arrow-circle-left"></i> Registrar salida y cobro</a>
+            <a class="collapse-item" href="http://localhost:8080/Cocheras/diarios/ingreso"><i class="fas fa-arrow-circle-right"></i> Registrar ingreso</a>
+            <a class="collapse-item" href="http://localhost:8080/Cocheras/diarios/salida"><i class="fas fa-arrow-circle-left"></i> Registrar salida y cobro</a>
             <a class="collapse-item" href="#"><i class="far fa-list-alt"></i> Listar ingresos y salidas</a>
           </div>
         </div>
@@ -129,7 +139,17 @@
 
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider my-0">
+      
+      <!-- Nav Item - Cocheras -->
+      <li class="nav-item">
+        <a class="nav-link" href="http://localhost:8080/Cocheras/vehiculos/all">
+          <i class="fas fa-car-alt"></i>
+          <span>Listado de Vehículos</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -226,7 +246,14 @@
   <script src="http://localhost:8080/Cocheras/js/sb-admin-2.min.js"></script>
   <script src="http://localhost:8080/Cocheras/vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="http://localhost:8080/Cocheras/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-  <script src="http://localhost:8080/Cocheras/js/demo/datatables-demo.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+		$('.dataTable').DataTable({
+			"bFilter": false,
+			"lengthChange": false
+		});
+	});
+  </script>
 
 </body>
 

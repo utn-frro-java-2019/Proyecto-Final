@@ -17,35 +17,35 @@
           <div class="card-body">
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="Nombre">Nombre</label>
-                <input class="form-control form-control-user" type="text" name="nombre" value="<%=e.getNombre()%>">
+                <label class="mb-0 ml-1" for="nombre">Nombre</label>
+                <input class="form-control form-control-user" type="text" name="nombre" value="<%=e.getNombre()%>" required>
               </div>
               <div class="col-sm-6">
-                <label class="mb-0 ml-1" for="Apellido">Apellido</label>
-                <input class="form-control form-control-user" type="text" name="apellido" value="<%=e.getApellido()%>">
+                <label class="mb-0 ml-1" for="apellido">Apellido</label>
+                <input class="form-control form-control-user" type="text" name="apellido" value="<%=e.getApellido()%>" required>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-3 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="Dni">Dni</label>
-                <input class="form-control form-control-user" type="text" name="dni" value="<%=e.getDni()%>">
+                <label class="mb-0 ml-1" for="dni">Dni</label>
+                <input class="form-control form-control-user" type="text" name="dni" value="<%=e.getDni()%>" required>
               </div>
               <div class="col-sm-4 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="Usuario">Usuario</label>
-                <input class="form-control form-control-user" type="text" name="usuario" value="<%=e.getUsuario()%>">
+                <label class="mb-0 ml-1" for="usuario">Usuario</label>
+                <input class="form-control form-control-user" type="text" name="usuario" value="<%=e.getUsuario()%>" required>
               </div>
               <div class="col-sm-5">
-                <label class="mb-0 ml-1" for="Email">Email</label>
-                <input class="form-control form-control-user" type="text" name="email" value="<%=e.getEmail()%>">
+                <label class="mb-0 ml-1" for="email">Email</label>
+                <input class="form-control form-control-user" type="text" name="email" value="<%=e.getEmail()%>" required>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="Tel1">Teléfono 1</label>
-                <input class="form-control form-control-user" type="text" name="tel1" value="<%=e.getTelefono1()%>">
+                <label class="mb-0 ml-1" for="tel1">Teléfono 1</label>
+                <input class="form-control form-control-user" type="text" name="tel1" value="<%=e.getTelefono1()%>" required>
               </div>
               <div class="col-sm-6">
-                <label class="mb-0 ml-1" for="Tel2">Teléfono 2</label>
+                <label class="mb-0 ml-1" for="tel2">Teléfono 2</label>
                 <input class="form-control form-control-user" type="text" name="tel2" value="<%=e.getTelefono2()%>">
               </div>
             </div>

@@ -7,9 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import business.CocheraController;
 import business.EmpleadoController;
-import domain.Cochera;
 import domain.Empleado;
 
 
@@ -54,9 +52,11 @@ public class UsuarioServlet extends HttpServlet {
 	}
 	
 	private void editProfile(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//TODO
 	}
 		
 	private void editPassword(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		//TODO
 	}
 	
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
