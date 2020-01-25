@@ -11,9 +11,8 @@ public class CocheraData {
 		ArrayList<Cochera> cocheras = new ArrayList<Cochera>();
 		try {
 			String consulta = "select * from cocheras ";
-			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
-			PreparedStatement sentencia= conexion.prepareStatement(consulta);
-			ResultSet rs = sentencia.executeQuery();
+			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Cochera c=new Cochera();
 				
@@ -26,13 +25,12 @@ public class CocheraData {
 				c.setUbicacion(rs.getString("ubicacion"));
 				c.setCapacidad(rs.getInt("capacidad"));
 				
-				
 				cocheras.add(c);
 				
 			}
 			
 			if(rs!=null){rs.close();}
-			if(sentencia!=null){sentencia.close();}
+			if(stmt!=null){stmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e) {
@@ -49,10 +47,9 @@ public class CocheraData {
 		try {
 
 			String consulta = "select * from cocheras where idCochera = ? ";
-			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
-			PreparedStatement sentencia= conexion.prepareStatement(consulta);
-			sentencia.setString(1, Integer.toString(idCochera));
-			ResultSet rs = sentencia.executeQuery();
+			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			stmt.setString(1, Integer.toString(idCochera));
+			ResultSet rs = stmt.executeQuery();
 
 			while(rs.next()) {
 				c=new Cochera();
@@ -65,7 +62,7 @@ public class CocheraData {
 			}
 			
 			if(rs!=null){rs.close();}
-			if(sentencia!=null){sentencia.close();}
+			if(stmt!=null){stmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
 
 			
@@ -81,17 +78,13 @@ public class CocheraData {
 	public void deleteOne(int idCochera) {
 		try {
 
-			String consulta = "delete * from cocheras where idCochera = ? ";
-			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
-			PreparedStatement sentencia= conexion.prepareStatement(consulta);
-			sentencia.setString(1, Integer.toString(idCochera));
-			ResultSet rs = sentencia.executeQuery();
+			String consulta = "delete from cocheras where idCochera = ?";
+			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			stmt.setString(1, Integer.toString(idCochera));
+			stmt.executeUpdate();
 			
-			if(rs!=null){rs.close();}
-			if(sentencia!=null){sentencia.close();}
+			if(stmt!=null){stmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
-
-
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,19 +95,17 @@ public class CocheraData {
 	
 	public void insertOne(Cochera c) {
 		try {
-
 			
-			String consulta = " insert into cocheras (ubicacion, descripcion, capacidad)" + " values (?, ?, ?)";
-			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
-			PreparedStatement sentencia= conexion.prepareStatement(consulta);
-			sentencia.setString(1,c.getUbicacion());
-			sentencia.setString(2, c.getDescripcion());
-			sentencia.setString(3,Integer.toString(c.getCapacidad()));
-			ResultSet rs = sentencia.executeQuery();
+			String consulta = "insert into cocheras (ubicacion, descripcion, capacidad) values (?, ?, ?)";
+			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			stmt.setString(1,c.getUbicacion());
+			stmt.setString(2, c.getDescripcion());
+			stmt.setString(3,Integer.toString(c.getCapacidad()));
+			stmt.executeUpdate();
 			
-			if(rs!=null){rs.close();}
-			if(sentencia!=null){sentencia.close();}
+			if(stmt!=null){stmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}catch (Exception e) {
@@ -125,20 +116,16 @@ public class CocheraData {
 	public void updateOne(Cochera c) {
 		try {
 
+			String consulta = "update  cocheras set ubicacion = ?, descripcion = ?, capacidad = ? where idCochera = ?";
+			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			stmt.setString(1,c.getUbicacion());
+			stmt.setString(2,c.getDescripcion());
+			stmt.setString(3,Integer.toString(c.getCapacidad()));
+			stmt.setString(4,Integer.toString(c.getIdCochera()));
+			stmt.executeUpdate();
 			
-			String consulta = " update  cocheras set ubicacion = ?, descripcion = ?, capacidad = ? where id=?" ;
-			Connection conexion= DriverManager.getConnection("jdbc:mysql://localhost/cocheras", "root", "39855209");
-			PreparedStatement sentencia= conexion.prepareStatement(consulta);
-			sentencia.setString(1,c.getUbicacion());
-			sentencia.setString(2,c.getDescripcion());
-			sentencia.setString(3,Integer.toString(c.getCapacidad()));
-			sentencia.setString(4,Integer.toString(c.getIdCochera()));
-			ResultSet rs = sentencia.executeQuery();
-			
-			if(rs!=null){rs.close();}
-			if(sentencia!=null){sentencia.close();}
+			if(stmt!=null){stmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
-
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
