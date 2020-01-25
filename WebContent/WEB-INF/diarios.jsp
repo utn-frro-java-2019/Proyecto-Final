@@ -2,7 +2,20 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
+<%String webAlertMessage = (String)request.getAttribute("webAlertMessage");%>
+<%String webAlertType = (String)request.getAttribute("webAlertType");%>
+
 <c:set var="bodyContent">
+
+  <%if(webAlertMessage != null){%>
+  <div class="alert alert-<%=webAlertType%> alert-dismissible fade show webAlert" role="alert">
+	<%=webAlertMessage%>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+  </div>
+  <%}%>
+
   <h1 class="h5 text-gray-800">Estacionamiento Diario</h1>
   <h1 class="h3 mb-4 text-gray-800">Listado de Ingresos y Salidas</h1>
   <div class="row"></div>

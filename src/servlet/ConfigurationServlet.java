@@ -14,6 +14,7 @@ import business.PrecioPorHoraController;
 import business.TipoVehiculoController;
 import domain.MultiplicadorEstadia;
 import domain.TipoVehiculo;
+import util.WebAlertViewer;
 
 @WebServlet("/configuration/*")
 public class ConfigurationServlet extends HttpServlet {
@@ -90,6 +91,7 @@ public class ConfigurationServlet extends HttpServlet {
 		String path = request.getPathInfo();
 		int multiplicadorDesde = Integer.parseInt(path.replace("/deleteME/", ""));
 		MultiplicadorEstadiaController.deleteOne(multiplicadorDesde);
+		WebAlertViewer.showAlertMessage(request, "El descuento por estadía se ha eliminado correctamente");
 		this.config(request, response);
 	}
 	
@@ -98,6 +100,7 @@ public class ConfigurationServlet extends HttpServlet {
 		double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
 		MultiplicadorEstadia me = new MultiplicadorEstadia(multiplicadorDesde, porcentajeMultiplicador);
 		MultiplicadorEstadiaController.insertOne(me);
+		WebAlertViewer.showAlertMessage(request, "El descuento por estadía se ha añadido correctamente");
 		this.config(request, response);
 	}
 	
@@ -112,6 +115,7 @@ public class ConfigurationServlet extends HttpServlet {
 		String path = request.getPathInfo();
 		int idTipo = Integer.parseInt(path.replace("/deleteTV/", ""));
 		TipoVehiculoController.deleteOne(idTipo);
+		WebAlertViewer.showAlertMessage(request, "El tipo de vehículo se ha eliminado correctamente");
 		this.config(request, response);
 	}
 	
@@ -128,6 +132,7 @@ public class ConfigurationServlet extends HttpServlet {
 		double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
 		TipoVehiculo tv = new TipoVehiculo(descripcion, porcentajeMultiplicador);
 		TipoVehiculoController.insertOne(tv);
+		WebAlertViewer.showAlertMessage(request, "El tipo de vehículo se ha añadido correctamente");
 		this.config(request, response);
 	}
 	
@@ -138,6 +143,7 @@ public class ConfigurationServlet extends HttpServlet {
 		double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
 		TipoVehiculo tv = new TipoVehiculo(idTipo, descripcion, porcentajeMultiplicador);
 		TipoVehiculoController.updateOne(tv);
+		WebAlertViewer.showAlertMessage(request, "El tipo de vehículo se ha modificado correctamente");
 		this.config(request, response);
 	}
 	

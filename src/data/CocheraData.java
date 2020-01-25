@@ -26,7 +26,6 @@ public class CocheraData {
 				c.setCapacidad(rs.getInt("capacidad"));
 				
 				cocheras.add(c);
-				
 			}
 			
 			if(rs!=null){rs.close();}

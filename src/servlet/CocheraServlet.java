@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.Cochera;
+import util.WebAlertViewer;
 import business.CocheraController;
 
 @WebServlet("/cocheras/*")
@@ -75,6 +76,7 @@ public class CocheraServlet extends HttpServlet {
 		String path = request.getPathInfo();
 		int id = Integer.parseInt(path.replace("/delete/", ""));
 		CocheraController.deleteOne(id);
+		WebAlertViewer.showAlertMessage(request, "La cochera se ha eliminado correctamente");
 		this.all(request, response);
 	}
 	
@@ -84,6 +86,7 @@ public class CocheraServlet extends HttpServlet {
 		int capacidad = Integer.parseInt(request.getParameter("capacidad"));
 		Cochera c = new Cochera(ubicacion, descripcion, capacidad);
 		CocheraController.insertOne(c);
+		WebAlertViewer.showAlertMessage(request, "La cochera se ha añadido correctamente");
 		this.all(request, response);
 	}
 		
@@ -95,6 +98,7 @@ public class CocheraServlet extends HttpServlet {
 		int capacidad = Integer.parseInt(request.getParameter("capacidad"));
 		Cochera c = new Cochera(id, ubicacion, descripcion, capacidad);
 		CocheraController.updateOne(c);
+		WebAlertViewer.showAlertMessage(request, "La cochera se ha modificado correctamente");
 		this.all(request, response);
 	}
 	

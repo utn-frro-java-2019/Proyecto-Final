@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.Empleado;
+import util.WebAlertViewer;
 import business.EmpleadoController;
 
 @WebServlet("/empleados/*")
@@ -75,6 +76,7 @@ public class EmpleadoServlet extends HttpServlet {
 		String path = request.getPathInfo();
 		int dni = Integer.parseInt(path.replace("/delete/", ""));
 		EmpleadoController.deleteOne(dni);
+		WebAlertViewer.showAlertMessage(request, "El Empleado se ha eliminado correctamente");
 		this.all(request, response);
 	}
 	

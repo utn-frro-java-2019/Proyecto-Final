@@ -10,8 +10,21 @@
 <%ArrayList<MultiplicadorEstadia> me = (ArrayList<MultiplicadorEstadia>)request.getAttribute("listaMultiplicadoresEstadia");%>
 <%ArrayList<TipoVehiculo> tv = (ArrayList<TipoVehiculo>)request.getAttribute("listaTiposVehiculos");%>
 
+<%String webAlertMessage = (String)request.getAttribute("webAlertMessage");%>
+<%String webAlertType = (String)request.getAttribute("webAlertType");%>
+
 <c:set var="bodyContent">
-<div class="row mb-3">
+
+  <%if(webAlertMessage != null){%>
+  <div class="alert alert-<%=webAlertType%> alert-dismissible fade show webAlert" role="alert">
+	<%=webAlertMessage%>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+  </div>
+  <%}%>
+
+  <div class="row mb-3">
             <div class="col-lg-12">
       		  <h5 class="h5 mb-3 ml-2 text-gray-800">Configuraciones</h5>
       		  
@@ -22,7 +35,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Precio por hora</h6>
                 </a>
                 <!-- Card Content - Collapse -->
-                <div class="collapse" id="precioHora">
+                <div class="collapse show" id="precioHora">
                   <div class="card-body">
                     <form>
                       <div class="form-group row">
@@ -47,7 +60,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Precios por tiempo de estadía</h6>
                 </a>
                 <!-- Card Content - Collapse -->
-                <div class="collapse" id="preciosEstadias">
+                <div class="collapse show" id="preciosEstadias">
                   <div class="card-body">
                     <div class="row  mb-3">
 					    <div class="col col-auto d-flex">
@@ -98,7 +111,7 @@
                   <h6 class="m-0 font-weight-bold text-primary">Categorías de vehículos</h6>
                 </a>
                 <!-- Card Content - Collapse -->
-                <div class="collapse" id="categoriasDeVehiculos">
+                <div class="collapse show" id="categoriasDeVehiculos">
                   <div class="card-body">
                     <div class="row  mb-3">
 				   		<div class="col col-auto d-flex">
@@ -152,14 +165,14 @@
                   <h6 class="m-0 font-weight-bold text-primary">Datos de la empresa</h6>
                 </a>
                 <!-- Card Content - Collapse -->
-                <div class="collapse" id="datosEmpresa">
+                <div class="collapse show" id="datosEmpresa">
                   <div class="card-body">
                   </div>
                 </div>
               </div>
 	
             </div>
-          </div>
+  </div>
 </c:set>
 
 <t:template>

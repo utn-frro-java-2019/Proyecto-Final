@@ -5,7 +5,20 @@
 <%@page import="domain.Empleado"%>
 <%Empleado u = (Empleado)request.getAttribute("usuario");%>
 
+<%String webAlertMessage = (String)request.getAttribute("webAlertMessage");%>
+<%String webAlertType = (String)request.getAttribute("webAlertType");%>
+
 <c:set var="bodyContent">
+
+  <%if(webAlertMessage != null){%>
+  <div class="alert alert-<%=webAlertType%> alert-dismissible fade show webAlert" role="alert">
+	<%=webAlertMessage%>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	  <span aria-hidden="true">&times;</span>
+	</button>
+  </div>
+  <%}%>
+
   <div class="row mb-3">
     <div class="col-lg-12">
       <!-- Basic Card Example -->
