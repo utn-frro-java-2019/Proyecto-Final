@@ -256,6 +256,8 @@
   </script>
   
   <script type="text/javascript">
+    $(".webAlert").fadeTo(2000, 500).slideUp(500, function(){
+        $(".webAlert").slideUp(500);
     });
   </script>
   
