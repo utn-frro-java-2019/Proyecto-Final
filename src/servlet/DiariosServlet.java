@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import business.VehiculoController;
+import domain.Vehiculo;
+import util.WebAlertViewer;
+
 @WebServlet("/diarios/*")
 public class DiariosServlet extends HttpServlet {
 	
@@ -37,7 +41,6 @@ public class DiariosServlet extends HttpServlet {
 		else if(path.startsWith("/salida")) {
 			this.salida(request,response);
 		}
-		
 		else if(path.startsWith("/delete")) {
 			this.delete(request,response);
 		}
@@ -56,6 +59,12 @@ public class DiariosServlet extends HttpServlet {
 		}
 		else if(path.equals("/edit")) {
 			this.edit(request,response);
+		}
+		else if(path.equals("/ingresoSearch")) {
+			this.ingresoSearch(request,response);
+		}
+		else if(path.equals("/salidaSearch")) {
+			this.salidaSearch(request,response);
 		}
 		else {
 			this.error(request,response);
@@ -84,8 +93,24 @@ public class DiariosServlet extends HttpServlet {
 		//TODO
 	}
 	
+	private void ingresoSearch(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String patente = request.getParameter("patente");
+    	Vehiculo vehiculo = VehiculoController.getOne(patente);
+    	if (vehiculo == null) {
+    	  WebAlertViewer.showAlertMessage(request, "La patente solicitada no se corresponde con ningún vehículo en nuestra base de datos.", "danger");
+    	} else {
+          request.setAttribute("vehiculo", vehiculo);
+    	}
+    	this.ingreso(request, response);
+	}
+	
 	private void diarioNew(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
     	request.getRequestDispatcher("/WEB-INF/diario-ingreso-comprobante.jsp").forward(request,response);
+		//TODO
+	}
+	
+	private void salidaSearch(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    	this.salida(request, response);
 		//TODO
 	}
 	

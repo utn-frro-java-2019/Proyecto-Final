@@ -14,36 +14,36 @@
           <div class="card-body">
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="Nombre">Nombre</label>
-                <input class="form-control form-control-user" type="text" name="Nombre" value="">
+                <label class="mb-0 ml-1" for="nombre">Nombre</label>
+                <input class="form-control form-control-user" type="text" name="nombre" value="">
               </div>
               <div class="col-sm-6">
-                <label class="mb-0 ml-1" for="Apellido">Apellido</label>
-                <input class="form-control form-control-user" type="text" name="Apellido" value="">
+                <label class="mb-0 ml-1" for="apellido">Apellido</label>
+                <input class="form-control form-control-user" type="text" name="apellido" value="">
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-3 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="dni">Dni</label>
-                <input class="form-control form-control-user" type="text" name="Dni" value="">
+                <input class="form-control form-control-user" type="text" name="dni" value="">
               </div>
               <div class="col-sm-4 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="usuario">Usuario</label>
-                <input class="form-control form-control-user" type="text" name="Usuario" value="">
+                <input class="form-control form-control-user" type="text" name="usuario" value="">
               </div>
               <div class="col-sm-5">
                 <label class="mb-0 ml-1" for="email">Email</label>
-                <input class="form-control form-control-user" type="text" name="Email" value="">
+                <input class="form-control form-control-user" type="text" name="email" value="">
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="tel1">Teléfono 1</label>
-                <input class="form-control form-control-user" type="text" name="Tel1" value="">
+                <input class="form-control form-control-user" type="text" name="tel1" value="">
               </div>
               <div class="col-sm-6">
                 <label class="mb-0 ml-1" for="tel2">Teléfono 2</label>
-                <input class="form-control form-control-user" type="text" name="Tel2" value="">
+                <input class="form-control form-control-user" type="text" name="tel2" value="">
               </div>
             </div>
           </div>

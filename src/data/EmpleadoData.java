@@ -29,7 +29,6 @@ public class EmpleadoData {
 				e.setTurno(new TurnoData().getOne(rs.getInt("idTurno")));
 				
 				empleados.add(e);
-				
 			}
 			
 			if(rs!=null){rs.close();}
@@ -65,7 +64,6 @@ public class EmpleadoData {
 				e.setContraseña(rs.getString("contraseña"));
 				e.setCochera(new CocheraData().getOne(rs.getInt("idCochera")));
 				e.setTurno(new TurnoData().getOne(rs.getInt("idTurno")));
-			
 			}
 			
 			if(rs!=null){rs.close();}

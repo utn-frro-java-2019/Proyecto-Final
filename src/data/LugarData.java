@@ -26,7 +26,6 @@ public class LugarData {
 				l.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				
 				lugares.add(l);
-				
 			}
 			
 			if(rs!=null){rs.close();}
@@ -54,8 +53,7 @@ public class LugarData {
 				boolean ocupado = false;
 				if(rs.getString("ocupado") == "true") ocupado = true;
 				l.setOcupado(ocupado);
-				l.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
-				
+				l.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));	
 			}
 			
 			if(rs!=null){rs.close();}

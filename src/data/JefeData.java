@@ -26,7 +26,6 @@ public class JefeData {
 				j.setDni(rs.getString("dni"));
 				
 				jefes.add(j);
-				
 			}
 			
 			if(rs!=null){rs.close();}
@@ -57,7 +56,6 @@ public class JefeData {
 				j.setEmail(rs.getString("email"));
 				j.setUsuario(rs.getString("usuario"));
 				j.setContraseña(rs.getString("contraseña"));
-			
 			}
 			
 			if(rs!=null){rs.close();}

@@ -19,8 +19,6 @@
   </div>
   <%}%>
 
-  <div class="row mb-3">
-    <div class="col-lg-12">
       <!-- Basic Card Example -->
       <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -111,8 +109,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
 </c:set>
 
 <t:template>

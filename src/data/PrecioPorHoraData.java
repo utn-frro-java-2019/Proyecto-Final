@@ -18,7 +18,6 @@ public class PrecioPorHoraData {
 				p=new PrecioPorHora();
 				
 				p.setPrecio(rs.getDouble("precio"));
-				
 			}
 			
 			if(rs!=null){rs.close();}

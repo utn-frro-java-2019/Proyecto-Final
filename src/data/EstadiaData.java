@@ -27,7 +27,6 @@ public class EstadiaData {
 				es.setPrecioFinal(rs.getDouble("precioFinal"));
 				
 				estadias.add(es);
-				
 			}
 			
 			if(rs!=null){rs.close();}
@@ -59,8 +58,6 @@ public class EstadiaData {
 				es.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
 				es.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
 				es.setPrecioFinal(rs.getDouble("precioFinal"));
-				
-				
 			}
 			
 			if(rs!=null){rs.close();}

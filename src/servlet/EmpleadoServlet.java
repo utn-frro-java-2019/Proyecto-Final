@@ -76,20 +76,20 @@ public class EmpleadoServlet extends HttpServlet {
 		String path = request.getPathInfo();
 		int dni = Integer.parseInt(path.replace("/delete/", ""));
 		EmpleadoController.deleteOne(dni);
-		WebAlertViewer.showAlertMessage(request, "El Empleado se ha eliminado correctamente");
+		WebAlertViewer.showAlertMessage(request, "El Empleado se ha eliminado correctamente.");
 		this.all(request, response);
 	}
 	
 	private void add(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		/*
-		String dni = request.getParameter("Dni");
-		String nombre = request.getParameter("Nombre");
-		String apellido = request.getParameter("Apellido");
-		String email = request.getParameter("Email");
-		String telefono1 = request.getParameter("Tel1");
-		String telefono2 = request.getParameter("Tel2");
-		String usuario = request.getParameter("Usuario");
-		String contraseña = request.getParameter("Contraseña");
+		String dni = request.getParameter("dni");
+		String nombre = request.getParameter("nombre");
+		String apellido = request.getParameter("apellido");
+		String email = request.getParameter("email");
+		String telefono1 = request.getParameter("tel1");
+		String telefono2 = request.getParameter("tel2");
+		String usuario = request.getParameter("usuario");
+		String contraseña = request.getParameter("contraseña");
 		Empleado e = new Empleado(usuario,contraseña,dni,email,nombre,apellido,telefono1,telefono2,null,null);
 		//Falta agregar controles para la cochera y el turno (por eso los nulls)
 		EmpleadoController.insertOne(e);

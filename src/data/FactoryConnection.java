@@ -14,8 +14,6 @@ public class FactoryConnection {
 	private String password="root"; // admin
 	private String db="cocheras"; // cocheradb
 
-	
-
 	private int conectados=0;
 	private Connection conn=null;
 	

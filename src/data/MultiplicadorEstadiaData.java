@@ -21,10 +21,8 @@ public class MultiplicadorEstadiaData {
 				
 				me.setMultiplicadorDesde(rs.getInt("multiplicadorDesde"));
 				me.setPorcentajeMultiplicador(rs.getDouble("porcentajeMultiplicador"));
-
 				
 				multiplicadoresEstadias.add(me);
-				
 			}
 			
 			if(rs!=null){rs.close();}
@@ -51,7 +49,6 @@ public class MultiplicadorEstadiaData {
 				
 				me.setMultiplicadorDesde(rs.getInt("multiplicadorDesde"));
 				me.setPorcentajeMultiplicador(rs.getDouble("porcentajeMultiplicador"));
-			
 			}
 			
 			if(rs!=null){rs.close();}

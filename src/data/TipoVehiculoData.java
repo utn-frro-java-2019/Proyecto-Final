@@ -24,7 +24,6 @@ public ArrayList<TipoVehiculo> getAll() {
 			tv.setPorcentajeMultiplicador(rs.getDouble("porcentajeMultiplicador"));
 			
 			tiposVehiculos.add(tv);
-			
 		}
 		
 		if(rs!=null){rs.close();}
@@ -53,7 +52,6 @@ public ArrayList<TipoVehiculo> getAll() {
 				tv.setIdTipo(rs.getInt("idTipo"));
 				tv.setDescripcion(rs.getString("descripcion"));
 				tv.setPorcentajeMultiplicador(rs.getDouble("porcentajeMultiplicador"));
-				
 			}
 			
 			if(rs!=null){rs.close();}

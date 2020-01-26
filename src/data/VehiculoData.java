@@ -29,7 +29,6 @@ public class VehiculoData {
 				v.setTipo(new TipoVehiculoData().getOne(rs.getInt("idTipo")));
 				
 				vehiculos.add(v);
-				
 			}
 			
 			if(rs!=null){rs.close();}
@@ -61,7 +60,6 @@ public class VehiculoData {
 				v.setPropietario(rs.getString("propietario"));
 				v.setTelefonoContacto(rs.getString("telefonoContacto"));
 				v.setTipo(new TipoVehiculoData().getOne(rs.getInt("idTipo")));
-				
 			}
 			
 			if(rs!=null){rs.close();}

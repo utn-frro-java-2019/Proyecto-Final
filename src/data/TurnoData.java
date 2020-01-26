@@ -24,7 +24,6 @@ public class TurnoData {
 				t.setHoraFin(rs.getTime("horaFin"));
 				
 				turnos.add(t);
-				
 			}
 			
 			if(rs!=null){rs.close();}
@@ -52,7 +51,6 @@ public class TurnoData {
 				t.setDescripcion(rs.getString("descripcion"));
 				t.setHoraInicio(rs.getTime("horaInicio"));
 				t.setHoraFin(rs.getTime("horaFin"));
-				
 			}
 			
 			if(rs!=null){rs.close();}

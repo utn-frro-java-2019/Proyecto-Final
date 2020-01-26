@@ -80,7 +80,7 @@ public class VehiculoServlet extends HttpServlet {
 		String path = request.getPathInfo();
 		String patente = path.replace("/delete/", "");
 		VehiculoController.deleteOne(patente);
-		WebAlertViewer.showAlertMessage(request, "El vehículo se ha eliminado correctamente");
+		WebAlertViewer.showAlertMessage(request, "El vehículo se ha eliminado correctamente.");
 		this.all(request, response);
 	}
 	
@@ -95,7 +95,7 @@ public class VehiculoServlet extends HttpServlet {
 		tipo.setIdTipo(Integer.parseInt(request.getParameter("tipo")));
 		Vehiculo v = new Vehiculo(patente, modelo, descripcion, marca, tipo, propietario,telefonoContacto);
 		VehiculoController.insertOne(v);
-		WebAlertViewer.showAlertMessage(request, "El vehículo se ha añadido correctamente");
+		WebAlertViewer.showAlertMessage(request, "El vehículo se ha añadido correctamente.");
 		this.all(request, response);
 	}
 		
