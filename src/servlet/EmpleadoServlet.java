@@ -62,7 +62,7 @@ public class EmpleadoServlet extends HttpServlet {
 
 	private void details(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String path = request.getPathInfo();
-		int dni = Integer.parseInt(path.replace("/details/", ""));
+		String dni = path.replace("/details/", "");
     	Empleado empleado = EmpleadoController.getOne(dni);
     	request.setAttribute("empleado", empleado);
     	request.getRequestDispatcher("/WEB-INF/empleado-details.jsp").forward(request,response);
@@ -74,46 +74,41 @@ public class EmpleadoServlet extends HttpServlet {
 
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String path = request.getPathInfo();
-		int dni = Integer.parseInt(path.replace("/delete/", ""));
+		String dni = path.replace("/delete/", "");
 		EmpleadoController.deleteOne(dni);
 		WebAlertViewer.showAlertMessage(request, "El Empleado se ha eliminado correctamente.");
 		this.all(request, response);
 	}
 	
 	private void add(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		/*
+		String us = request.getParameter("usuario");
+		String pass = request.getParameter("password");
 		String dni = request.getParameter("dni");
-		String nombre = request.getParameter("nombre");
-		String apellido = request.getParameter("apellido");
 		String email = request.getParameter("email");
-		String telefono1 = request.getParameter("tel1");
-		String telefono2 = request.getParameter("tel2");
-		String usuario = request.getParameter("usuario");
-		String contraseña = request.getParameter("contraseña");
-		Empleado e = new Empleado(usuario,contraseña,dni,email,nombre,apellido,telefono1,telefono2,null,null);
-		//Falta agregar controles para la cochera y el turno (por eso los nulls)
+		String nom = request.getParameter("nombre");
+		String ap = request.getParameter("apellido");
+		String tel1 = request.getParameter("tel1");
+		String tel2 = request.getParameter("tel2");
+		Empleado e = new Empleado(us, pass, dni, email, nom, ap, tel1, tel2, null, null);
 		EmpleadoController.insertOne(e);
+		WebAlertViewer.showAlertMessage(request, "El Empleado se ha añadido correctamente.");
 		this.all(request, response);
-		*/
-		//TODO
 	}
 		
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		/*
 		String path = request.getPathInfo();
-		String id = path.replace("/edit/", "");
-		String nombre = request.getParameter("nombre");
-		String apellido = request.getParameter("apellido");
+		String dni = path.replace("/edit/", "");
+		String us = request.getParameter("usuario");
+		String pass = request.getParameter("password");
 		String email = request.getParameter("email");
-		String telefono1 = request.getParameter("tel1");
-		String telefono2 = request.getParameter("tel2");
-		String usuario = request.getParameter("usuario");
-		String contraseña = request.getParameter("contraseña");
-		Empleado e = new Empleado(usuario,contraseña,email,id,nombre,apellido,telefono1,telefono2,null,null);
+		String nom = request.getParameter("nombre");
+		String ap = request.getParameter("apellido");
+		String tel1 = request.getParameter("tel1");
+		String tel2 = request.getParameter("tel2");
+		Empleado e = new Empleado(us, pass, dni, email, nom, ap, tel1, tel2, null, null);
 		EmpleadoController.updateOne(e);
+		WebAlertViewer.showAlertMessage(request, "El Empleado se ha modificado correctamente.");
 		this.all(request, response);
-		*/
-		//TODO
 	}
 	
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

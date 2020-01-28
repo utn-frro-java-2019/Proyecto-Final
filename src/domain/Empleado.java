@@ -3,7 +3,7 @@ package domain;
 public class Empleado {
 
 	private String usuario;
-	private String contraseña;
+	private String password;
 	private String email;
 	private String dni;
 	private String nombre;
@@ -15,35 +15,19 @@ public class Empleado {
 	
 	public Empleado() {};
 	
-	public Empleado(String usuario, String contraseña, String email, String dni, String nombre, String apellido,
-			String telefono1, String telefono2, Cochera cochera, Turno turno) {
-		super();
-		this.usuario = usuario;
-		this.contraseña = contraseña;
-		this.email = email;
+	public Empleado(String u, String pass, String dni, String em, String n, String a, String tel1, String tel2, Cochera co, Turno tu) {
+		this.usuario = u;
+		this.password = pass;
+		this.email = em;
 		this.dni = dni;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.telefono1 = telefono1;
-		this.telefono2 = telefono2;
-		this.cochera = cochera;
-		this.turno = turno;
+		this.nombre = n;
+		this.apellido = a;
+		this.telefono1 = tel1;
+		this.telefono2 = tel2;
+		this.cochera = co;
+		this.turno = tu;
 	}
 	
-	public Empleado(String usuario, String contraseña, String email, String nombre, String apellido, String telefono1,
-			String telefono2, Cochera cochera, Turno turno) {
-		super();
-		this.usuario = usuario;
-		this.contraseña = contraseña;
-		this.email = email;
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.telefono1 = telefono1;
-		this.telefono2 = telefono2;
-		this.cochera = cochera;
-		this.turno = turno;
-	}
-
 	public Cochera getCochera() {
 		return cochera;
 	}
@@ -62,11 +46,11 @@ public class Empleado {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	public String getContraseña() {
-		return contraseña;
+	public String getPassword() {
+		return password;
 	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getEmail() {
 		return email;

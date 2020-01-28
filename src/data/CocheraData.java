@@ -97,9 +97,9 @@ public class CocheraData {
 			
 			String consulta = "insert into cocheras (ubicacion, descripcion, capacidad) values (?, ?, ?)";
 			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
-			stmt.setString(1,c.getUbicacion());
+			stmt.setString(1, c.getUbicacion());
 			stmt.setString(2, c.getDescripcion());
-			stmt.setString(3,Integer.toString(c.getCapacidad()));
+			stmt.setString(3, Integer.toString(c.getCapacidad()));
 			stmt.executeUpdate();
 			
 			if(stmt!=null){stmt.close();}
@@ -117,10 +117,10 @@ public class CocheraData {
 
 			String consulta = "update  cocheras set ubicacion = ?, descripcion = ?, capacidad = ? where idCochera = ?";
 			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
-			stmt.setString(1,c.getUbicacion());
-			stmt.setString(2,c.getDescripcion());
-			stmt.setString(3,Integer.toString(c.getCapacidad()));
-			stmt.setString(4,Integer.toString(c.getIdCochera()));
+			stmt.setString(1, c.getUbicacion());
+			stmt.setString(2, c.getDescripcion());
+			stmt.setString(3, Integer.toString(c.getCapacidad()));
+			stmt.setString(4, Integer.toString(c.getIdCochera()));
 			stmt.executeUpdate();
 			
 			if(stmt!=null){stmt.close();}

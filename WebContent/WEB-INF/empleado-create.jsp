@@ -6,34 +6,38 @@
   <div class="row justify-content-md-center">
     <div class="col-lg-11">
       <h1 class="h3 mb-4 text-gray-800">Registrar Nuevo Empleado</h1>
-      <form>
+      <form name="empleado-add" method="post" action="http://localhost:8080/Cocheras/empleados/add">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Datos del Empleado</h6>
           </div>
           <div class="card-body">
             <div class="form-group row">
-              <div class="col-sm-6 mb-3 mb-sm-0">
+              <div class="col-sm-4 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="nombre">Nombre</label>
                 <input class="form-control form-control-user" type="text" name="nombre" value="">
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-4">
                 <label class="mb-0 ml-1" for="apellido">Apellido</label>
                 <input class="form-control form-control-user" type="text" name="apellido" value="">
+              </div>
+              <div class="col-sm-4">
+                <label class="mb-0 ml-1" for="dni">Dni</label>
+                <input class="form-control form-control-user" type="text" name="dni" value="">
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-3 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="dni">Dni</label>
-                <input class="form-control form-control-user" type="text" name="dni" value="">
-              </div>
-              <div class="col-sm-4 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="usuario">Usuario</label>
                 <input class="form-control form-control-user" type="text" name="usuario" value="">
               </div>
               <div class="col-sm-5">
                 <label class="mb-0 ml-1" for="email">Email</label>
                 <input class="form-control form-control-user" type="text" name="email" value="">
+              </div>
+              <div class="col-sm-4">
+                <label class="mb-0 ml-1" for="password">Contraseña</label>
+                <input class="form-control form-control-user" type="text" name="password" value="">
               </div>
             </div>
             <div class="form-group row">

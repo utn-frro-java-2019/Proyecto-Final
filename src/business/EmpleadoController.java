@@ -10,11 +10,11 @@ public class EmpleadoController {
 		return new EmpleadoData().getAll();
 	}
 
-	public static Empleado getOne(int dni) {
+	public static Empleado getOne(String dni) {
 		return new EmpleadoData().getOne(dni);
 	}
 	
-	public static void deleteOne(int dni){
+	public static void deleteOne(String dni){
 		new EmpleadoData().deleteOne(dni);
 	}
 	

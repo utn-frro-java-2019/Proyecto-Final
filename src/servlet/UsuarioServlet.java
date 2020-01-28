@@ -45,7 +45,7 @@ public class UsuarioServlet extends HttpServlet {
 	}
 	
 	private void profile(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-    	Empleado usuario = EmpleadoController.getOne(11111111);
+    	Empleado usuario = EmpleadoController.getOne("11111111");
     	// TODO
     	request.setAttribute("usuario", usuario);
     	request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request,response);
