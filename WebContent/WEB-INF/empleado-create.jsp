@@ -15,39 +15,39 @@
             <div class="form-group row">
               <div class="col-sm-4 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="nombre">Nombre</label>
-                <input class="form-control form-control-user" type="text" name="nombre" value="">
+                <input class="form-control form-control-user" type="text" name="nombre" value="" required>
               </div>
               <div class="col-sm-4">
                 <label class="mb-0 ml-1" for="apellido">Apellido</label>
-                <input class="form-control form-control-user" type="text" name="apellido" value="">
+                <input class="form-control form-control-user" type="text" name="apellido" value="" required>
               </div>
               <div class="col-sm-4">
                 <label class="mb-0 ml-1" for="dni">Dni</label>
-                <input class="form-control form-control-user" type="text" name="dni" value="">
+                <input class="form-control form-control-user" type="text" name="dni" value="" required>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-3 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="usuario">Usuario</label>
-                <input class="form-control form-control-user" type="text" name="usuario" value="">
+                <input class="form-control form-control-user" type="text" name="usuario" value="" required>
               </div>
               <div class="col-sm-5">
                 <label class="mb-0 ml-1" for="email">Email</label>
-                <input class="form-control form-control-user" type="text" name="email" value="">
+                <input class="form-control form-control-user" type="email" name="email" value="" required>
               </div>
               <div class="col-sm-4">
                 <label class="mb-0 ml-1" for="password">Contraseña</label>
-                <input class="form-control form-control-user" type="text" name="password" value="">
+                <input class="form-control form-control-user" type="password" name="password" value="" required>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="tel1">Teléfono 1</label>
-                <input class="form-control form-control-user" type="text" name="tel1" value="">
+                <input class="form-control form-control-user" type="text" name="tel1" value="" required>
               </div>
               <div class="col-sm-6">
                 <label class="mb-0 ml-1" for="tel2">Teléfono 2</label>
-                <input class="form-control form-control-user" type="text" name="tel2" value="">
+                <input class="form-control form-control-user" type="text" name="tel2" value="" required>
               </div>
             </div>
           </div>
