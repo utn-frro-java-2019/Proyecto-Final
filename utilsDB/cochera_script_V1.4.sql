@@ -1,15 +1,15 @@
 CREATE DATABASE  IF NOT EXISTS `cocheras` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `cocheras`;
--- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: cocheras
+-- Host: localhost    Database: cocheras
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+ SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,7 +23,7 @@ USE `cocheras`;
 
 DROP TABLE IF EXISTS `cocheras`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `cocheras` (
   `idCochera` int(11) NOT NULL AUTO_INCREMENT,
   `ubicacion` varchar(45) NOT NULL,
@@ -49,7 +49,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `empleados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `empleados` (
   `dni` varchar(8) NOT NULL,
   `idCochera` int(11) DEFAULT NULL,
@@ -85,7 +85,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `estadias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `estadias` (
   `idEstadia` int(11) NOT NULL,
   `fechaRetiro` datetime NOT NULL,
@@ -117,7 +117,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `jefes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `jefes` (
   `dni` int(11) NOT NULL,
   `nombre` varchar(45) NOT NULL,
@@ -145,7 +145,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `lugares`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `lugares` (
   `idCochera` int(11) NOT NULL,
   `nroLugar` int(11) NOT NULL,
@@ -170,7 +170,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `multiplicadores_estadias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `multiplicadores_estadias` (
   `multiplicadorDesde` int(11) NOT NULL,
   `porcentajeMultiplicador` float NOT NULL,
@@ -194,10 +194,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `precio_por_hora`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `precio_por_hora` (
+  `idPrecio` varchar(45) NOT NULL,
   `precio` decimal(5,0) NOT NULL,
-  PRIMARY KEY (`precio`)
+  PRIMARY KEY (`idPrecio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -207,7 +208,7 @@ CREATE TABLE `precio_por_hora` (
 
 LOCK TABLES `precio_por_hora` WRITE;
 /*!40000 ALTER TABLE `precio_por_hora` DISABLE KEYS */;
-INSERT INTO `precio_por_hora` VALUES (60);
+INSERT INTO `precio_por_hora` VALUES ('1',60);
 /*!40000 ALTER TABLE `precio_por_hora` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +218,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `tipos_vehiculos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `tipos_vehiculos` (
   `idTipo` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(45) NOT NULL,
@@ -242,7 +243,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `turnos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `turnos` (
   `idTurno` int(11) NOT NULL,
   `descripcion` varchar(6) NOT NULL,
@@ -268,7 +269,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `vehiculos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `vehiculos` (
   `patente` varchar(7) NOT NULL,
   `modelo` varchar(45) DEFAULT NULL,
@@ -302,4 +303,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-12-22 19:36:05
+-- Dump completed on 2020-01-29  0:22:10
