@@ -62,7 +62,7 @@ public class ConfigurationServlet extends HttpServlet {
 		else if(path.startsWith("/editTV")) {
 			this.editTV(request,response);
 		}
-		else if(path.startsWith("/editPH")) {
+		else if(path.equals("/editPH")) {
 			this.editPH(request,response);
 		}
 		else {
@@ -88,10 +88,10 @@ public class ConfigurationServlet extends HttpServlet {
 	// Precio Por Hora --------------------------------------------------------------------
 	
 	private void editPH(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Double precio = Double.parseDouble(request.getParameter("precioBase"));
-		PrecioPorHora ph = new PrecioPorHora(precio,1);
-		PrecioPorHoraController.updatePrecio(ph);
-		WebAlertViewer.showAlertMessage(request, "El Precio por Hora se ha modificado correctamente.");
+		double precio = Double.parseDouble(request.getParameter("precioBase"));
+		PrecioPorHora ph = new PrecioPorHora(precio);
+		PrecioPorHoraController.updatePrecioPorHora(ph);
+		WebAlertViewer.showAlertMessage(request, "El Precio por hora se ha modificado correctamente.");
 		this.config(request, response);
 	}
 	

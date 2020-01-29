@@ -37,15 +37,13 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="precioHora">
                   <div class="card-body">
-                    <form>
+                    <form name="precioPorHora-edit" method="post" action="http://localhost:8080/Cocheras/configuration/editPH">
                       <div class="form-group row">
                         <div class="col-sm-12 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user" id="precioBase" value="<%=precioPorHora%>">
+                          <input type="text" class="form-control form-control-user" name="precioBase" value="<%=precioPorHora%>">
                         </div>
                       </div>
-                      <a href="#" class="btn btn-danger">
-                        Actualizar
-                      </a>
+					  <button type="submit" class="btn btn-danger">Actualizar</button>
                     </form>
                   </div>
                 </div>

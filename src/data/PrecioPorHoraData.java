@@ -13,12 +13,10 @@ public class PrecioPorHoraData {
 		PrecioPorHora p = null;
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs= stmt.executeQuery("select * from precio_por_hora");
+			ResultSet rs= stmt.executeQuery("select * from precio_por_hora where idPrecio = 1");
 
 			while(rs.next()) {
 				p=new PrecioPorHora();
-				
-				p.setIdPrecio(rs.getInt("idPrecio"));
 				p.setPrecio(rs.getDouble("precio"));
 			}
 			
@@ -35,7 +33,7 @@ public class PrecioPorHoraData {
 		return p;
 	}
 	
-	public void updateOne(PrecioPorHora p) {
+	public void updatePrecioPorHora(PrecioPorHora p) {
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
 			("update precio_por_hora set precio = ? where idPrecio = 1");

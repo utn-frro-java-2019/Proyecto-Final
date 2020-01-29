@@ -3,7 +3,13 @@ package domain;
 public class PrecioPorHora {
 
 	private double precio;
-	private int idPrecio;
+	
+	public PrecioPorHora() {
+	}
+
+	public PrecioPorHora(double precio) {
+		this.precio = precio;
+	}
 
 	public double getPrecio() {
 		return precio;
@@ -11,24 +17,6 @@ public class PrecioPorHora {
 
 	public void setPrecio(double precio) {
 		this.precio = precio;
-	}
-	
-	public int getIdPrecio() {
-		return idPrecio;
-	}
-
-	public void setIdPrecio(int idPrecio) {
-		this.idPrecio = idPrecio;
-	}
-
-	public PrecioPorHora(double precio, int idPrecio) {
-		super();
-		this.precio = precio;
-		this.idPrecio = idPrecio;
-	}
-
-	public PrecioPorHora() {
-		super();
 	}
 	
 }
