@@ -13,6 +13,7 @@ import business.MultiplicadorEstadiaController;
 import business.PrecioPorHoraController;
 import business.TipoVehiculoController;
 import domain.MultiplicadorEstadia;
+import domain.PrecioPorHora;
 import domain.TipoVehiculo;
 import util.WebAlertViewer;
 
@@ -61,6 +62,9 @@ public class ConfigurationServlet extends HttpServlet {
 		else if(path.startsWith("/editTV")) {
 			this.editTV(request,response);
 		}
+		else if(path.startsWith("/editPH")) {
+			this.editPH(request,response);
+		}
 		else {
 			this.error(request,response);
 		}
@@ -80,6 +84,17 @@ public class ConfigurationServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/configurations.jsp").forward(request,response);
 	}
 
+	// ------------------------------------------------------------------------------------------
+	// Precio Por Hora --------------------------------------------------------------------
+	
+	private void editPH(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Double precio = Double.parseDouble(request.getParameter("precioBase"));
+		PrecioPorHora ph = new PrecioPorHora(precio,1);
+		PrecioPorHoraController.updatePrecio(ph);
+		WebAlertViewer.showAlertMessage(request, "El Precio por Hora se ha modificado correctamente.");
+		this.config(request, response);
+	}
+	
 	// ------------------------------------------------------------------------------------------
 	// Multiplicador Estadía --------------------------------------------------------------------
 	

@@ -1,5 +1,6 @@
 package data;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,6 +18,7 @@ public class PrecioPorHoraData {
 			while(rs.next()) {
 				p=new PrecioPorHora();
 				
+				p.setIdPrecio(rs.getInt("idPrecio"));
 				p.setPrecio(rs.getDouble("precio"));
 			}
 			
@@ -31,6 +33,25 @@ public class PrecioPorHoraData {
 		}
 
 		return p;
+	}
+	
+	public void updateOne(PrecioPorHora p) {
+		try {
+			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
+			("update precio_por_hora set precio = ? where idPrecio = 1");
+			
+			pstmt.setDouble(1, p.getPrecio());
+			
+			pstmt.executeUpdate();
+			
+			if(pstmt!=null){pstmt.close();}
+			FactoryConnection.getInstancia().releaseConn();
+			
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }

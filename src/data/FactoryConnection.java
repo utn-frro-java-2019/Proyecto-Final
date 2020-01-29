@@ -11,7 +11,7 @@ public class FactoryConnection {
 	private String host="localhost"; //localhost
 	private String port="3306"; //3306
 	private String user="root"; // root
-	private String password="root"; // admin
+	private String password="admin"; // admin
 	private String db="cocheras"; // cocheradb
 
 	private int conectados=0;
