@@ -8,11 +8,11 @@ public class FactoryConnection {
 	
 	private String driver="com.mysql.jdbc.Driver";
 
-	private String host="localhost"; //localhost
-	private String port="3331"; //3306
-	private String user="root"; // root
-	private String password="root"; // admin
-	private String db="cocheras"; // cocheradb
+	private String host=System.getenv("DB_HOST");
+	private String port=System.getenv("DB_PORT");
+	private String user=System.getenv("DB_USER");
+	private String password=System.getenv("DB_PASSWORD");
+	private String db=System.getenv("DB_NAME");
 
 	private int conectados=0;
 	private Connection conn=null;

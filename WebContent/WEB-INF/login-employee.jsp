@@ -39,12 +39,12 @@
                       <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingrese su email...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="ContraseÃ±a">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
                         <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Recuérdame</label>
+                        <label class="custom-control-label" for="customCheck">RecuÃ©rdame</label>
                       </div>
                     </div>
                     <a href="http://localhost:8080/Cocheras/home" class="btn btn-primary btn-user btn-block">
@@ -53,7 +53,7 @@
                   </form>
                   <hr>
                   <div class="text-center">
-                    <a class="small" href="http://localhost:8080/Cocheras/passwordRecovery">Olvidaste tu contraseña?</a>
+                    <a class="small" href="http://localhost:8080/Cocheras/passwordRecovery">Olvidaste tu contraseÃ±a?</a>
                   </div>
                 </div>
               </div>

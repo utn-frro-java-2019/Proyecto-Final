@@ -3,7 +3,7 @@ package domain;
 public class Jefe {
 
 	private String usuario;
-	private String contraseña;
+	private String password;
 	private String email;
 	private String dni;
 	private String nombre;
@@ -15,11 +15,11 @@ public class Jefe {
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
 	}
-	public String getContraseña() {
-		return contraseña;
+	public String getPassword() {
+		return password;
 	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getEmail() {
 		return email;

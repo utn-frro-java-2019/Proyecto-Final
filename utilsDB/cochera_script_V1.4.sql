@@ -60,7 +60,7 @@ CREATE TABLE `empleados` (
   `telefono1` varchar(45) DEFAULT NULL,
   `telefono2` varchar(45) DEFAULT NULL,
   `usuario` varchar(45) NOT NULL,
-  `contraseña` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
   PRIMARY KEY (`dni`),
   KEY `fk_cochera_emp_idx` (`idCochera`),
   KEY `fk_empleado_turno_idx` (`idTurno`),
@@ -124,7 +124,7 @@ CREATE TABLE `jefes` (
   `apellido` varchar(45) NOT NULL,
   `email` varchar(90) NOT NULL,
   `usuario` varchar(45) NOT NULL,
-  `contraseña` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
   PRIMARY KEY (`dni`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

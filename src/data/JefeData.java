@@ -22,7 +22,7 @@ public class JefeData {
 				j.setApellido(rs.getString("apellido"));
 				j.setEmail(rs.getString("email"));
 				j.setUsuario(rs.getString("usuario"));
-				j.setContraseña(rs.getString("contraseña"));
+				j.setPassword(rs.getString("password"));
 				j.setDni(rs.getString("dni"));
 				
 				jefes.add(j);
@@ -55,7 +55,7 @@ public class JefeData {
 				j.setApellido(rs.getString("apellido"));
 				j.setEmail(rs.getString("email"));
 				j.setUsuario(rs.getString("usuario"));
-				j.setContraseña(rs.getString("contraseña"));
+				j.setPassword(rs.getString("password"));
 			}
 			
 			if(rs!=null){rs.close();}

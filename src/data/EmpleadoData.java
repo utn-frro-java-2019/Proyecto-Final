@@ -23,7 +23,7 @@ public class EmpleadoData {
 				e.setTelefono1(rs.getString("telefono1"));
 				e.setTelefono2(rs.getString("telefono2"));
 				e.setUsuario(rs.getString("usuario"));
-				e.setPassword(rs.getString("contraseña"));
+				e.setPassword(rs.getString("password"));
 				e.setDni(rs.getString("dni"));
 				e.setCochera(new CocheraData().getOne(rs.getInt("idCochera")));
 				e.setTurno(new TurnoData().getOne(rs.getInt("idTurno")));
@@ -61,7 +61,7 @@ public class EmpleadoData {
 				e.setTelefono1(rs.getString("telefono1"));
 				e.setTelefono2(rs.getString("telefono2"));
 				e.setUsuario(rs.getString("usuario"));
-				e.setPassword(rs.getString("contraseña"));
+				e.setPassword(rs.getString("password"));
 				e.setCochera(new CocheraData().getOne(rs.getInt("idCochera")));
 				e.setTurno(new TurnoData().getOne(rs.getInt("idTurno")));
 			}
@@ -97,7 +97,7 @@ public class EmpleadoData {
 	public void insertOne(Empleado e) {
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
-			("insert into empleados(dni,nombre,apellido,email,telefono1,telefono2,usuario,contraseña) values(?,?,?,?,?,?,?,?)");
+			("insert into empleados(dni,nombre,apellido,email,telefono1,telefono2,usuario,password) values(?,?,?,?,?,?,?,?)");
 			
 			pstmt.setString(1, e.getDni());
 			pstmt.setString(2, e.getNombre());
@@ -123,7 +123,7 @@ public class EmpleadoData {
 	public void updateOne(Empleado e) {
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement
-			("update empleados set  nombre = ? , apellido = ? , email = ? , telefono1 = ? , telefono2 = ? , usuario = ? , contraseña = ? where dni = ?");
+			("update empleados set  nombre = ? , apellido = ? , email = ? , telefono1 = ? , telefono2 = ? , usuario = ? , password = ? where dni = ?");
 			
 			pstmt.setString(1, e.getNombre());
 			pstmt.setString(2, e.getApellido());
