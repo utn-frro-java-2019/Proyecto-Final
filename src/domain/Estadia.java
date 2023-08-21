@@ -3,7 +3,6 @@ package domain;
 import java.util.Date;
 
 public class Estadia {
-
 	private String estado;
 	private Cochera cochera;
 	private Lugar lugar;
@@ -11,8 +10,7 @@ public class Estadia {
 	private Date fechaIngreso;
 	private Date fechaRetiro;
 	private Double precioFinal;
-	
-	
+
 	public Cochera getCochera() {
 		return cochera;
 	}

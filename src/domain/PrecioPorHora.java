@@ -1,9 +1,8 @@
 package domain;
 
 public class PrecioPorHora {
-
 	private double precio;
-	
+
 	public PrecioPorHora() {
 	}
 
@@ -18,5 +17,4 @@ public class PrecioPorHora {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
-	
 }

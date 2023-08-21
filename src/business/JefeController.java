@@ -1,7 +1,6 @@
 package business;
 
 import java.util.ArrayList;
-
 import data.JefeData;
 import domain.*;
 

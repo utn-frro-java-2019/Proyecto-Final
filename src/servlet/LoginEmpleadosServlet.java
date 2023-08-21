@@ -10,19 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/loginEmpleado")
 
 public class LoginEmpleadosServlet extends HttpServlet {
-	
 	private static final long serialVersionUID = 1L;
-       
-    public LoginEmpleadosServlet() {
-        super();
-    }
+
+	public LoginEmpleadosServlet() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.getRequestDispatcher("/WEB-INF/login-employee.jsp").forward(request,response);
+		request.getRequestDispatcher("/WEB-INF/login-employee.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//TODO
+		// TODO
 	}
-
 }
