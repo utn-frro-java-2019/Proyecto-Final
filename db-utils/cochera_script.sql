@@ -119,13 +119,11 @@ DROP TABLE IF EXISTS `jefes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `jefes` (
-  `dni` int(11) NOT NULL,
+  `email` varchar(90) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
-  `email` varchar(90) NOT NULL,
-  `usuario` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
-  PRIMARY KEY (`dni`)
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -135,7 +133,7 @@ CREATE TABLE `jefes` (
 
 LOCK TABLES `jefes` WRITE;
 /*!40000 ALTER TABLE `jefes` DISABLE KEYS */;
-INSERT INTO `jefes` VALUES (44444444,'Jorge','Perez','JP@gmail.com','jpAdmin','12345');
+INSERT INTO `jefes` VALUES ('super@admin.com', 'Super', 'Admin', '12345');
 /*!40000 ALTER TABLE `jefes` ENABLE KEYS */;
 UNLOCK TABLES;
 

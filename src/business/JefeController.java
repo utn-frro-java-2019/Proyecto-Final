@@ -1,15 +1,15 @@
 package business;
 
-import java.util.ArrayList;
 import data.JefeData;
 import domain.*;
 
 public class JefeController {
-	public static Jefe getOne(int dni) {
-		return new JefeData().getOne(dni);
+	public static Jefe get() {
+		return new JefeData().get();
 	}
 
-	public static ArrayList<Jefe> getAll() {
-		return new JefeData().getAll();
+	public static boolean authenticate(String email, String password) {
+		Jefe j = new JefeData().get();
+		return j.getEmail().equals(email) && j.getPassword().equals(password);
 	}
 }

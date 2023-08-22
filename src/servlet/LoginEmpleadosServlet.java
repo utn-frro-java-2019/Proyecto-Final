@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/loginEmpleado")
+@WebServlet("/login-empleado")
 
 public class LoginEmpleadosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -7,7 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/loginJefe")
+import business.JefeController;
+import util.WebAlertViewer;
+
+@WebServlet("/login-jefe")
 
 public class LoginJefeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,6 +24,15 @@ public class LoginJefeServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
+		if (JefeController.authenticate(email, password)) {
+			request.getSession().setAttribute("email", email);
+			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+		} else {
+			WebAlertViewer.showAlertMessage(request, "Email o contraseña incorrectos", "danger");
+			request.getRequestDispatcher("/WEB-INF/login-boss.jsp").forward(request, response);
+		}
 	}
 }

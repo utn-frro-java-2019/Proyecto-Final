@@ -11,10 +11,8 @@ public class PrincipalTP {
 		for (Cochera c : cocheras) {
 			System.out.println("Cochera: " + c.getIdCochera() + " - " + c.getUbicacion() + " - " + c.getDescripcion());
 		}
-		ArrayList<Jefe> jefes = JefeController.getAll();
-		for (Jefe j : jefes) {
-			System.out.println("Jefe: " + j.getDni() + " - " + j.getNombre() + " - " + j.getApellido());
-		}
+		Jefe jefe = JefeController.get();
+		System.out.println("Jefe: " + " - " + jefe.getNombre() + " - " + jefe.getApellido());
 		ArrayList<Empleado> empleados = EmpleadoController.getAll();
 		for (Empleado e : empleados) {
 			System.out.println("Empleado: " + e.getDni() + " - " + e.getNombre() + " - " + e.getApellido() + " - "
