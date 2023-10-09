@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/example/*")
-public class Example extends HttpServlet {
+public class _Example extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public Example() {
+	public _Example() {
 		super();
 	}
 
