@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import business.CocheraController;
 import domain.Cochera;
+import util.AccountHasPermissions;
 import util.WebAlertViewer;
 
 @WebServlet("/cocheras/*")
@@ -22,6 +23,11 @@ public class CocheraServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.boss(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/all")) {
 			this.all(request, response);
@@ -37,6 +43,11 @@ public class CocheraServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.boss(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/add")) {
 			this.add(request, response);

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import business.VehiculoController;
 import domain.Vehiculo;
+import util.AccountHasPermissions;
 import util.WebAlertViewer;
 
 @WebServlet("/diarios/*")
@@ -21,6 +22,11 @@ public class DiariosServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.employee(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/all")) {
 			this.all(request, response);
@@ -42,6 +48,11 @@ public class DiariosServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.employee(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/ingreso")) {
 			this.diarioNew(request, response);

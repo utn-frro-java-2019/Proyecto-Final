@@ -7,8 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.Jefe;
+
 import business.JefeController;
+
 import util.WebAlertViewer;
+import util.SetSession;
 
 @WebServlet("/login-jefe")
 
@@ -28,7 +32,8 @@ public class LoginJefeServlet extends HttpServlet {
 		String password = request.getParameter("password");
 
 		if (JefeController.authenticate(email, password)) {
-			request.getSession().setAttribute("email", email);
+			Jefe jefe = JefeController.get();
+			SetSession.SetAccountSession(request, jefe.getEmail(), jefe.getNombre(), jefe.getApellido(), "jefe");
 			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 		} else {
 			WebAlertViewer.showAlertMessage(request, "Email o contraseña incorrectos", "danger");

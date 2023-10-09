@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import business.EmpleadoController;
 import domain.Empleado;
+import util.AccountHasPermissions;
 
 @WebServlet("/user/*")
 public class UsuarioServlet extends HttpServlet {
@@ -19,6 +20,11 @@ public class UsuarioServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/profile")) {
 			this.profile(request, response);
@@ -28,6 +34,11 @@ public class UsuarioServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.startsWith("/editProfile")) {
 			this.editProfile(request, response);

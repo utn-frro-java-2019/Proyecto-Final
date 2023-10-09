@@ -7,7 +7,7 @@
 <div class="jumbotron bg-transparent">
     <div class="text-center">
         <div class="error mx-auto" data-text="404">404</div>
-        <p class="lead text-gray-800 mb-2">Page Not Found</p>
+        <p class="lead text-gray-800 mb-2">Página no encontrada</p>
         <p class="text-gray-500 mb-4">Error al procesar la solicitud.</p>
         <a href="#">&larr; Regresar al Inicio</a>
     </div>

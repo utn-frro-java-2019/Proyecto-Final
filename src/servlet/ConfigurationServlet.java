@@ -15,6 +15,7 @@ import business.TipoVehiculoController;
 import domain.MultiplicadorEstadia;
 import domain.PrecioPorHora;
 import domain.TipoVehiculo;
+import util.AccountHasPermissions;
 import util.WebAlertViewer;
 
 @WebServlet("/configuration/*")
@@ -26,6 +27,11 @@ public class ConfigurationServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.boss(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/config")) {
 			this.config(request, response);
@@ -45,6 +51,11 @@ public class ConfigurationServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.boss(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/addME")) {
 			this.addME(request, response);

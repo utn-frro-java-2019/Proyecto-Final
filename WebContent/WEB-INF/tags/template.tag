@@ -1,4 +1,7 @@
 <%@tag description="Template" pageEncoding="UTF-8"%>
+<%String nombre = (String)request.getSession().getAttribute("name");%>
+<%String apellido = (String)request.getSession().getAttribute("surname");%>
+<%String tipoDeCuenta = (String)request.getSession().getAttribute("accountType");%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +20,8 @@
   <link href="http://localhost:8080/Cocheras/css/sb-admin-2-custom.min.css" rel="stylesheet">
   <link href="http://localhost:8080/Cocheras/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <style media="screen">
-    .nw {
-      white-space: nowrap;
-    }
-    .nw:empty:before{
-		content: "-";
-    }
+    .nw { white-space: nowrap }
+    .nw:empty:before{ content: "-" }
   </style>
 </head>
 
@@ -55,6 +54,8 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
+
+      <%if(tipoDeCuenta != null && tipoDeCuenta.equals("jefe")){%>
       <!-- Heading -->
       <div class="sidebar-heading">
         Dueño de cochera
@@ -88,25 +89,27 @@
           <span>Estadísticas</span>
         </a>
         <div id="collapseStats" class="collapse" aria-labelledby="headingStats" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
+          <div class="bg-white py-2 collapse-inner rounded d-flex flex-column" style="gap: 0.25rem">
             <h6 class="collapse-header">Estadísticas de tipo X</h6>
-            <a class="collapse-item" href="#">Estadística 1</a>
-            <a class="collapse-item" href="#">Estadística 2</a>
-            <a class="collapse-item" href="#">Estadística 3</a>
+            <a class="collapse-item px-2" href="#">Estadística 1</a>
+            <a class="collapse-item px-2" href="#">Estadística 2</a>
+            <a class="collapse-item px-2" href="#">Estadística 3</a>
             <div class="collapse-divider"></div>
             <h6 class="collapse-header">Estadísticas de tipo Y</h6>
-            <a class="collapse-item" href="#">Estadística 1</a>
-            <a class="collapse-item" href="#">Estadística 2</a>
-            <a class="collapse-item" href="#">Estadística 3</a>
+            <a class="collapse-item px-2" href="#">Estadística 1</a>
+            <a class="collapse-item px-2" href="#">Estadística 2</a>
+            <a class="collapse-item px-2" href="#">Estadística 3</a>
         </div>
       </li>
 
       <!-- Divider -->
       <hr class="sidebar-divider">
+      <%}%>
 
+      <%if(tipoDeCuenta != null && tipoDeCuenta.equals("empleado")){%>
       <!-- Heading -->
-      <div class="sidebar-heading">
-        Empleado
+      <div class="sidebar-heading my-0">
+        Movimientos
       </div>
 
       <!-- Nav Item - Diario Collapse Menu -->
@@ -116,10 +119,10 @@
           <span>Estacionamiento diario</span>
         </a>
         <div id="collapseDiario" class="collapse" aria-labelledby="headingDiario" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="http://localhost:8080/Cocheras/diarios/ingreso"><i class="fas fa-arrow-circle-right"></i> Registrar ingreso</a>
-            <a class="collapse-item" href="http://localhost:8080/Cocheras/diarios/salida"><i class="fas fa-arrow-circle-left"></i> Registrar salida y cobro</a>
-            <a class="collapse-item" href="#"><i class="far fa-list-alt"></i> Listar ingresos y salidas</a>
+          <div class="bg-white py-2 collapse-inner rounded d-flex flex-column" style="gap: 0.25rem">
+            <a class="collapse-item px-2" href="http://localhost:8080/Cocheras/diarios/ingreso"><i class="fas fa-arrow-circle-right pr-1"></i> Registrar ingreso</a>
+            <a class="collapse-item px-2" href="http://localhost:8080/Cocheras/diarios/salida"><i class="fas fa-arrow-circle-left pr-1"></i> Registrar salida y cobro</a>
+            <a class="collapse-item px-2" href="#"><i class="far fa-list-alt pr-1"></i> Listar ingresos y salidas</a>
           </div>
         </div>
       </li>
@@ -130,18 +133,23 @@
           <span>Estadías</span>
         </a>
         <div id="collapseEstadia" class="collapse" aria-labelledby="headingEstadia" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#"><i class="far fa-calendar-check"></i> Registrar estadía</a>
-            <a class="collapse-item" href="#"><i class="far fa-list-alt"></i> Listar estadías</a>
+          <div class="bg-white py-2 collapse-inner rounded d-flex flex-column" style="gap: 0.25rem">
+            <a class="collapse-item px-2" href="#"><i class="far fa-calendar-check pr-1"></i> Registrar estadía</a>
+            <a class="collapse-item px-2" href="#"><i class="far fa-list-alt pr-1"></i> Listar estadías</a>
           </div>
         </div>
       </li>
 
-
       <!-- Divider -->
       <hr class="sidebar-divider my-0">
+      <%}%>
+
+      <!-- Heading -->
+      <div class="sidebar-heading my-0">
+        Vehículos
+      </div>
       
-      <!-- Nav Item - Cocheras -->
+      <!-- Nav Item - Vehículos -->
       <li class="nav-item">
         <a class="nav-link" href="http://localhost:8080/Cocheras/vehiculos/all">
           <i class="fas fa-car-alt"></i>
@@ -181,7 +189,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-inline text-gray-600 small">Franco Giannassi</span>
+                <span class="mr-2 d-none d-inline text-gray-600 small"><%=nombre%> <%=apellido%></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/1R63taCoSnM/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -223,7 +231,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Cocheras Co 2019</span>
+            <span>Copyright &copy; Cocheras Co <%=new java.util.Date().getYear()+1900%></span>
           </div>
         </div>
       </footer>

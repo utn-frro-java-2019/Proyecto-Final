@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.Empleado;
+import util.AccountHasPermissions;
 import util.WebAlertViewer;
 import business.EmpleadoController;
 
@@ -22,6 +23,11 @@ public class EmpleadoServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.boss(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/all")) {
 			this.all(request, response);
@@ -37,6 +43,11 @@ public class EmpleadoServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.boss(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/add")) {
 			this.add(request, response);

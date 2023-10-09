@@ -13,6 +13,7 @@ import business.TipoVehiculoController;
 import business.VehiculoController;
 import domain.TipoVehiculo;
 import domain.Vehiculo;
+import util.AccountHasPermissions;
 import util.WebAlertViewer;
 
 @WebServlet("/vehiculos/*")
@@ -24,6 +25,11 @@ public class VehiculoServlet extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/all")) {
 			this.all(request, response);
@@ -39,6 +45,11 @@ public class VehiculoServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
+		if (!hasPermissions) {
+			return;
+		}
+
 		String path = request.getPathInfo();
 		if (path.equals("/add")) {
 			this.add(request, response);
