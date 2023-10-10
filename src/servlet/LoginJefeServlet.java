@@ -34,7 +34,7 @@ public class LoginJefeServlet extends HttpServlet {
 		if (JefeController.authenticate(email, password)) {
 			Jefe jefe = JefeController.get();
 			SetSession.SetAccountSession(request, jefe.getEmail(), jefe.getNombre(), jefe.getApellido(), "jefe");
-			request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/home");
 		} else {
 			WebAlertViewer.showAlertMessage(request, "Email o contraseña incorrectos", "danger");
 			request.getRequestDispatcher("/WEB-INF/login-boss.jsp").forward(request, response);
