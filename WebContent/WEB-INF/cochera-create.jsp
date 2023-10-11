@@ -6,7 +6,7 @@
   <div class="row justify-content-md-center">
     <div class="col-lg-11">
       <h1 class="h3 mb-4 text-gray-800">Registrar Nueva Cochera</h1>
-      <form name="cochera-add" method="post" action="http://localhost:8080/Cocheras/cocheras/add">
+      <form name="cochera-add" method="post" action="/Cocheras/cocheras/add">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Datos de la Cochera</h6>

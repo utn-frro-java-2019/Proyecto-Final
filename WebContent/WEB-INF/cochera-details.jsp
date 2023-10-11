@@ -9,7 +9,7 @@
   <div class="row justify-content-md-center">
     <div class="col-lg-11">
       <h1 class="h3 mb-4 text-gray-800">Editar Cochera</h1>
-      <form name="cochera-edit" method="post" action="http://localhost:8080/Cocheras/cocheras/edit/<%=c.getIdCochera()%>">
+      <form name="cochera-edit" method="post" action="/Cocheras/cocheras/edit/<%=c.getIdCochera()%>">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Datos de la Cochera</h6>

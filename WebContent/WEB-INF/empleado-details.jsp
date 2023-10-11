@@ -9,7 +9,7 @@
   <div class="row justify-content-md-center">
     <div class="col-lg-11">
       <h1 class="h3 mb-4 text-gray-800">Editar Empleado</h1>
-      <form name="empleado-edit" method="post" action="http://localhost:8080/Cocheras/empleados/edit/<%=e.getDni()%>">
+      <form name="empleado-edit" method="post" action="/Cocheras/empleados/edit/<%=e.getDni()%>">
         <div class="card shadow mb-4">
           <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Datos del Empleado</h6>

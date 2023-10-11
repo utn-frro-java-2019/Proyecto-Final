@@ -52,7 +52,7 @@
                     <form
                       class="user"
                       method="post"
-                      action="http://localhost:8080/Cocheras/login-jefe"
+                      action="/Cocheras/login-jefe"
                       name="login-boss"
                     >
                       <div class="form-group">
@@ -86,7 +86,7 @@
         </div>
       </div>
       <a
-        href="http://localhost:8080/Cocheras/login-empleado"
+        href="/Cocheras/login-empleado"
         class="text-white position-absolute mb-3 mr-4"
         style="bottom: 0; right: 0"
         ><i class="fas fa-user"></i> - Acceder como empleado</a

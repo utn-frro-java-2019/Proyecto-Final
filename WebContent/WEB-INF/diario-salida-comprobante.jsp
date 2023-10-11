@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="row justify-content-center">
-        <a href="http://localhost:8080/Cocheras/diarios/ingreso" class="btn btn-primary">
+        <a href="/Cocheras/diarios/ingreso" class="btn btn-primary">
           <i class="fas fa-arrow-circle-left m-1"></i>
           Registrar otro ingreso
         </a>

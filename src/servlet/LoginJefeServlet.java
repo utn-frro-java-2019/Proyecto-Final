@@ -12,7 +12,7 @@ import domain.Jefe;
 import business.JefeController;
 
 import util.WebAlertViewer;
-import util.SetSession;
+import util.SessionManager;
 
 @WebServlet("/login-jefe")
 
@@ -33,7 +33,7 @@ public class LoginJefeServlet extends HttpServlet {
 
 		if (JefeController.authenticate(email, password)) {
 			Jefe jefe = JefeController.get();
-			SetSession.SetAccountSession(request, jefe.getEmail(), jefe.getNombre(), jefe.getApellido(), "jefe");
+			SessionManager.SetAccountSession(request, jefe.getEmail(), jefe.getNombre(), jefe.getApellido(), "jefe");
 			response.sendRedirect(request.getContextPath() + "/home");
 		} else {
 			WebAlertViewer.showAlertMessage(request, "Email o contraseña incorrectos", "danger");

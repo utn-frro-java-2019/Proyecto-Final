@@ -23,7 +23,7 @@
   <h1 class="h3 mb-4 text-gray-800">Listado de Vehículos Registrados</h1>
   <div class="row  mb-3">
     <div class="col col-auto d-flex">
-      <a class="d-flex align-items-center btn btn-primary" href="http://localhost:8080/Cocheras/vehiculos/create">Añadir vehículo</a>
+      <a class="d-flex align-items-center btn btn-primary" href="/Cocheras/vehiculos/create">Añadir vehículo</a>
     </div>
     <form class="col">
       <div class="input-group">
@@ -66,10 +66,10 @@
                 <td class="nw"><%=v.getMarca()%></td>
                 <td class="nw"><%=v.getTipo().getDescripcion()%></td>
                 <td class="d-flex align-items-center p-0">
-                  <a href="http://localhost:8080/Cocheras/vehiculos/details/<%=v.getPatente()%>" style="white-space: nowrap" class="d-flex align-items-center btn btn-warning m-1">
+                  <a href="/Cocheras/vehiculos/details/<%=v.getPatente()%>" style="white-space: nowrap" class="d-flex align-items-center btn btn-warning m-1">
                     <i class="fas fa-edit fa-xs m-1"></i>Detalles / Editar
                   </a>
-                  <a href="http://localhost:8080/Cocheras/vehiculos/delete/<%=v.getPatente()%>" class="d-flex align-items-center btn btn-danger m-1">
+                  <a href="/Cocheras/vehiculos/delete/<%=v.getPatente()%>" class="d-flex align-items-center btn btn-danger m-1">
                     <i class="fas fa-trash-alt fa-xs m-1"></i>Eliminar
                   </a>
                   <a target="_Blank" href="https://api.whatsapp.com/send?phone=<%=v.getTelefonoContacto()%>" style="white-space: nowrap" class="d-flex align-items-center btn btn-primary m-1">

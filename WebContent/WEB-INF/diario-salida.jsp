@@ -32,7 +32,7 @@
           </div>
         </form>
       </div>
-      <form name="diario-salida" method="post" action="http://localhost:8080/Cocheras/diarios/salida">
+      <form name="diario-salida" method="post" action="/Cocheras/diarios/salida">
       <div class="card shadow mb-4">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">Datos del vehículo</h6>

@@ -69,7 +69,7 @@
                     <div class="text-center">
                       <a
                         class="small"
-                        href="http://localhost:8080/Cocheras/login-empleado"
+                        href="/Cocheras/login-empleado"
                         >¿Ya sabes tu contraseña? !Logueate!</a
                       >
                     </div>

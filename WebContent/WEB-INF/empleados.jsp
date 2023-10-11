@@ -23,7 +23,7 @@
   <h1 class="h3 mb-4 text-gray-800">Administrar Empleados</h1>
   <div class="row  mb-3">
     <div class="col col-auto d-flex">
-      <a class="d-flex align-items-center btn btn-primary" href="http://localhost:8080/Cocheras/empleados/create">Añadir Empleado</a>
+      <a class="d-flex align-items-center btn btn-primary" href="/Cocheras/empleados/create">Añadir Empleado</a>
     </div>
     <form class="col">
       <div class="input-group">
@@ -75,10 +75,10 @@
                 <td class="nw"><%=e.getTelefono1()%></td>
                 <td class="nw"><%=e.getTelefono2()%></td>
                 <td class="d-flex align-items-center p-0">
-                  <a href="http://localhost:8080/Cocheras/empleados/details/<%=e.getDni()%>" class="d-flex align-items-center btn btn-warning m-1">
+                  <a href="/Cocheras/empleados/details/<%=e.getDni()%>" class="d-flex align-items-center btn btn-warning m-1">
                     <i class="fas fa-edit fa-xs m-1"></i>Editar
                   </a>
-                  <a href="http://localhost:8080/Cocheras/empleados/delete/<%=e.getDni()%>" class="d-flex align-items-center btn btn-danger m-1">
+                  <a href="/Cocheras/empleados/delete/<%=e.getDni()%>" class="d-flex align-items-center btn btn-danger m-1">
                     <i class="fas fa-trash-alt fa-xs m-1"></i>Eliminar
                   </a>
                   <a href="mailto:<%=e.getEmail()%>" style="white-space: nowrap" class="d-flex align-items-center btn btn-primary m-1">

@@ -46,7 +46,7 @@
                     <form
                       class="user"
                       method="post"
-                      action="http://localhost:8080/Cocheras/login-empleado"
+                      action="/Cocheras/login-empleado"
                     >
                       <div class="form-group">
                         <input
@@ -75,7 +75,7 @@
                     <div class="text-center">
                       <a
                         class="small"
-                        href="http://localhost:8080/Cocheras/passwordRecovery"
+                        href="/Cocheras/passwordRecovery"
                         >Olvidaste tu contraseña?</a
                       >
                     </div>
@@ -87,7 +87,7 @@
         </div>
       </div>
       <a
-        href="http://localhost:8080/Cocheras/login-jefe"
+        href="/Cocheras/login-jefe"
         class="text-white position-absolute mb-3 mr-4"
         style="bottom: 0; right: 0"
         ><i class="fas fa-user-tie"></i> - Acceder como jefe de cocheras</a

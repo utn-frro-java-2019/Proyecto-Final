@@ -37,7 +37,7 @@
                 <!-- Card Content - Collapse -->
                 <div class="collapse show" id="precioHora">
                   <div class="card-body">
-                    <form name="precioPorHora-edit" method="post" action="http://localhost:8080/Cocheras/configuration/editPH">
+                    <form name="precioPorHora-edit" method="post" action="/Cocheras/configuration/editPH">
                       <div class="form-group row">
                         <div class="col-sm-12 mb-3 mb-sm-0">
                           <input type="text" class="form-control form-control-user" name="precioBase" value="<%=precioPorHora%>">
@@ -62,7 +62,7 @@
                   <div class="card-body">
                     <div class="row  mb-3">
 					    <div class="col col-auto d-flex">
-					    	<a class="d-flex align-items-center btn btn-primary" href="http://localhost:8080/Cocheras/configuration/createME">Añadir descuento</a>
+					    	<a class="d-flex align-items-center btn btn-primary" href="/Cocheras/configuration/createME">Añadir descuento</a>
 					    </div>
 				    </div>
                     <div class="table-responsive">
@@ -87,7 +87,7 @@
                             <td class="nw"><%=m.getMultiplicadorDesde()%> días</td>
                             <td class="nw"><%=m.getPorcentajeMultiplicador()*100%>%</td>
 			                <td class="d-flex align-items-center p-0">
-			                  <a href="http://localhost:8080/Cocheras/configuration/deleteME/<%=m.getMultiplicadorDesde()%>" class="d-flex align-items-center btn btn-danger m-1">
+			                  <a href="/Cocheras/configuration/deleteME/<%=m.getMultiplicadorDesde()%>" class="d-flex align-items-center btn btn-danger m-1">
 			                    <i class="fas fa-trash-alt fa-xs m-1"></i>Eliminar
 			                  </a>
 			                </td>
@@ -113,7 +113,7 @@
                   <div class="card-body">
                     <div class="row  mb-3">
 				   		<div class="col col-auto d-flex">
-				    		<a class="d-flex align-items-center btn btn-primary" href="http://localhost:8080/Cocheras/configuration/createTV">Añadir tipo de vehículo</a>
+				    		<a class="d-flex align-items-center btn btn-primary" href="/Cocheras/configuration/createTV">Añadir tipo de vehículo</a>
 						</div>
 				    </div>
                     <div class="table-responsive">
@@ -138,10 +138,10 @@
                             <td class="nw"><%=t.getDescripcion()%></td>
                             <td class="nw"><%=t.getPorcentajeMultiplicador()*100%>%</td>
 			                <td class="d-flex align-items-center p-0">
-			                  <a href="http://localhost:8080/Cocheras/configuration/detailsTV/<%=t.getIdTipo()%>" class="d-flex align-items-center btn btn-warning m-1">
+			                  <a href="/Cocheras/configuration/detailsTV/<%=t.getIdTipo()%>" class="d-flex align-items-center btn btn-warning m-1">
 			                    <i class="fas fa-edit fa-xs m-1"></i>Editar
 			                  </a>
-			                  <a href="http://localhost:8080/Cocheras/configuration/deleteTV/<%=t.getIdTipo()%>" class="d-flex align-items-center btn btn-danger m-1">
+			                  <a href="/Cocheras/configuration/deleteTV/<%=t.getIdTipo()%>" class="d-flex align-items-center btn btn-danger m-1">
 			                    <i class="fas fa-trash-alt fa-xs m-1"></i>Eliminar
 			                  </a>
 			                </td>

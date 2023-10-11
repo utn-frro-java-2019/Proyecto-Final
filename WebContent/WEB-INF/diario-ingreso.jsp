@@ -32,7 +32,7 @@
       <h5 class="h5 text-gray-800">Estacionamiento Diario</h5>
       <h1 class="h3 mb-4 text-gray-800">Registrar Ingreso de Vehículo</h1>
       <div class="row  mb-4">
-        <form class="col" name="ingresoSearch" method="post" action="http://localhost:8080/Cocheras/diarios/ingresoSearch">
+        <form class="col" name="ingresoSearch" method="post" action="/Cocheras/diarios/ingresoSearch">
           <div class="input-group">
             <input type="text" class="form-control bg-light border border-primary p-4" placeholder="Buscar vehículo por patente" aria-label="Search" aria-describedby="basic-addon2" name="patente" required>
             <div class="input-group-append">
@@ -43,10 +43,10 @@
           </div>
         </form>
         <div class="col col-auto d-flex">
-          <a class="d-flex justify-content-center align-items-center btn btn-primary" href="http://localhost:8080/Cocheras/vehiculos/create">Registrar nuevo vehículo</a>
+          <a class="d-flex justify-content-center align-items-center btn btn-primary" href="/Cocheras/vehiculos/create">Registrar nuevo vehículo</a>
         </div>
       </div>
-      <form name="diario-ingreso" method="post" action="http://localhost:8080/Cocheras/diarios/ingreso">
+      <form name="diario-ingreso" method="post" action="/Cocheras/diarios/ingreso">
       <div class="card shadow mb-4">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">Datos del vehículo</h6>

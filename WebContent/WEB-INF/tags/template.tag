@@ -15,10 +15,10 @@
 
   <title>Cocheras</title>
 
-  <link href="http://localhost:8080/Cocheras/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/Cocheras/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-  <link href="http://localhost:8080/Cocheras/css/sb-admin-2-custom.min.css" rel="stylesheet">
-  <link href="http://localhost:8080/Cocheras/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="/Cocheras/css/sb-admin-2-custom.min.css" rel="stylesheet">
+  <link href="/Cocheras/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <style media="screen">
     .nw { white-space: nowrap }
     .nw:empty:before{ content: "-" }
@@ -46,7 +46,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8080/Cocheras/home">
+        <a class="nav-link" href="/Cocheras/home">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tablero</span></a>
       </li>
@@ -63,21 +63,21 @@
 
       <!-- Nav Item - Cocheras -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8080/Cocheras/cocheras/all">
+        <a class="nav-link" href="/Cocheras/cocheras/all">
           <i class="fas fa-flag-checkered"></i>
           <span>Administrar cocheras</span></a>
       </li>
 
       <!-- Nav Item - Empleados -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8080/Cocheras/empleados/all">
+        <a class="nav-link" href="/Cocheras/empleados/all">
           <i class="fas fa-user-edit"></i>
           <span>Administrar empleados</span></a>
       </li>
       
       <!-- Nav Item - Configuraciones -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8080/Cocheras/configuration/config">
+        <a class="nav-link" href="/Cocheras/configuration/config">
           <i class="fas fa-sliders-h"></i>
           <span>Editar precios y otros</span></a>
       </li>
@@ -120,8 +120,8 @@
         </a>
         <div id="collapseDiario" class="collapse" aria-labelledby="headingDiario" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded d-flex flex-column" style="gap: 0.25rem">
-            <a class="collapse-item px-2" href="http://localhost:8080/Cocheras/diarios/ingreso"><i class="fas fa-arrow-circle-right pr-1"></i> Registrar ingreso</a>
-            <a class="collapse-item px-2" href="http://localhost:8080/Cocheras/diarios/salida"><i class="fas fa-arrow-circle-left pr-1"></i> Registrar salida y cobro</a>
+            <a class="collapse-item px-2" href="/Cocheras/diarios/ingreso"><i class="fas fa-arrow-circle-right pr-1"></i> Registrar ingreso</a>
+            <a class="collapse-item px-2" href="/Cocheras/diarios/salida"><i class="fas fa-arrow-circle-left pr-1"></i> Registrar salida y cobro</a>
             <a class="collapse-item px-2" href="#"><i class="far fa-list-alt pr-1"></i> Listar ingresos y salidas</a>
           </div>
         </div>
@@ -151,7 +151,7 @@
       
       <!-- Nav Item - Vehículos -->
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:8080/Cocheras/vehiculos/all">
+        <a class="nav-link" href="/Cocheras/vehiculos/all">
           <i class="fas fa-car-alt"></i>
           <span>Listado de Vehículos</span></a>
       </li>
@@ -194,7 +194,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="http://localhost:8080/Cocheras/user/profile">
+                <a class="dropdown-item" href="/Cocheras/user/profile">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Mi perfil
                 </a>
@@ -203,7 +203,7 @@
                   Configuraciones
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/Cocheras/logout">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Salir
                 </a>
@@ -248,12 +248,12 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <script src="http://localhost:8080/Cocheras/vendor/jquery/jquery.min.js"></script>
-  <script src="http://localhost:8080/Cocheras/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="http://localhost:8080/Cocheras/vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="http://localhost:8080/Cocheras/js/sb-admin-2.min.js"></script>
-  <script src="http://localhost:8080/Cocheras/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="http://localhost:8080/Cocheras/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+  <script src="/Cocheras/vendor/jquery/jquery.min.js"></script>
+  <script src="/Cocheras/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/Cocheras/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/Cocheras/js/sb-admin-2.min.js"></script>
+  <script src="/Cocheras/vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="/Cocheras/vendor/datatables/dataTables.bootstrap4.min.js"></script>
   <script type="text/javascript">
   	$(document).ready(function() {
 		$('.dataTable').DataTable({
