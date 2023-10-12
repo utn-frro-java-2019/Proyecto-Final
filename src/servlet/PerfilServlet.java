@@ -8,14 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import business.EmpleadoController;
+import business.JefeController;
 import domain.Empleado;
+import domain.Jefe;
 import util.AccountHasPermissions;
 
-@WebServlet("/user/*")
-public class UsuarioServlet extends HttpServlet {
+@WebServlet("/perfil")
+public class PerfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public UsuarioServlet() {
+	public PerfilServlet() {
 		super();
 	}
 
@@ -25,12 +27,19 @@ public class UsuarioServlet extends HttpServlet {
 			return;
 		}
 
-		String path = request.getPathInfo();
-		if (path.equals("/profile")) {
-			this.profile(request, response);
-		} else {
-			this.error(request, response);
+		String accountType = (String) request.getSession().getAttribute("accountType");
+
+		if (accountType.equals("jefe")) {
+			Jefe usuario = JefeController.get();
+			request.setAttribute("usuario", usuario);
+			request.getRequestDispatcher("/WEB-INF/perfil-jefe.jsp").forward(request, response);
+		} else if (accountType.equals("empleado")) {
+			// TODO
+			Empleado usuario = EmpleadoController.getOne("11111111");
+			request.setAttribute("usuario", usuario);
+			request.getRequestDispatcher("/WEB-INF/perfil-empleado.jsp").forward(request, response);
 		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,13 +56,6 @@ public class UsuarioServlet extends HttpServlet {
 		} else {
 			this.error(request, response);
 		}
-	}
-
-	private void profile(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		Empleado usuario = EmpleadoController.getOne("11111111");
-		// TODO
-		request.setAttribute("usuario", usuario);
-		request.getRequestDispatcher("/WEB-INF/profile.jsp").forward(request, response);
 	}
 
 	private void editProfile(HttpServletRequest request, HttpServletResponse response)
