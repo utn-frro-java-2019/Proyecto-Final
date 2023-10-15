@@ -3,8 +3,6 @@ package data;
 import java.sql.*;
 import java.util.ArrayList;
 import domain.*;
-import data.CocheraData;
-import data.TurnoData;
 
 public class EmpleadoData {
 	
@@ -114,9 +112,9 @@ public class EmpleadoData {
 			FactoryConnection.getInstancia().releaseConn();
 			
 		} catch (SQLException e1) {
-			e1.printStackTrace();
+			throw new RuntimeException("Error al insertar empleado");
 		}catch (Exception e1) {
-			e1.printStackTrace();
+			throw new RuntimeException("Error al insertar empleado");
 		}
 	}
 	

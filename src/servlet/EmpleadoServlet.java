@@ -94,8 +94,12 @@ public class EmpleadoServlet extends HttpServlet {
 		String tel1 = request.getParameter("tel1");
 		String tel2 = request.getParameter("tel2");
 		Empleado e = new Empleado(us, pass, dni, email, nom, ap, tel1, tel2, null, null);
-		EmpleadoController.insertOne(e);
-		WebAlertViewer.showAlertMessage(request, "El Empleado se ha a�adido correctamente.");
+		try {
+			EmpleadoController.insertOne(e);
+			WebAlertViewer.showAlertMessage(request, "El Empleado se ha añadido correctamente.");
+		} catch (Exception e1) {
+			WebAlertViewer.showError(request, e1);
+		}
 		this.all(request, response);
 	}
 

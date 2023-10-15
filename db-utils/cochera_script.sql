@@ -62,6 +62,7 @@ CREATE TABLE `empleados` (
   `usuario` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`dni`),
+  UNIQUE (`email`),
   KEY `fk_cochera_emp_idx` (`idCochera`),
   KEY `fk_empleado_turno_idx` (`idTurno`),
   CONSTRAINT `fk_empleado_cochera` FOREIGN KEY (`idCochera`) REFERENCES `cocheras` (`idCochera`),

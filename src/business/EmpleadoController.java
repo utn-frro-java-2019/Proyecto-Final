@@ -18,7 +18,11 @@ public class EmpleadoController {
 	}
 
 	public static void insertOne(Empleado e) {
-		new EmpleadoData().insertOne(e);
+		try {
+			new EmpleadoData().insertOne(e);
+		} catch (Exception e1) {
+			throw e1;
+		}
 	}
 
 	public static void updateOne(Empleado e) {

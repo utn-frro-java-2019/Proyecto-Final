@@ -12,4 +12,8 @@ public final class WebAlertViewer {
 		request.setAttribute("webAlertMessage", message);
 		request.setAttribute("webAlertType", type);
 	}
+
+	public static void showError(HttpServletRequest request, Exception e) {
+		showAlertMessage(request, e.getMessage(), "danger");
+	}
 }
