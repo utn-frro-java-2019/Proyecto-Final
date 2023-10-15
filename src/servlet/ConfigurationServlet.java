@@ -84,19 +84,24 @@ public class ConfigurationServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/configurations.jsp").forward(request, response);
 	}
 
-	// ------------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------
 	// Precio Por Hora
 	// --------------------------------------------------------------------
 
 	private void editPH(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		double precio = Double.parseDouble(request.getParameter("precioBase"));
-		PrecioPorHora ph = new PrecioPorHora(precio);
-		PrecioPorHoraController.updatePrecioPorHora(ph);
-		WebAlertViewer.showAlertMessage(request, "El Precio por hora se ha modificado correctamente.");
+		try {
+			double precio = Double.parseDouble(request.getParameter("precioBase"));
+			PrecioPorHora ph = new PrecioPorHora(precio);
+			PrecioPorHoraController.updatePrecioPorHora(ph);
+			WebAlertViewer.showAlertMessage(request, "El precio por hora se ha modificado correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
+
 		this.config(request, response);
 	}
 
-	// ------------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------
 	// Multiplicador Estadía
 	// --------------------------------------------------------------------
 
@@ -105,25 +110,33 @@ public class ConfigurationServlet extends HttpServlet {
 	}
 
 	private void deleteME(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = request.getPathInfo();
-		int multiplicadorDesde = Integer.parseInt(path.replace("/deleteME/", ""));
-		MultiplicadorEstadiaController.deleteOne(multiplicadorDesde);
-		WebAlertViewer.showAlertMessage(request, "El descuento por estadía se ha eliminado correctamente.");
+		try {
+			String path = request.getPathInfo();
+			int multiplicadorDesde = Integer.parseInt(path.replace("/deleteME/", ""));
+			MultiplicadorEstadiaController.deleteOne(multiplicadorDesde);
+			WebAlertViewer.showAlertMessage(request, "El descuento por estadía se ha eliminado correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		this.config(request, response);
 	}
 
 	private void addME(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int multiplicadorDesde = Integer.parseInt(request.getParameter("multiplicadorDesde"));
-		double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
-		MultiplicadorEstadia me = new MultiplicadorEstadia(multiplicadorDesde, porcentajeMultiplicador);
-		MultiplicadorEstadiaController.insertOne(me);
-		WebAlertViewer.showAlertMessage(request, "El descuento por estadía se ha añadido correctamente.");
+		try {
+			int multiplicadorDesde = Integer.parseInt(request.getParameter("multiplicadorDesde"));
+			double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
+			MultiplicadorEstadia me = new MultiplicadorEstadia(multiplicadorDesde, porcentajeMultiplicador);
+			MultiplicadorEstadiaController.insertOne(me);
+			WebAlertViewer.showAlertMessage(request, "El descuento por estadía se ha añadido correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		this.config(request, response);
 	}
 
-	// ------------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------
 	// Tipo de Vehículo
-	// -------------------------------------------------------------------------
+	// --------------------------------------------------------------------
 
 	private void createTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/tipoVehiculo-create.jsp").forward(request, response);
@@ -166,7 +179,7 @@ public class ConfigurationServlet extends HttpServlet {
 		this.config(request, response);
 	}
 
-	// ------------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------
 
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/errors/404-error.jsp").forward(request, response);

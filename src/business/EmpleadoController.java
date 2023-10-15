@@ -6,15 +6,27 @@ import domain.*;
 
 public class EmpleadoController {
 	public static ArrayList<Empleado> getAll() {
-		return new EmpleadoData().getAll();
+		try {
+			return new EmpleadoData().getAll();
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static Empleado getOne(String dni) {
-		return new EmpleadoData().getOne(dni);
+		try {
+			return new EmpleadoData().getOne(dni);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void deleteOne(String dni) {
-		new EmpleadoData().deleteOne(dni);
+		try {
+			new EmpleadoData().deleteOne(dni);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void insertOne(Empleado e) {
@@ -26,6 +38,10 @@ public class EmpleadoController {
 	}
 
 	public static void updateOne(Empleado e) {
-		new EmpleadoData().updateOne(e);
+		try {
+			new EmpleadoData().updateOne(e);
+		} catch (Exception e1) {
+			throw e1;
+		}
 	}
 }

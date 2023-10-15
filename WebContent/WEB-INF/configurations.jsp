@@ -40,10 +40,10 @@
                     <form name="precioPorHora-edit" method="post" action="/Cocheras/configuration/editPH">
                       <div class="form-group row">
                         <div class="col-sm-12 mb-3 mb-sm-0">
-                          <input type="text" class="form-control form-control-user" name="precioBase" value="<%=precioPorHora%>">
+                          <input type="number" min="0.001" step="any" class="form-control form-control-user" name="precioBase" value="<%=precioPorHora%>">
                         </div>
                       </div>
-					  <button type="submit" class="btn btn-danger">Actualizar</button>
+					            <button type="submit" class="btn btn-danger">Actualizar</button>
                     </form>
                   </div>
                 </div>

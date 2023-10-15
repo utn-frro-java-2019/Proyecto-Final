@@ -59,16 +59,24 @@ public class EmpleadoServlet extends HttpServlet {
 	}
 
 	private void all(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		ArrayList<Empleado> empleados = EmpleadoController.getAll();
-		request.setAttribute("listaEmpleado", empleados);
+		try {
+			ArrayList<Empleado> empleados = EmpleadoController.getAll();
+			request.setAttribute("listaEmpleado", empleados);
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		request.getRequestDispatcher("/WEB-INF/empleados.jsp").forward(request, response);
 	}
 
 	private void details(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String path = request.getPathInfo();
-		String dni = path.replace("/details/", "");
-		Empleado empleado = EmpleadoController.getOne(dni);
-		request.setAttribute("empleado", empleado);
+		try {
+			String path = request.getPathInfo();
+			String dni = path.replace("/details/", "");
+			Empleado empleado = EmpleadoController.getOne(dni);
+			request.setAttribute("empleado", empleado);
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		request.getRequestDispatcher("/WEB-INF/empleado-details.jsp").forward(request, response);
 	}
 
@@ -77,10 +85,15 @@ public class EmpleadoServlet extends HttpServlet {
 	}
 
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String path = request.getPathInfo();
-		String dni = path.replace("/delete/", "");
-		EmpleadoController.deleteOne(dni);
-		WebAlertViewer.showAlertMessage(request, "El Empleado se ha eliminado correctamente.");
+		try {
+			String path = request.getPathInfo();
+			String dni = path.replace("/delete/", "");
+			EmpleadoController.deleteOne(dni);
+			request.setAttribute("empleado", empleado);
+			WebAlertViewer.showAlertMessage(request, "El Empleado se ha eliminado correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		this.all(request, response);
 	}
 
@@ -104,18 +117,22 @@ public class EmpleadoServlet extends HttpServlet {
 	}
 
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String path = request.getPathInfo();
-		String dni = path.replace("/edit/", "");
-		String us = request.getParameter("usuario");
-		String pass = request.getParameter("password");
-		String email = request.getParameter("email");
-		String nom = request.getParameter("nombre");
-		String ap = request.getParameter("apellido");
-		String tel1 = request.getParameter("tel1");
-		String tel2 = request.getParameter("tel2");
-		Empleado e = new Empleado(us, pass, dni, email, nom, ap, tel1, tel2, null, null);
-		EmpleadoController.updateOne(e);
-		WebAlertViewer.showAlertMessage(request, "El Empleado se ha modificado correctamente.");
+		try {
+			String path = request.getPathInfo();
+			String dni = path.replace("/edit/", "");
+			String us = request.getParameter("usuario");
+			String pass = request.getParameter("password");
+			String email = request.getParameter("email");
+			String nom = request.getParameter("nombre");
+			String ap = request.getParameter("apellido");
+			String tel1 = request.getParameter("tel1");
+			String tel2 = request.getParameter("tel2");
+			Empleado e = new Empleado(us, pass, dni, email, nom, ap, tel1, tel2, null, null);
+			EmpleadoController.updateOne(e);
+			WebAlertViewer.showAlertMessage(request, "El Empleado se ha modificado correctamente.");
+		} catch (Exception e1) {
+			WebAlertViewer.showError(request, e1);
+		}
 		this.all(request, response);
 	}
 

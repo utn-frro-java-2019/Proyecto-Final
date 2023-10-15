@@ -15,13 +15,13 @@
             <div class="form-group row">
               <div class="col-sm-12 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="multiplicadorDesde">A partir de ... días</label>
-                <input class="form-control form-control-user" type="text" name="multiplicadorDesde" placeholder="Días" required>
+                <input class="form-control form-control-user" type="number" min="1" max="365" step="1" name="multiplicadorDesde" placeholder="Días" required>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-12 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="porcentajeMultiplicador">Porcentaje Multiplicador</label>
-                <input class="form-control form-control-user" type="text" name="porcentajeMultiplicador" placeholder="Ej: 0.2" required>
+                <input class="form-control form-control-user" type="number" min="0.001" max="0.999" step="any" name="porcentajeMultiplicador" placeholder="Ej: 0.2" required>
               </div>
             </div>
           </div>

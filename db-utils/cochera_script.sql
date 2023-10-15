@@ -91,7 +91,7 @@ CREATE TABLE `estadias` (
   `idEstadia` int(11) NOT NULL,
   `fechaRetiro` datetime NOT NULL,
   `estado` varchar(45) NOT NULL,
-  `precioFinal` decimal(5,0) DEFAULT NULL,
+  `precioFinal` float DEFAULT NULL,
   `idCochera` int(11) NOT NULL,
   `patente` varchar(7) NOT NULL,
   `nroLugar` int(11) NOT NULL,
@@ -196,7 +196,7 @@ DROP TABLE IF EXISTS `precio_por_hora`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `precio_por_hora` (
   `idPrecio` varchar(45) NOT NULL,
-  `precio` decimal(5,0) NOT NULL,
+  `precio` float NOT NULL,
   PRIMARY KEY (`idPrecio`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
