@@ -183,8 +183,12 @@
 
 
           <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
+          <ul class="navbar-nav d-flex align-items-center justify-content-between w-100">
+             <p class="lead m-0">
+              <span class="badge badge-primary <%=tipoDeCuenta == "jefe" ? "bg-success" : "bg-success"%>">
+                <%=tipoDeCuenta == "jefe" ? "Jefe de cochera" : "Empleado"%>
+              </span>
+             </p>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
@@ -197,10 +201,6 @@
                 <a class="dropdown-item" href="/Cocheras/perfil">
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Mi perfil
-                </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Configuraciones
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="/Cocheras/logout">
