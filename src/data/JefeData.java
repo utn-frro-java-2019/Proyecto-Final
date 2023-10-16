@@ -34,9 +34,9 @@ public class JefeData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			new RuntimeException("Error al recuperar el jefe");
 		} catch (Exception e) {
-			e.printStackTrace();
+			new RuntimeException("Error al recuperar el jefe");
 		}
 
 		return jefes.get(0);

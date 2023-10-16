@@ -31,12 +31,17 @@ public class LoginJefeServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		if (JefeController.authenticate(email, password)) {
-			Jefe jefe = JefeController.get();
-			SessionManager.SetAccountSession(request, jefe.getEmail(), jefe.getNombre(), jefe.getApellido(), "jefe");
-			response.sendRedirect(request.getContextPath() + "/home");
-		} else {
-			WebAlertViewer.showAlertMessage(request, "Email o contraseña incorrectos", "danger");
+		try {
+			if (JefeController.authenticate(email, password)) {
+				Jefe jefe = JefeController.get();
+				SessionManager.SetAccountSession(request, jefe.getEmail(), jefe.getNombre(), jefe.getApellido(), "jefe");
+				response.sendRedirect(request.getContextPath() + "/home");
+			} else {
+				WebAlertViewer.showAlertMessage(request, "Email o contraseña incorrectos", "danger");
+				request.getRequestDispatcher("/WEB-INF/login-boss.jsp").forward(request, response);
+			}
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
 			request.getRequestDispatcher("/WEB-INF/login-boss.jsp").forward(request, response);
 		}
 	}
