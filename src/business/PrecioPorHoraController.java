@@ -19,8 +19,6 @@ public class PrecioPorHoraController {
 			throw new RuntimeException("El precio por hora debe ser mayor a 0");
 		}
 
-		System.out.println("Precio por hora: " + p.getPrecio());
-
 		try {
 			new PrecioPorHoraData().updatePrecioPorHora(p);
 		} catch (Exception e) {
