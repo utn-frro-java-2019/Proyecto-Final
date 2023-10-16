@@ -143,39 +143,55 @@ public class ConfigurationServlet extends HttpServlet {
 	}
 
 	private void deleteTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = request.getPathInfo();
-		int idTipo = Integer.parseInt(path.replace("/deleteTV/", ""));
-		TipoVehiculoController.deleteOne(idTipo);
-		WebAlertViewer.showAlertMessage(request, "El tipo de vehículo se ha eliminado correctamente.");
+		try {
+			String path = request.getPathInfo();
+			int idTipo = Integer.parseInt(path.replace("/deleteTV/", ""));
+			TipoVehiculoController.deleteOne(idTipo);
+			WebAlertViewer.showAlertMessage(request, "El tipo de vehículo se ha eliminado correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		this.config(request, response);
 	}
 
 	private void detailsTV(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String path = request.getPathInfo();
-		int idTipo = Integer.parseInt(path.replace("/detailsTV/", ""));
-		TipoVehiculo tv = TipoVehiculoController.getOne(idTipo);
-		request.setAttribute("TipoVehiculo", tv);
+		try {
+			String path = request.getPathInfo();
+			int idTipo = Integer.parseInt(path.replace("/detailsTV/", ""));
+			TipoVehiculo tv = TipoVehiculoController.getOne(idTipo);
+			request.setAttribute("TipoVehiculo", tv);
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		request.getRequestDispatcher("/WEB-INF/tipoVehiculo-details.jsp").forward(request, response);
 	}
 
 	private void addTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String descripcion = request.getParameter("descripcion");
-		double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
-		TipoVehiculo tv = new TipoVehiculo(descripcion, porcentajeMultiplicador);
-		TipoVehiculoController.insertOne(tv);
-		WebAlertViewer.showAlertMessage(request, "El tipo de vehículo se ha añadido correctamente.");
+		try {
+			String descripcion = request.getParameter("descripcion");
+			double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
+			TipoVehiculo tv = new TipoVehiculo(descripcion, porcentajeMultiplicador);
+			TipoVehiculoController.insertOne(tv);
+			WebAlertViewer.showAlertMessage(request, "El tipo de vehículo se ha añadido correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		this.config(request, response);
 	}
 
 	private void editTV(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String path = request.getPathInfo();
-		int idTipo = Integer.parseInt(path.replace("/editTV/", ""));
-		String descripcion = request.getParameter("descripcion");
-		double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
-		TipoVehiculo tv = new TipoVehiculo(idTipo, descripcion, porcentajeMultiplicador);
-		TipoVehiculoController.updateOne(tv);
-		WebAlertViewer.showAlertMessage(request, "El tipo de vehículo se ha modificado correctamente.");
+		try {
+			String path = request.getPathInfo();
+			int idTipo = Integer.parseInt(path.replace("/editTV/", ""));
+			String descripcion = request.getParameter("descripcion");
+			double porcentajeMultiplicador = Double.parseDouble(request.getParameter("porcentajeMultiplicador"));
+			TipoVehiculo tv = new TipoVehiculo(idTipo, descripcion, porcentajeMultiplicador);
+			TipoVehiculoController.updateOne(tv);
+			WebAlertViewer.showAlertMessage(request, "El tipo de vehículo se ha modificado correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		this.config(request, response);
 	}
 

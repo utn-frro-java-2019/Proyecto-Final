@@ -24,7 +24,7 @@
             <div class="form-group row">
               <div class="col-sm-12 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="porcentajeMultiplicador">Porcentaje Multiplicador</label>
-                <input class="form-control form-control-user" type="text" name="porcentajeMultiplicador" placeholder="Ej: 0.2" value="<%=tv.getPorcentajeMultiplicador()%>" required>
+                <input class="form-control form-control-user" type="number" min="0.001" step="any" name="porcentajeMultiplicador" placeholder="Ej: 0.2" value="<%=tv.getPorcentajeMultiplicador()%>" required>
               </div>
             </div>
           </div>

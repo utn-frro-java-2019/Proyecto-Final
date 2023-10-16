@@ -6,22 +6,54 @@ import domain.*;
 
 public class TipoVehiculoController {
 	public static ArrayList<TipoVehiculo> getAll() {
-		return new TipoVehiculoData().getAll();
+		try {
+			return new TipoVehiculoData().getAll();
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static TipoVehiculo getOne(int idTipo) {
-		return new TipoVehiculoData().getOne(idTipo);
+		try {
+			return new TipoVehiculoData().getOne(idTipo);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void deleteOne(int idTipo) {
-		new TipoVehiculoData().deleteOne(idTipo);
+		try {
+			new TipoVehiculoData().deleteOne(idTipo);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void insertOne(TipoVehiculo tv) {
-		new TipoVehiculoData().insertOne(tv);
+		if (tv.getPorcentajeMultiplicador() < 0) {
+			throw new RuntimeException("El porcentaje de multiplicación no puede ser negativo");
+		} else if (tv.getPorcentajeMultiplicador() == 0) {
+			throw new RuntimeException("El porcentaje de multiplicación debe ser mayor a 0");
+		}
+
+		try {
+			new TipoVehiculoData().insertOne(tv);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void updateOne(TipoVehiculo tv) {
-		new TipoVehiculoData().updateOne(tv);
+		if (tv.getPorcentajeMultiplicador() < 0) {
+			throw new RuntimeException("El porcentaje de multiplicación no puede ser negativo");
+		} else if (tv.getPorcentajeMultiplicador() == 0) {
+			throw new RuntimeException("El porcentaje de multiplicación debe ser mayor a 0");
+		}
+
+		try {
+			new TipoVehiculoData().updateOne(tv);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 }

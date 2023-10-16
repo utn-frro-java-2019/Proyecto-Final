@@ -21,7 +21,7 @@
             <div class="form-group row">
               <div class="col-sm-12 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="ubicacion">Porcentaje Multiplicador</label>
-                <input class="form-control form-control-user" type="text" name="porcentajeMultiplicador" placeholder="Ej: 0.2" required>
+                <input class="form-control form-control-user" type="number" min="0.001" step="any" name="porcentajeMultiplicador" placeholder="Ej: 0.2" required>
               </div>
             </div>
           </div>
