@@ -85,6 +85,45 @@ public class EmpleadoData {
 		return e;
 	}
 
+	public Empleado getOneByEmail(String email) {
+		Empleado e = null;
+		try {
+			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn()
+					.prepareStatement("Select * from empleados where email = ?");
+			pstmt.setString(1, email);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				e = new Empleado();
+
+				e.setDni(rs.getString("dni"));
+				e.setNombre(rs.getString("nombre"));
+				e.setApellido(rs.getString("apellido"));
+				e.setEmail(rs.getString("email"));
+				e.setTelefono1(rs.getString("telefono1"));
+				e.setTelefono2(rs.getString("telefono2"));
+				e.setUsuario(rs.getString("usuario"));
+				e.setPassword(rs.getString("password"));
+				e.setCochera(new CocheraData().getOne(rs.getInt("idCochera")));
+				e.setTurno(new TurnoData().getOne(rs.getInt("idTurno")));
+			}
+
+			if (rs != null) {
+				rs.close();
+			}
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			FactoryConnection.getInstancia().releaseConn();
+
+		} catch (SQLException ee) {
+			throw new RuntimeException("Error al recuperar el empleado");
+		} catch (Exception ee) {
+			throw new RuntimeException("Error al recuperar el empleado");
+		}
+
+		return e;
+	}
+
 	public void deleteOne(String dni) {
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn()

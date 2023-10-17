@@ -15,9 +15,13 @@ public class JefeController {
 	public static boolean authenticate(String email, String password) {
 		try {
 			Jefe j = new JefeData().get();
-			return j.getEmail().equals(email) && j.getPassword().equals(password);
+			if (j != null) {
+				return j.getEmail().equals(email) && j.getPassword().equals(password);
+			} else {
+				return false;
+			}
 		} catch (Exception e) {
-			throw e;
+			return false;
 		}
 	}
 }

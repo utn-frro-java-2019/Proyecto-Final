@@ -7,6 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import domain.Empleado;
+
+import business.EmpleadoController;
+
+import util.SessionManager;
+import util.WebAlertViewer;
+
 @WebServlet("/login-empleado")
 
 public class LoginEmpleadosServlet extends HttpServlet {
@@ -21,6 +28,22 @@ public class LoginEmpleadosServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+
+		try {
+			if (EmpleadoController.authenticate(email, password)) {
+				Empleado empleado = EmpleadoController.getOneByEmail(email);
+				SessionManager.SetAccountSession(request, empleado.getEmail(), empleado.getNombre(), empleado.getApellido(),
+						"empleado");
+				response.sendRedirect(request.getContextPath() + "/home");
+			} else {
+				WebAlertViewer.showAlertMessage(request, "Email o contraseña incorrectos", "danger");
+				request.getRequestDispatcher("/WEB-INF/login-employee.jsp").forward(request, response);
+			}
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+			request.getRequestDispatcher("/WEB-INF/login-employee.jsp").forward(request, response);
+		}
 	}
 }

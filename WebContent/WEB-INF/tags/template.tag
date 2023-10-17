@@ -58,7 +58,7 @@
       <%if(tipoDeCuenta != null && tipoDeCuenta.equals("jefe")){%>
       <!-- Heading -->
       <div class="sidebar-heading">
-        Dueño de cochera
+        Jefe de cochera
       </div>
 
       <!-- Nav Item - Cocheras -->
@@ -141,7 +141,7 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+      <hr class="sidebar-divider">
       <%}%>
 
       <!-- Heading -->
@@ -185,7 +185,7 @@
           <!-- Topbar Navbar -->
           <ul class="navbar-nav d-flex align-items-center justify-content-between w-100">
              <p class="lead m-0">
-              <span class="badge badge-primary <%=tipoDeCuenta == "jefe" ? "bg-success" : "bg-success"%>">
+              <span class="badge badge-primary <%=tipoDeCuenta == "jefe" ? "bg-success" : "bg-primary"%>">
                 <%=tipoDeCuenta == "jefe" ? "Jefe de cochera" : "Empleado"%>
               </span>
              </p>
