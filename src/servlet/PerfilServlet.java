@@ -34,8 +34,7 @@ public class PerfilServlet extends HttpServlet {
 			request.setAttribute("usuario", usuario);
 			request.getRequestDispatcher("/WEB-INF/perfil-jefe.jsp").forward(request, response);
 		} else if (accountType.equals("empleado")) {
-			// TODO
-			Empleado usuario = EmpleadoController.getOne("11111111");
+			Empleado usuario = EmpleadoController.getOneByEmail(request.getSession().getAttribute("email").toString());
 			request.setAttribute("usuario", usuario);
 			request.getRequestDispatcher("/WEB-INF/perfil-empleado.jsp").forward(request, response);
 		}
