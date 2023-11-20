@@ -96,19 +96,6 @@
           </div>
         </div>
       </div>
-      <!-- Collapsable Card Example -->
-      <div class="card shadow mb-4">
-        <!-- Card Header - Accordion -->
-        <a href="#settingsCollapse" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="settingsCollapse">
-          <h6 class="m-0 font-weight-bold text-primary">Opciones</h6>
-        </a>
-        <!-- Card Content - Collapse -->
-        <div class="collapse show" id="settingsCollapse">
-          <div class="card-body">
-            --
-          </div>
-        </div>
-      </div>
 </c:set>
 
 <t:template>
