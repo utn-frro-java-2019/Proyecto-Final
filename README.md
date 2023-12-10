@@ -26,6 +26,7 @@ Lenguaje de Programación **JAVA**.
 * Ejecutar el script `db-utils/cochera_script.sql` para generar la base de datos.
 * Importar el proyecto en Eclipse.
 * Crear un servidor Tomcat v8.0 en Eclipse y linkear el proyecto al mismo.
+  * Window / Show View / [Other..] / Server / Servers
 * Ir a `Run/Run Configurations../Environment` y agregar las siguientes variables de entorno:
   * `DB_HOST`
   * `DB_PORT`

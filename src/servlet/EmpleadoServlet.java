@@ -89,7 +89,6 @@ public class EmpleadoServlet extends HttpServlet {
 			String path = request.getPathInfo();
 			String dni = path.replace("/delete/", "");
 			EmpleadoController.deleteOne(dni);
-			request.setAttribute("empleado", empleado);
 			WebAlertViewer.showAlertMessage(request, "El Empleado se ha eliminado correctamente.");
 		} catch (Exception e) {
 			WebAlertViewer.showError(request, e);
