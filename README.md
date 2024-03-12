@@ -22,7 +22,7 @@ Lenguaje de Programación **JAVA**.
 
 ### 🔶 Setup 🔶
 
-* Crear una nueva connección en MySQL Workbench.
+* Crear una nueva conexión en MySQL Workbench.
 * Ejecutar el script `db-utils/cochera_script.sql` para generar la base de datos.
 * Importar el proyecto en Eclipse.
 * Crear un servidor Tomcat v8.0 en Eclipse y linkear el proyecto al mismo.
