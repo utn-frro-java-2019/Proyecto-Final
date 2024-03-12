@@ -11,7 +11,7 @@ public class FactoryConnection {
 	private String host = System.getenv("DB_HOST");
 	private String port = System.getenv("DB_PORT");
 	private String user = System.getenv("DB_USER");
-	private String password = System.getenv("DB_PASSWORD");
+	private String password = System.getenv("DB_PASS");
 	private String db = System.getenv("DB_NAME");
 
 	private int conectados = 0;
