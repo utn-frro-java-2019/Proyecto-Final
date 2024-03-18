@@ -16,7 +16,13 @@
           </div>
           <div class="card-body">
             <div class="form-group row">
-              <div class="col-sm-12 mb-3 mb-sm-0">
+              <div class="col-sm-12">
+                <label class="mb-0 ml-1" for="nombre">Nombre</label>
+                <input class="form-control form-control-user" type="text" name="nombre" value="<%=c.getNombre()%>" required>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-12">
                 <label class="mb-0 ml-1" for="descripcion">Descripción</label>
                 <input class="form-control form-control-user" type="text" name="descripcion" value="<%=c.getDescripcion()%>" required>
               </div>

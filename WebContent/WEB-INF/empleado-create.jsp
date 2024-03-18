@@ -2,6 +2,12 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
+<%ArrayList<Cochera> cocheras = (ArrayList<Cochera>)request.getAttribute("cocheras");%>
+<%ArrayList<Turno> turnos = (ArrayList<Turno>)request.getAttribute("turnos");%>
+<%@page import="domain.Cochera"%>
+<%@page import="domain.Turno"%>
+<%@page import="java.util.ArrayList"%>
+
 <c:set var="bodyContent">
   <div class="row justify-content-md-center">
     <div class="col-lg-11">
@@ -17,7 +23,7 @@
                 <label class="mb-0 ml-1" for="nombre">Nombre</label>
                 <input class="form-control form-control-user" type="text" name="nombre" value="" required>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-4 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="apellido">Apellido</label>
                 <input class="form-control form-control-user" type="text" name="apellido" value="" required>
               </div>
@@ -31,7 +37,7 @@
                 <label class="mb-0 ml-1" for="usuario">Usuario</label>
                 <input class="form-control form-control-user" type="text" name="usuario" value="" required>
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-5 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="email">Email</label>
                 <input class="form-control form-control-user" type="email" name="email" value="" required>
               </div>
@@ -45,9 +51,28 @@
                 <label class="mb-0 ml-1" for="tel1">Teléfono 1</label>
                 <input class="form-control form-control-user" type="text" name="tel1" value="" required>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="tel2">Teléfono 2</label>
                 <input class="form-control form-control-user" type="text" name="tel2" value="" required>
+              </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <label class="mb-0 ml-1" for="tipo">Cochera Asignada</label>
+                <select name="tipo" class="form-control form-control-user" required>
+                <%for(Cochera c: cocheras){%>
+                  <option value="<%=c.getIdCochera()%>"><%=c.getNombre()%></option>
+                <%}%>
+                </select>
+              </div>
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <label class="mb-0 ml-1" for="tipo">Turno Asignado</label>
+                <select name="tipo" class="form-control form-control-user" required>
+                <%for(Turno t: turnos){%>
+                  <option value="<%=t.getIdTurno()%>"><%=t.getDescripcion()%></option>
+                <%}%>
+                </select>
               </div>
             </div>
           </div>

@@ -4,6 +4,11 @@
 
 <%@page import="domain.Empleado"%>
 <%Empleado e = (Empleado)request.getAttribute("empleado");%>
+<%ArrayList<Cochera> cocheras = (ArrayList<Cochera>)request.getAttribute("cocheras");%>
+<%ArrayList<Turno> turnos = (ArrayList<Turno>)request.getAttribute("turnos");%>
+<%@page import="domain.Cochera"%>
+<%@page import="domain.Turno"%>
+<%@page import="java.util.ArrayList"%>
 
 <c:set var="bodyContent">
   <div class="row justify-content-md-center">
@@ -20,7 +25,7 @@
                 <label class="mb-0 ml-1" for="nombre">Nombre</label>
                 <input class="form-control form-control-user" type="text" name="nombre" value="<%=e.getNombre()%>" required>
               </div>
-              <div class="col-sm-4">
+              <div class="col-sm-4 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="apellido">Apellido</label>
                 <input class="form-control form-control-user" type="text" name="apellido" value="<%=e.getApellido()%>" required>
               </div>
@@ -34,23 +39,42 @@
                 <label class="mb-0 ml-1" for="usuario">Usuario</label>
                 <input class="form-control form-control-user" type="text" name="usuario" value="<%=e.getUsuario()%>" required>
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-5 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="email">Email</label>
-                <input class="form-control form-control-user" type="text" name="email" value="<%=e.getEmail()%>" required>
+                <input class="form-control form-control-user" type="email" name="email" value="<%=e.getEmail()%>" required>
               </div>
               <div class="col-sm-4">
                 <label class="mb-0 ml-1" for="password">Contraseña</label>
-                <input class="form-control form-control-user" type="text" name="password" value="<%=e.getPassword()%>">
+                <input class="form-control form-control-user" type="password" name="password" value="<%=e.getPassword()%>" required>
               </div>
             </div>
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="tel1">Teléfono 1</label>
-                <input class="form-control form-control-user" type="text" name="tel1" value="<%=e.getTelefono1()%>">
+                <input class="form-control form-control-user" type="text" name="tel1" value="<%=e.getTelefono1()%>" required>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-6 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="tel2">Teléfono 2</label>
-                <input class="form-control form-control-user" type="text" name="tel2" value="<%=e.getTelefono2()%>">
+                <input class="form-control form-control-user" type="text" name="tel2" value="<%=e.getTelefono2()%>" required>
+              </div>
+            </div>
+            <hr />
+            <div class="form-group row">
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <label class="mb-0 ml-1" for="tipo">Cochera Asignada</label>
+                <select name="tipo" class="form-control form-control-user" required>
+                <%for(Cochera c: cocheras){%>
+                  <option value="<%=c.getIdCochera()%>"><%=c.getNombre()%></option>
+                <%}%>
+                </select>
+              </div>
+              <div class="col-sm-6 mb-3 mb-sm-0">
+                <label class="mb-0 ml-1" for="tipo">Turno Asignado</label>
+                <select name="tipo" class="form-control form-control-user" required>
+                <%for(Turno t: turnos){%>
+                  <option value="<%=t.getIdTurno()%>"><%=t.getDescripcion()%></option>
+                <%}%>
+                </select>
               </div>
             </div>
           </div>

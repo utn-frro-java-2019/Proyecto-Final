@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import domain.Empleado;
 import util.AccountHasPermissions;
 import util.WebAlertViewer;
+import business.CocheraController;
 import business.EmpleadoController;
+import business.TipoVehiculoController;
+import business.TurnoController;
 
 @WebServlet("/empleados/*")
 public class EmpleadoServlet extends HttpServlet {
@@ -74,6 +77,8 @@ public class EmpleadoServlet extends HttpServlet {
 			String dni = path.replace("/details/", "");
 			Empleado empleado = EmpleadoController.getOne(dni);
 			request.setAttribute("empleado", empleado);
+			request.setAttribute("cocheras", CocheraController.getAll());
+			request.setAttribute("turnos", TurnoController.getAll());
 		} catch (Exception e) {
 			WebAlertViewer.showError(request, e);
 		}
@@ -81,6 +86,12 @@ public class EmpleadoServlet extends HttpServlet {
 	}
 
 	private void create(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		try {
+			request.setAttribute("cocheras", CocheraController.getAll());
+			request.setAttribute("turnos", TurnoController.getAll());
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		request.getRequestDispatcher("/WEB-INF/empleado-create.jsp").forward(request, response);
 	}
 

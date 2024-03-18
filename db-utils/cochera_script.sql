@@ -26,6 +26,7 @@ DROP TABLE IF EXISTS `cocheras`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `cocheras` (
   `idCochera` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
   `ubicacion` varchar(45) NOT NULL,
   `descripcion` varchar(45) NOT NULL,
   `capacidad` int(11) NOT NULL,
@@ -39,7 +40,7 @@ CREATE TABLE `cocheras` (
 
 LOCK TABLES `cocheras` WRITE;
 /*!40000 ALTER TABLE `cocheras` DISABLE KEYS */;
-INSERT INTO `cocheras` VALUES (1,'Zona Norte','2 pisos y acceso para vehiculos pesados',150),(2,'Zona Sur','4 pisos para vehiculos livianos',37),(3,'Zona Centro','2 pisos para vehiculos livianos',70);
+INSERT INTO `cocheras` VALUES (1,'La del Norte', 'Zona Norte','2 pisos y acceso para vehiculos pesados',150),(2,'La del Sur', 'Zona Sur','4 pisos para vehiculos livianos',37),(3,'La Cochería','Zona Centro','2 pisos para vehiculos livianos',70);
 /*!40000 ALTER TABLE `cocheras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -258,7 +259,7 @@ CREATE TABLE `turnos` (
 
 LOCK TABLES `turnos` WRITE;
 /*!40000 ALTER TABLE `turnos` DISABLE KEYS */;
-INSERT INTO `turnos` VALUES (1,'M','04:00:00','12:00:00'),(2,'T','12:00:00','20:00:00'),(3,'N','20:00:00','04:00:00');
+INSERT INTO `turnos` VALUES (1,'Mañana','04:00:00','12:00:00'),(2,'Tarde','12:00:00','20:00:00'),(3,'Noche','20:00:00','04:00:00');
 /*!40000 ALTER TABLE `turnos` ENABLE KEYS */;
 UNLOCK TABLES;
 

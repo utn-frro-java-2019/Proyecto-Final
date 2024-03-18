@@ -43,6 +43,7 @@
             <thead>
               <tr>
                 <th class="nw">Id</th>
+                <th class="nw">Nombre</th>
                 <th class="nw">Descripción</th>
                 <th class="nw">Ubicación</th>
                 <th class="nw">Capacidad</th>
@@ -52,6 +53,7 @@
             <tfoot>
               <tr>
                 <th class="nw">Id</th>
+                <th class="nw">Nombre</th>
                 <th class="nw">Descripción</th>
                 <th class="nw">Ubicación</th>
                 <th class="nw">Capacidad</th>
@@ -62,6 +64,7 @@
               <%for(Cochera c: lc){%>
               <tr>
                 <td class="nw"><%=c.getIdCochera()%></td>
+                <td class="nw"><%=c.getNombre()%></td>
                 <td class="nw"><%=c.getDescripcion()%></td>
                 <td class="nw"><%=c.getUbicacion()%></td>
                 <td class="nw"><%=c.getCapacidad()%></td>

@@ -10,18 +10,34 @@ public class CocheraController {
 	}
 
 	public static Cochera getOne(int idCochera) {
-		return new CocheraData().getOne(idCochera);
+		try {
+			return new CocheraData().getOne(idCochera);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void deleteOne(int idCochera) {
-		new CocheraData().deleteOne(idCochera);
+		try {
+			new CocheraData().deleteOne(idCochera);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void insertOne(Cochera c) {
-		new CocheraData().insertOne(c);
+		try {
+			new CocheraData().insertOne(c);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void updateOne(Cochera c) {
-		new CocheraData().updateOne(c);
+		try {
+			new CocheraData().updateOne(c);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 }

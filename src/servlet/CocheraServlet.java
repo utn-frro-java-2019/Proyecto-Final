@@ -77,18 +77,24 @@ public class CocheraServlet extends HttpServlet {
 	}
 
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String path = request.getPathInfo();
-		int id = Integer.parseInt(path.replace("/delete/", ""));
-		CocheraController.deleteOne(id);
-		WebAlertViewer.showAlertMessage(request, "La cochera se ha eliminado correctamente.");
+		try {
+			String path = request.getPathInfo();
+			int id = Integer.parseInt(path.replace("/delete/", ""));
+			CocheraController.deleteOne(id);
+			WebAlertViewer.showAlertMessage(request, "La cochera se ha eliminado correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
+		
 		this.all(request, response);
 	}
 
 	private void add(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		String nombre = request.getParameter("nombre");
 		String ubicacion = request.getParameter("ubicacion");
 		String descripcion = request.getParameter("descripcion");
 		int capacidad = Integer.parseInt(request.getParameter("capacidad"));
-		Cochera c = new Cochera(ubicacion, descripcion, capacidad);
+		Cochera c = new Cochera(nombre, ubicacion, descripcion, capacidad);
 		CocheraController.insertOne(c);
 		WebAlertViewer.showAlertMessage(request, "La cochera se ha añadido correctamente.");
 		this.all(request, response);
@@ -97,10 +103,11 @@ public class CocheraServlet extends HttpServlet {
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		String path = request.getPathInfo();
 		int id = Integer.parseInt(path.replace("/edit/", ""));
+		String nombre = request.getParameter("nombre");
 		String ubicacion = request.getParameter("ubicacion");
 		String descripcion = request.getParameter("descripcion");
 		int capacidad = Integer.parseInt(request.getParameter("capacidad"));
-		Cochera c = new Cochera(id, ubicacion, descripcion, capacidad);
+		Cochera c = new Cochera(id, nombre, ubicacion, descripcion, capacidad);
 		CocheraController.updateOne(c);
 		WebAlertViewer.showAlertMessage(request, "La cochera se ha modificado correctamente.");
 		this.all(request, response);

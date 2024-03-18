@@ -2,6 +2,7 @@ package domain;
 
 public class Cochera {
 	private int idCochera;
+	private String nombre;
 	private String ubicacion;
 	private String descripcion;
 	private int capacidad;
@@ -9,14 +10,16 @@ public class Cochera {
 	public Cochera() {
 	}
 
-	public Cochera(int id, String ubicacion, String descripcion, int capacidad) {
+	public Cochera(int id, String nombre, String ubicacion, String descripcion, int capacidad) {
 		this.setIdCochera(id);
+		this.setNombre(nombre);
 		this.setUbicacion(ubicacion);
 		this.setDescripcion(descripcion);
 		this.setCapacidad(capacidad);
 	}
 
-	public Cochera(String ubicacion, String descripcion, int capacidad) {
+	public Cochera(String nombre, String ubicacion, String descripcion, int capacidad) {
+		this.setNombre(nombre);
 		this.setUbicacion(ubicacion);
 		this.setDescripcion(descripcion);
 		this.setCapacidad(capacidad);
@@ -36,6 +39,14 @@ public class Cochera {
 
 	public void setIdCochera(int idCochera) {
 		this.idCochera = idCochera;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getUbicacion() {
