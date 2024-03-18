@@ -2,6 +2,8 @@
 <%String nombre = (String)request.getSession().getAttribute("name");%>
 <%String apellido = (String)request.getSession().getAttribute("surname");%>
 <%String tipoDeCuenta = (String)request.getSession().getAttribute("accountType");%>
+<%String cochera = (String)request.getSession().getAttribute("cochera");%>
+<%String turno = (String)request.getSession().getAttribute("turno");%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -193,8 +195,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-inline text-gray-600 small"><%=nombre%> <%=apellido%></span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/1R63taCoSnM/60x60">
+                <span class="mr-2 d-none d-inline text-gray-600 small font-weight-bold" style="line-height: 1;"><%=nombre%> <%=apellido%></span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

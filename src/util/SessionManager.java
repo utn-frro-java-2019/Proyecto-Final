@@ -14,6 +14,10 @@ public final class SessionManager {
     request.getSession().setAttribute("accountType", accountType);
   }
 
+  public static void SetExtraData(HttpServletRequest request, String key, String value) {
+    request.getSession().setAttribute(key, value);
+  }
+
   public static void DestroySession(HttpServletRequest request, HttpServletResponse response) throws Exception {
     String accountType = (String) request.getSession().getAttribute("accountType");
 
