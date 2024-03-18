@@ -64,6 +64,7 @@ CREATE TABLE `empleados` (
   `password` varchar(45) NOT NULL,
   PRIMARY KEY (`dni`),
   UNIQUE (`email`),
+  UNIQUE (`usuario`),
   KEY `fk_cochera_emp_idx` (`idCochera`),
   KEY `fk_empleado_turno_idx` (`idTurno`),
   CONSTRAINT `fk_empleado_cochera` FOREIGN KEY (`idCochera`) REFERENCES `cocheras` (`idCochera`),
@@ -77,7 +78,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES ('11111111',1,1,'Franco','Giannassi','drazerjx@gmail.com','753421869','682435179','drazerjx','12345'),('22222222',1,2,'Martin','Oliva','martinoliva@gmail.com','123456789',NULL,'zileanswagger','54321'),('33333333',2,3,'Vittorio','Retrivi','retrovitto@gmail.com','2477582031','159263487','motiontx','24680');
+INSERT INTO `empleados` VALUES ('11111111',1,1,'Franco','Giannassi','drazerjx@gmail.com','753421869','682435179','drazerjx','12345'),('22222222',1,2,'Martin','Oliva','martinoliva@gmail.com','123456789','124567892','zileanswagger','54321'),('33333333',2,3,'Vittorio','Retrivi','retrovitto@gmail.com','2477582031','159263487','motiontx','24680');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 

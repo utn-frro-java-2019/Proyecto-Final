@@ -59,16 +59,16 @@
             <hr />
             <div class="form-group row">
               <div class="col-sm-6 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="tipo">Cochera Asignada</label>
-                <select name="tipo" class="form-control form-control-user" required>
+                <label class="mb-0 ml-1" for="cochera">Cochera Asignada</label>
+                <select name="cochera" class="form-control form-control-user" required>
                 <%for(Cochera c: cocheras){%>
                   <option value="<%=c.getIdCochera()%>"><%=c.getNombre()%></option>
                 <%}%>
                 </select>
               </div>
               <div class="col-sm-6 mb-3 mb-sm-0">
-                <label class="mb-0 ml-1" for="tipo">Turno Asignado</label>
-                <select name="tipo" class="form-control form-control-user" required>
+                <label class="mb-0 ml-1" for="turno">Turno Asignado</label>
+                <select name="turno" class="form-control form-control-user" required>
                 <%for(Turno t: turnos){%>
                   <option value="<%=t.getIdTurno()%>"><%=t.getDescripcion()%></option>
                 <%}%>

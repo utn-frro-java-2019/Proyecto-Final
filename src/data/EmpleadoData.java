@@ -145,7 +145,7 @@ public class EmpleadoData {
 	public void insertOne(Empleado e) {
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
-					"insert into empleados(dni,nombre,apellido,email,telefono1,telefono2,usuario,password) values(?,?,?,?,?,?,?,?)");
+					"insert into empleados(dni,nombre,apellido,email,telefono1,telefono2,usuario,password,idCochera,idTurno) values(?,?,?,?,?,?,?,?,?,?)");
 
 			pstmt.setString(1, e.getDni());
 			pstmt.setString(2, e.getNombre());
@@ -155,6 +155,9 @@ public class EmpleadoData {
 			pstmt.setString(6, e.getTelefono2());
 			pstmt.setString(7, e.getUsuario());
 			pstmt.setString(8, e.getPassword());
+			pstmt.setInt(9, e.getTurno().getIdTurno());
+			pstmt.setInt(10, e.getCochera().getIdCochera());	
+			
 
 			pstmt.executeUpdate();
 
@@ -164,6 +167,7 @@ public class EmpleadoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e1) {
+			e1.printStackTrace();
 			throw new RuntimeException("Error al crear empleado");
 		} catch (Exception e1) {
 			throw new RuntimeException("Error al crear empleado");
@@ -173,7 +177,7 @@ public class EmpleadoData {
 	public void updateOne(Empleado e) {
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
-					"update empleados set  nombre = ? , apellido = ? , email = ? , telefono1 = ? , telefono2 = ? , usuario = ? , password = ? where dni = ?");
+					"update empleados set  nombre = ? , apellido = ? , email = ? , telefono1 = ? , telefono2 = ? , usuario = ? , password = ?, idCochera = ?, idTurno = ? where dni = ?");
 
 			pstmt.setString(1, e.getNombre());
 			pstmt.setString(2, e.getApellido());
@@ -182,7 +186,9 @@ public class EmpleadoData {
 			pstmt.setString(5, e.getTelefono2());
 			pstmt.setString(6, e.getUsuario());
 			pstmt.setString(7, e.getPassword());
-			pstmt.setString(8, e.getDni());
+			pstmt.setInt(8, e.getCochera().getIdCochera());
+			pstmt.setInt(9, e.getTurno().getIdTurno());
+			pstmt.setString(10, e.getDni());
 
 			pstmt.executeUpdate();
 

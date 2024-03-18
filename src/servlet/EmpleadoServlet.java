@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domain.Empleado;
+import domain.Cochera;
+import domain.Turno;
 import util.AccountHasPermissions;
 import util.WebAlertViewer;
 import business.CocheraController;
@@ -116,7 +118,10 @@ public class EmpleadoServlet extends HttpServlet {
 		String ap = request.getParameter("apellido");
 		String tel1 = request.getParameter("tel1");
 		String tel2 = request.getParameter("tel2");
-		Empleado e = new Empleado(us, pass, dni, email, nom, ap, tel1, tel2, null, null);
+		Cochera c = CocheraController.getOne(Integer.parseInt(request.getParameter("cochera")));
+		Turno t = TurnoController.getOne(Integer.parseInt(request.getParameter("turno")));
+		Empleado e = new Empleado(us, pass, dni, email, nom, ap, tel1, tel2, c, t);
+
 		try {
 			EmpleadoController.insertOne(e);
 			WebAlertViewer.showAlertMessage(request, "El Empleado se ha añadido correctamente.");
@@ -137,7 +142,10 @@ public class EmpleadoServlet extends HttpServlet {
 			String ap = request.getParameter("apellido");
 			String tel1 = request.getParameter("tel1");
 			String tel2 = request.getParameter("tel2");
-			Empleado e = new Empleado(us, pass, dni, email, nom, ap, tel1, tel2, null, null);
+			Cochera c = CocheraController.getOne(Integer.parseInt(request.getParameter("cochera")));
+			Turno t = TurnoController.getOne(Integer.parseInt(request.getParameter("turno")));
+			Empleado e = new Empleado(us, pass, dni, email, nom, ap, tel1, tel2, c, t);
+
 			EmpleadoController.updateOne(e);
 			WebAlertViewer.showAlertMessage(request, "El Empleado se ha modificado correctamente.");
 		} catch (Exception e1) {
