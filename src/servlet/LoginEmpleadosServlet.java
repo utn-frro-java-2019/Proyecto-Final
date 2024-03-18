@@ -34,8 +34,7 @@ public class LoginEmpleadosServlet extends HttpServlet {
 		try {
 			if (EmpleadoController.authenticate(email, password)) {
 				Empleado empleado = EmpleadoController.getOneByEmail(email);
-				SessionManager.SetAccountSession(request, empleado.getEmail(), empleado.getNombre(), empleado.getApellido(),
-						"empleado");
+				SessionManager.SetAccountSession(request, empleado.getEmail(), empleado.getNombre(), empleado.getApellido(), "empleado");
 				response.sendRedirect(request.getContextPath() + "/home");
 			} else {
 				WebAlertViewer.showAlertMessage(request, "Email o contraseña incorrectos", "danger");
