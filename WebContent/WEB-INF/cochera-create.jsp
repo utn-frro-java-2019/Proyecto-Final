@@ -30,8 +30,8 @@
                 <input class="form-control form-control-user" type="text" name="ubicacion" value="" required>
               </div>
               <div class="col-sm-4">
-                <label class="mb-0 ml-1" for="capacidad">Capacidad</label>
-                <input class="form-control form-control-user" type="number" name="capacidad" value="0" required>
+                <label class="mb-0 ml-1" for="capacidad">Capacidad (no podras cambiarla después)</label>
+                <input class="form-control form-control-user" type="number" name="capacidad" value="1" min="1" max="999" required>
               </div>
             </div>
           </div>

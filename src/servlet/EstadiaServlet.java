@@ -100,7 +100,7 @@ public class EstadiaServlet extends HttpServlet {
 		Estadia estadia = EstadiaController.getOne(Integer.parseInt(idEstadia));
 		if (idEstadia == null) {
 			WebAlertViewer.showAlertMessage(request,
-					"La patente solicitada no se corresponde con ning�n veh�culo en nuestra base de datos.", "danger");
+					"La patente solicitada no se corresponde con ningún vehículo en nuestra base de datos.", "danger");
 		} else {
 			request.setAttribute("vehiculo", estadia);
 		}

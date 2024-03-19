@@ -34,7 +34,7 @@
               </div>
               <div class="col-sm-4">
                 <label class="mb-0 ml-1" for="capacidad">Capacidad</label>
-                <input class="form-control form-control-user" type="number" name="capacidad" value="<%=c.getCapacidad()%>" required>
+                <input class="form-control form-control-user" type="number" name="capacidad" value="<%=c.getCapacidad()%>" disabled>
               </div>
             </div>
           </div>

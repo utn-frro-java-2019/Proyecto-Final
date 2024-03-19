@@ -9,63 +9,77 @@ import domain.*;
 
 public class LugarData {
 
-	
-	public ArrayList<Lugar> getAll() {
+	public ArrayList<Lugar> getAllFromCochera(int idCochera) {
 		ArrayList<Lugar> lugares = new ArrayList<Lugar>();
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs= stmt.executeQuery("select * from lugares");
+			ResultSet rs = stmt.executeQuery("select * from lugares where idCochera =" + idCochera);
 
-			while(rs.next()) {
-				Lugar l=new Lugar();
-				
+			while (rs.next()) {
+				Lugar l = new Lugar();
+
 				l.setNroLugar(rs.getInt("nroLugar"));
 				boolean ocupado = false;
-				if(rs.getString("ocupado") == "true") ocupado = true;
+				if (rs.getString("ocupado") == "true")
+					ocupado = true;
 				l.setOcupado(ocupado);
 				l.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
-				
+
 				lugares.add(l);
 			}
-			
-			if(rs!=null){rs.close();}
-			if(stmt!=null){stmt.close();}
+
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
 			FactoryConnection.getInstancia().releaseConn();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 		return lugares;
 	}
-	
-	public Lugar getOne(int nroLugar) {
-		Lugar l=null;
+
+	public void updateOne(Lugar l) {
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs= stmt.executeQuery("select * from lugares where nroLugar ="+ nroLugar);
-			while(rs.next()) {
-				l=new Lugar();
-				
-				l.setNroLugar(rs.getInt("nroLugar"));
-				boolean ocupado = false;
-				if(rs.getString("ocupado") == "true") ocupado = true;
-				l.setOcupado(ocupado);
-				l.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));	
+			stmt.executeUpdate("update lugares set ocupado = '" + l.isOcupado() + "' where nroLugar = "
+					+ l.getNroLugar() + " and idCochera = " + l.getCochera().getIdCochera());
+
+			if (stmt != null) {
+				stmt.close();
 			}
-			
-			if(rs!=null){rs.close();}
-			if(stmt!=null){stmt.close();}
 			FactoryConnection.getInstancia().releaseConn();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return l;
 	}
+
+	public void insertOne(Lugar l) {
+		try {
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt.executeUpdate("insert into lugares (nroLugar, ocupado, idCochera) values (" + l.getNroLugar() + ", '"
+					+ l.isOcupado() + "', " + l.getCochera().getIdCochera() + ")");
+
+			if (stmt != null) {
+				stmt.close();
+			}
+			FactoryConnection.getInstancia().releaseConn();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

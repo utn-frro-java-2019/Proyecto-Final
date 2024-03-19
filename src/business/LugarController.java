@@ -5,11 +5,15 @@ import data.LugarData;
 import domain.*;
 
 public class LugarController {
-	public static Lugar getOne(int idEstadia) {
-		return new LugarData().getOne(idEstadia);
+	public static ArrayList<Lugar> getAllFromCochera(int idCochera) {
+		return new LugarData().getAllFromCochera(idCochera);
 	}
 
-	public static ArrayList<Lugar> getAll() {
-		return new LugarData().getAll();
+	public static void updateOne(Lugar l) {
+		new LugarData().updateOne(l);
+	}
+	
+	public static void insertOne(Lugar l) {
+		new LugarData().insertOne(l);
 	}
 }

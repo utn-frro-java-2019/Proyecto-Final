@@ -1,6 +1,5 @@
 package data;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -21,7 +20,7 @@ public class EstadiaData {
 				
 				es.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				es.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-				es.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar")));
+				//es.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar")));
 				es.setEstado(rs.getString("estado"));
 				es.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
 				es.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
@@ -54,7 +53,7 @@ public class EstadiaData {
 				
 				es.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				es.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-				es.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar")));
+				//es.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar")));
 				es.setEstado(rs.getString("estado"));
 				es.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
 				es.setFechaRetiro(rs.getTimestamp("fechaRetiro"));

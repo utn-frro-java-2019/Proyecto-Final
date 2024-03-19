@@ -106,7 +106,7 @@ public class CocheraServlet extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String ubicacion = request.getParameter("ubicacion");
 		String descripcion = request.getParameter("descripcion");
-		int capacidad = Integer.parseInt(request.getParameter("capacidad"));
+		int capacidad = 1;
 		Cochera c = new Cochera(id, nombre, ubicacion, descripcion, capacidad);
 		CocheraController.updateOne(c);
 		WebAlertViewer.showAlertMessage(request, "La cochera se ha modificado correctamente.");

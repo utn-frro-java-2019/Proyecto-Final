@@ -21,7 +21,8 @@ public class DiariosServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		boolean hasPermissions = AccountHasPermissions.employee(request, response);
 		if (!hasPermissions) {
 			return;
@@ -47,7 +48,8 @@ public class DiariosServlet extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		boolean hasPermissions = AccountHasPermissions.employee(request, response);
 		if (!hasPermissions) {
 			return;
@@ -81,9 +83,10 @@ public class DiariosServlet extends HttpServlet {
 		// TODO
 	}
 
-	private void ingreso(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	private void ingreso(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		request.getRequestDispatcher("/WEB-INF/diario-ingreso.jsp").forward(request, response);
-		// TODO
+
 	}
 
 	private void salida(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -97,7 +100,7 @@ public class DiariosServlet extends HttpServlet {
 		Vehiculo vehiculo = VehiculoController.getOne(patente);
 		if (vehiculo == null) {
 			WebAlertViewer.showAlertMessage(request,
-					"La patente solicitada no se corresponde con ning�n veh�culo en nuestra base de datos.", "danger");
+					"La patente solicitada no se corresponde con ningún vehículo en nuestra base de datos.", "danger");
 		} else {
 			request.setAttribute("vehiculo", vehiculo);
 		}

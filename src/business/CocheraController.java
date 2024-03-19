@@ -27,7 +27,24 @@ public class CocheraController {
 
 	public static void insertOne(Cochera c) {
 		try {
-			new CocheraData().insertOne(c);
+			Integer capacidad = c.getCapacidad();
+			if (capacidad == null || capacidad < 1) {
+				throw new RuntimeException("La capacidad de la cochera no puede ser nula o menor a 1");
+			} else if (capacidad > 999) {
+				throw new RuntimeException("La capacidad de la cochera no puede ser mayor a 999");
+			}
+
+			Integer id = new CocheraData().insertOne(c);
+			c.setIdCochera(id);
+
+			for (int i = 1; i <= capacidad; i++) {
+				Lugar l = new Lugar();
+				l.setNroLugar(i);
+				l.setOcupado(false);
+				l.setCochera(c);
+				LugarController.insertOne(l);
+			}
+
 		} catch (Exception e) {
 			throw e;
 		}
