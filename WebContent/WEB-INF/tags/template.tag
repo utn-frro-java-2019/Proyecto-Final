@@ -136,8 +136,8 @@
         </a>
         <div id="collapseEstadia" class="collapse" aria-labelledby="headingEstadia" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded d-flex flex-column" style="gap: 0.25rem">
-            <a class="collapse-item px-2" href="#"><i class="far fa-calendar-check pr-1"></i> Registrar estadía</a>
-            <a class="collapse-item px-2" href="#"><i class="far fa-list-alt pr-1"></i> Listar estadías</a>
+            <a class="collapse-item px-2" href="/Cocheras/estadias/add"><i class="far fa-calendar-check pr-1"></i> Registrar estadía</a>
+            <a class="collapse-item px-2" href="/Cocheras/estadias/all"><i class="far fa-list-alt pr-1"></i> Listar estadías</a>
           </div>
         </div>
       </li>

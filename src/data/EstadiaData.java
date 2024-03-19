@@ -1,5 +1,6 @@
 package data;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -72,4 +73,25 @@ public class EstadiaData {
 
 		return es;
 	}
+	
+	/*public void insertOne(Estadia e) {
+		try {
+			
+			String consulta = "insert into estadias (nombre, ubicacion, descripcion, capacidad) values (?, ?, ?, ?)";
+			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			stmt.setString(1, c.getNombre());
+			stmt.setString(2, c.getUbicacion());
+			stmt.setString(3, c.getDescripcion());
+			stmt.setString(4, Integer.toString(c.getCapacidad()));
+			stmt.executeUpdate();
+			
+			if(stmt!=null){stmt.close();}
+			FactoryConnection.getInstancia().releaseConn();
+			
+		} catch (SQLException e) {
+			throw new RuntimeException("Error al crear la cochera");
+		}catch (Exception e) {
+			throw new RuntimeException("Error al crear la cochera");
+		}
+	}*/
 }

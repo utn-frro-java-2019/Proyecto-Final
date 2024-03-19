@@ -3,6 +3,7 @@ package domain;
 import java.util.Date;
 
 public class Estadia {
+	private Integer idEstadia;
 	private String estado;
 	private Cochera cochera;
 	private Lugar lugar;
@@ -10,6 +11,7 @@ public class Estadia {
 	private Date fechaIngreso;
 	private Date fechaRetiro;
 	private Double precioFinal;
+	private Boolean autoEnCochera;
 
 	public Cochera getCochera() {
 		return cochera;
@@ -66,4 +68,21 @@ public class Estadia {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
+
+	public Integer getIdEstadia() {
+		return idEstadia;
+	}
+
+	public void setIdEstadia(Integer idEstadia) {
+		this.idEstadia = idEstadia;
+	}
+
+	public Boolean getAutoEnCochera() {
+		return autoEnCochera;
+	}
+
+	public void setAutoEnCochera(Boolean autoEnCochera) {
+		this.autoEnCochera = autoEnCochera;
+	}
+	
 }

@@ -90,7 +90,7 @@ DROP TABLE IF EXISTS `estadias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `estadias` (
-  `idEstadia` int(11) NOT NULL,
+  `idEstadia` int(11) NOT NULL AUTO_INCREMENT,
   `fechaRetiro` datetime NOT NULL,
   `estado` varchar(45) NOT NULL,
   `precioFinal` float DEFAULT NULL,
@@ -98,6 +98,7 @@ CREATE TABLE `estadias` (
   `patente` varchar(7) NOT NULL,
   `nroLugar` int(11) NOT NULL,
   `fechaIngreso` datetime NOT NULL,
+  `autoEnCochera` BOOLEAN,
   PRIMARY KEY (`idEstadia`),
   KEY `fk_estadias_nroLugar_idx` (`nroLugar`),
   KEY `fk_estadias_cochera_idx` (`idCochera`),
