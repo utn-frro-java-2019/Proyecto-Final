@@ -10,7 +10,7 @@ public class CocheraData {
 	public ArrayList<Cochera> getAll() {
 		ArrayList<Cochera> cocheras = new ArrayList<Cochera>();
 		try {
-			String consulta = "select * from cocheras";
+			String consulta = "select * from cocheras where eliminado is not true";
 			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
@@ -79,8 +79,15 @@ public class CocheraData {
 
 	public void deleteOne(int idCochera) {
 		try {
-
-			String consulta = "delete from cocheras where idCochera = ?";
+			String empleadosCheck = "select * from empleados where idCochera = ?";
+			PreparedStatement eStmt = FactoryConnection.getInstancia().getConn().prepareStatement(empleadosCheck);
+			eStmt.setString(1, Integer.toString(idCochera));
+			ResultSet rs = eStmt.executeQuery();
+			if (rs.next()) {
+				throw new RuntimeException("No se puede eliminar la cochera porque tiene empleados asignados");
+			}
+			
+			String consulta = "update cocheras set eliminado = 1 where idCochera = ?";
 			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
 			stmt.setString(1, Integer.toString(idCochera));
 			stmt.executeUpdate();

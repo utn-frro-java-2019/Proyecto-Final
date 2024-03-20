@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `cocheras` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `cocheras`;
 -- MySQL dump 10.13  Distrib 8.0.34, for macos13 (arm64)
 --
 -- Host: 127.0.0.1    Database: cocheras
@@ -28,6 +30,7 @@ CREATE TABLE `cocheras` (
   `ubicacion` varchar(45) NOT NULL,
   `descripcion` varchar(45) NOT NULL,
   `capacidad` int NOT NULL,
+  `eliminado` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idCochera`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -38,7 +41,7 @@ CREATE TABLE `cocheras` (
 
 LOCK TABLES `cocheras` WRITE;
 /*!40000 ALTER TABLE `cocheras` DISABLE KEYS */;
-INSERT INTO `cocheras` VALUES (0,'La del Norte','Zona Norte','2 pisos y acceso para vehiculos pesados',120),(1,'La del Sur','Zona Sur','4 pisos para vehiculos livianos',37),(2,'La Cocheria','Zona Centro','2 pisos para vehiculos livianos',70);
+INSERT INTO `cocheras` VALUES (0,'La del Norte','Zona Norte','2 pisos y acceso para vehiculos pesados',120, null),(1,'La del Sur','Zona Sur','4 pisos para vehiculos livianos',37,null),(2,'La Cocheria','Zona Centro','2 pisos para vehiculos livianos',70,null);
 /*!40000 ALTER TABLE `cocheras` ENABLE KEYS */;
 UNLOCK TABLES;
 
