@@ -92,13 +92,14 @@ DROP TABLE IF EXISTS `estadias`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estadias` (
   `idEstadia` int NOT NULL AUTO_INCREMENT,
+  `tipoEstadia` varchar(45) NOT NULL,
+  `idCochera` int NOT NULL,
+  `nroLugar` int NOT NULL,
+  `patente` varchar(7) NOT NULL,
+  `fechaIngreso` datetime NOT NULL,
   `fechaRetiro` datetime NOT NULL,
   `estado` varchar(45) NOT NULL,
   `precioFinal` float DEFAULT NULL,
-  `idCochera` int NOT NULL,
-  `patente` varchar(7) NOT NULL,
-  `nroLugar` int NOT NULL,
-  `fechaIngreso` datetime NOT NULL,
   `autoEnCochera` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idEstadia`),
   KEY `fk_estadias_nroLugar_idx` (`nroLugar`),
