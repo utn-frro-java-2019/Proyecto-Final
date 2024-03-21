@@ -7,16 +7,16 @@ import java.util.ArrayList;
 
 import domain.*;
 
-public class EstadiaData extends IngresoData {
+public class DiarioData extends IngresoData {
 	
-	public ArrayList<Estadia> getAll() {
-		ArrayList<Estadia> ingresos = new ArrayList<Estadia>();
+	public ArrayList<Diario> getAll() {
+		ArrayList<Diario> ingresos = new ArrayList<Diario>();
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			ResultSet rs= stmt.executeQuery("select * from ingresos");
 
 			while(rs.next()) {
-				Estadia es=new Estadia();
+				Diario es=new Diario();
 				
 				es.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				es.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
@@ -41,14 +41,14 @@ public class EstadiaData extends IngresoData {
 		return ingresos;
 	}
 	
-	public Estadia getOne(int idIngreso) {
-		Estadia es = null;
+	public Diario getOne(int idIngreso) {
+		Diario es = null;
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			ResultSet rs= stmt.executeQuery("select * from ingresos where idIngreso="+idIngreso);
 
 			while(rs.next()) {
-				es=new Estadia();
+				es=new Diario();
 				
 				es.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				es.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import business.EstadiaController;
+import business.IngresoController;
 import domain.Estadia;
 import util.AccountHasPermissions;
 import util.WebAlertViewer;
@@ -22,7 +23,8 @@ public class EstadiaServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		boolean hasPermissions = AccountHasPermissions.employee(request, response);
 		if (!hasPermissions) {
 			return;
@@ -48,7 +50,8 @@ public class EstadiaServlet extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		boolean hasPermissions = AccountHasPermissions.employee(request, response);
 		if (!hasPermissions) {
 			return;
@@ -96,9 +99,9 @@ public class EstadiaServlet extends HttpServlet {
 
 	private void ingresoSearch(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		String idEstadia =  request.getParameter("idEstadia");
+		String idEstadia = request.getParameter("idEstadia");
 		Estadia estadia = EstadiaController.getOne(Integer.parseInt(idEstadia));
-		if (idEstadia == null) {
+		if (estadia == null) {
 			WebAlertViewer.showAlertMessage(request,
 					"La patente solicitada no se corresponde con ningún vehículo en nuestra base de datos.", "danger");
 		} else {

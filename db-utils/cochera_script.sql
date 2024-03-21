@@ -84,15 +84,15 @@ INSERT INTO `empleados` VALUES ('11111111',0,1,'Franco','Giannassi','drazerjx@gm
 UNLOCK TABLES;
 
 --
--- Table structure for table `estadias`
+-- Table structure for table `ingresos`
 --
 
-DROP TABLE IF EXISTS `estadias`;
+DROP TABLE IF EXISTS `ingresos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `estadias` (
-  `idEstadia` int NOT NULL AUTO_INCREMENT,
-  `tipoEstadia` varchar(45) NOT NULL,
+CREATE TABLE `ingresos` (
+  `idIngreso` int NOT NULL AUTO_INCREMENT,
+  `tipoIngreso` varchar(45) NOT NULL,
   `idCochera` int NOT NULL,
   `nroLugar` int NOT NULL,
   `patente` varchar(7) NOT NULL,
@@ -101,20 +101,20 @@ CREATE TABLE `estadias` (
   `estado` varchar(45) NOT NULL,
   `precioFinal` float DEFAULT NULL,
   `autoEnCochera` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`idEstadia`),
-  KEY `fk_estadias_nroLugar_idx` (`nroLugar`),
-  KEY `fk_estadias_cochera_idx` (`idCochera`),
-  KEY `fk_estadias_patente_idx` (`patente`)
+  PRIMARY KEY (`idIngreso`),
+  KEY `fk_ingresos_nroLugar_idx` (`nroLugar`),
+  KEY `fk_ingresos_cochera_idx` (`idCochera`),
+  KEY `fk_ingresos_patente_idx` (`patente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `estadias`
+-- Dumping data for table `ingresos`
 --
 
-LOCK TABLES `estadias` WRITE;
-/*!40000 ALTER TABLE `estadias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `estadias` ENABLE KEYS */;
+LOCK TABLES `ingresos` WRITE;
+/*!40000 ALTER TABLE `ingresos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ingresos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
