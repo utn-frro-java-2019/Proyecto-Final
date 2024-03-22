@@ -82,4 +82,78 @@ public class LugarData {
 		}
 	}
 
+	public Lugar getOne(int nroLugar, int idCochera) {
+		Lugar l = null;
+
+		try {
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs = stmt.executeQuery("select * from lugares where nroLugar=" + nroLugar + " and idCochera="
+					+ idCochera);
+
+			while (rs.next()) {
+				l = new Lugar();
+
+				l.setNroLugar(rs.getInt("nroLugar"));
+				boolean ocupado = false;
+				if (rs.getString("ocupado") == "true") {
+					ocupado = true;
+				}
+
+				l.setOcupado(ocupado);
+				l.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
+			}
+
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			FactoryConnection.getInstancia().releaseConn();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return l;
+	}
+
+	public Lugar getOneFree(int idCochera) {
+		Lugar l = null;
+
+		try {
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs = stmt.executeQuery("select * from lugares where idCochera=" + idCochera + " and ocupado='false'");
+
+			while (rs.next()) {
+				l = new Lugar();
+
+				l.setNroLugar(rs.getInt("nroLugar"));
+				boolean ocupado = false;
+				if (rs.getString("ocupado") == "true") {
+					ocupado = true;
+				}
+
+				l.setOcupado(ocupado);
+				l.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
+			}
+
+			if (rs != null) {
+				rs.close();
+			}
+			if (stmt != null) {
+				stmt.close();
+			}
+			FactoryConnection.getInstancia().releaseConn();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return l;
+	}
 }

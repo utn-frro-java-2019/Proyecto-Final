@@ -4,14 +4,22 @@ import java.util.Date;
 
 public class Ingreso {
 	private Integer idIngreso;
-	private String estado;
 	private Cochera cochera;
 	private Lugar lugar;
 	private Vehiculo vehiculo;
 	private Date fechaIngreso;
 	private Date fechaRetiro;
+	private String estado;
 	private Double precioFinal;
 	private Boolean autoEnCochera;
+
+	public Integer getIdIngreso() {
+		return idIngreso;
+	}
+
+	public void setIdIngreso(Integer idIngreso) {
+		this.idIngreso = idIngreso;
+	}
 
 	public Cochera getCochera() {
 		return cochera;
@@ -53,14 +61,6 @@ public class Ingreso {
 		this.fechaRetiro = fechaRetiro;
 	}
 
-	public Double getPrecioFinal() {
-		return precioFinal;
-	}
-
-	public void setPrecioFinal(Double precioFinal) {
-		this.precioFinal = precioFinal;
-	}
-
 	public String getEstado() {
 		return estado;
 	}
@@ -69,12 +69,12 @@ public class Ingreso {
 		this.estado = estado;
 	}
 
-	public Integer getIdIngreso() {
-		return idIngreso;
+	public Double getPrecioFinal() {
+		return precioFinal;
 	}
 
-	public void setIdIngreso(Integer idIngreso) {
-		this.idIngreso = idIngreso;
+	public void setPrecioFinal(Double precioFinal) {
+		this.precioFinal = precioFinal;
 	}
 
 	public Boolean getAutoEnCochera() {

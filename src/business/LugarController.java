@@ -16,4 +16,12 @@ public class LugarController {
 	public static void insertOne(Lugar l) {
 		new LugarData().insertOne(l);
 	}
+
+	public static Lugar getOne(int nroLugar, int idCochera) {
+		return new LugarData().getOne(nroLugar, idCochera);
+	}
+
+	public static Lugar getOneFree(int idCochera) {
+		return new LugarData().getOneFree(idCochera);
+	}
 }
