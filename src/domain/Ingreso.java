@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Ingreso {
 	private Integer idIngreso;
+	private String comprobante;
 	private Cochera cochera;
 	private Lugar lugar;
 	private Vehiculo vehiculo;
@@ -19,6 +20,14 @@ public class Ingreso {
 
 	public void setIdIngreso(Integer idIngreso) {
 		this.idIngreso = idIngreso;
+	}
+
+	public String getComprobante() {
+		return comprobante;
+	}
+
+	public void setComprobante(String comprobante) {
+		this.comprobante = comprobante;
 	}
 
 	public Cochera getCochera() {

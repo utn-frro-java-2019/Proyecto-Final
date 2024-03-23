@@ -19,6 +19,7 @@ public class EstadiaData extends IngresoData {
 				Estadia es = new Estadia();
 
 				es.setIdIngreso(rs.getInt("idIngreso"));
+				es.setComprobante(rs.getString("comprobante"));
 				es.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				es.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
 				es.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
@@ -59,6 +60,7 @@ public class EstadiaData extends IngresoData {
 				es = new Estadia();
 
 				es.setIdIngreso(rs.getInt("idIngreso"));
+				es.setComprobante(rs.getString("comprobante"));
 				es.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				es.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
 				es.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));

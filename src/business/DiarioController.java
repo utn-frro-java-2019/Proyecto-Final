@@ -3,6 +3,7 @@ package business;
 import java.util.ArrayList;
 import data.DiarioData;
 import domain.*;
+import util.UUIDGenerator;
 
 public class DiarioController extends IngresoController {
 	public static Diario getOne(int idIngreso) {
@@ -13,7 +14,7 @@ public class DiarioController extends IngresoController {
 		return new DiarioData().getAll();
 	}
 
-	public Diario generateNew(String patent, Integer idCochera) {
+	public static Diario generateNew(String patent, Integer idCochera) {
 		Cochera cochera = CocheraController.getOne(idCochera);
 		if (cochera == null) {
 			throw new RuntimeException("La cochera no se encuentra en el sistema");
@@ -36,20 +37,27 @@ public class DiarioController extends IngresoController {
 
 		Diario diario = new Diario();
 
+		diario.setComprobante(UUIDGenerator.randomStringUUID());
 		diario.setVehiculo(vehicle);
 		diario.setCochera(CocheraController.getOne(idCochera));
 		diario.setLugar(lugar);
-		diario.setEstado("activo");
 
 		try {
 			new DiarioData().insertOne(diario);
-			return diario;
+			lugar.setOcupado(true);
+			LugarController.updateOne(lugar);
+			
+			return new DiarioData().getOneByComprobante(diario.getComprobante());
 		} catch (Exception e) {
 			throw new RuntimeException("Error al intentar guardar el ingreso en la base de datos");
 		}
 	}
 
-	public void finalizeOne(Diario d) {
+	public static void finalizeOne(Diario d) {
+		// Calculate price
 		new DiarioData().finalizeOne(d);
+		Lugar lugar = d.getLugar();
+		lugar.setOcupado(false);
+		LugarController.updateOne(lugar);
 	}
 }

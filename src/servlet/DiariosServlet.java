@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import business.DiarioController;
 import business.VehiculoController;
+import domain.Diario;
 import domain.Vehiculo;
 import util.AccountHasPermissions;
 import util.WebAlertViewer;
@@ -86,7 +88,6 @@ public class DiariosServlet extends HttpServlet {
 	private void ingreso(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		request.getRequestDispatcher("/WEB-INF/diario-ingreso.jsp").forward(request, response);
-
 	}
 
 	private void salida(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -109,8 +110,19 @@ public class DiariosServlet extends HttpServlet {
 
 	private void diarioNew(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		request.getRequestDispatcher("/WEB-INF/diario-ingreso-comprobante.jsp").forward(request, response);
-		// TODO
+
+		String patente = request.getParameter("patente");
+		Integer idCochera = Integer.parseInt(request.getParameter("idCochera"));
+
+		try {
+			Diario diario = DiarioController.generateNew(patente, idCochera);
+			request.setAttribute("diario", diario);
+			request.getRequestDispatcher("/WEB-INF/diario-ingreso-comprobante.jsp").forward(request, response);
+
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+			this.ingreso(request, response);
+		}
 	}
 
 	private void salidaSearch(HttpServletRequest request, HttpServletResponse response)

@@ -16,7 +16,6 @@ import util.AccountHasPermissions;
 import util.WebAlertViewer;
 import business.CocheraController;
 import business.EmpleadoController;
-import business.TipoVehiculoController;
 import business.TurnoController;
 
 @WebServlet("/empleados/*")

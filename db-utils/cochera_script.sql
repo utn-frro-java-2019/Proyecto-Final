@@ -92,12 +92,13 @@ DROP TABLE IF EXISTS `ingresos`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ingresos` (
   `idIngreso` int NOT NULL AUTO_INCREMENT,
+  `comprobante` varchar(45) NOT NULL,
   `tipoIngreso` varchar(45) NOT NULL,
   `idCochera` int NOT NULL,
   `nroLugar` int NOT NULL,
   `patente` varchar(7) NOT NULL,
   `fechaIngreso` datetime NOT NULL,
-  `fechaRetiro` datetime NOT NULL,
+  `fechaRetiro` datetime DEFAULT NULL,
   `estado` varchar(45) NOT NULL,
   `precioFinal` float DEFAULT NULL,
   `autoEnCochera` tinyint(1) DEFAULT NULL,

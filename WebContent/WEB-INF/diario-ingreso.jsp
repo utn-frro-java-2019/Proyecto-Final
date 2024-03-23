@@ -85,6 +85,8 @@
               <label class="mb-0 ml-1" for="tel">Teléfono de contacto</label>
               <input class="form-control form-control-user" type="text" name="tel" value="<%=v.getTelefonoContacto()%>">
             </div>
+
+            <input type="hidden" name="idCochera" value="<%=session.getAttribute("idCochera")%>">
           </div>
         </div>
       </div>
