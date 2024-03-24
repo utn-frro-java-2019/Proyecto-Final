@@ -37,10 +37,14 @@ public class DiariosServlet extends HttpServlet {
 		}
 
 		String path = request.getPathInfo();
-		if (path.equals("/ingreso")) {
+		if (path.equals("/all")) {
+			this.all(request, response);
+		} else if (path.equals("/ingreso")) {
 			this.ingreso(request, response);
 		} else if (path.startsWith("/salida")) {
 			this.salida(request, response);
+		} else if (path.startsWith("/delete")) {
+			this.delete(request, response);
 		} else {
 			this.error(request, response);
 		}
@@ -58,6 +62,8 @@ public class DiariosServlet extends HttpServlet {
 			this.diarioNew(request, response);
 		} else if (path.equals("/salida")) {
 			this.diarioFinish(request, response);
+		} else if (path.equals("/edit")) {
+			this.edit(request, response);
 		} else if (path.equals("/ingresoSearch")) {
 			this.ingresoSearch(request, response);
 		} else if (path.equals("/salidaSearch")) {
@@ -65,6 +71,18 @@ public class DiariosServlet extends HttpServlet {
 		} else {
 			this.error(request, response);
 		}
+	}
+
+	private void all(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		// TODO
+	}
+
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		// TODO
+	}
+
+	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+		// TODO
 	}
 
 	private void ingreso(HttpServletRequest request, HttpServletResponse response)
