@@ -236,7 +236,7 @@
           </div>
           <div class="copyright text-center my-auto" style="display: flex; justify-content: center; align-items: center; padding-top: 0.5rem;">
             <span style="width: 4px; height: 0.25rem; background: lime; border-radius: 99px; display: block; margin-right: 0.25rem;"></span>
-            <span><%=new java.util.Date().getHours()%>:<%=new java.util.Date().getMinutes()%></span>
+            <span><%=new java.util.Date().getHours() < 10 ? "0" : ""%><%=new java.util.Date().getHours()%>:<%=new java.util.Date().getMinutes() < 10 ? "0" : ""%><%=new java.util.Date().getMinutes()%></span>
           </div>
         </div>
       </footer>

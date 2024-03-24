@@ -6,6 +6,8 @@
 <%@page import="domain.Vehiculo"%>
 <%@page import="domain.TipoVehiculo"%>
 <%Diario d = (Diario)request.getAttribute("diario");%>
+<%Double precio = (Double)request.getAttribute("precio");%>
+<%String precioMessage = (String)request.getAttribute("precioMessage");%>
 <%
   if (d == null) {
     d = new Diario();
@@ -105,9 +107,14 @@
           </div>
         </div>
       </div>
+      <%if(precio != null){%>
       <div class="alert alert-primary" role="alert">
-        Monto a Cobrar: <b>$150</b>
+        <p class="mb-0">Monto a Cobrar: <b>$<%=precio%></b></p>
+        <p class="mb-0"><%=precioMessage%></p>
       </div>
+      <%}%>
+      <input type="hidden" name="precio" value="<%=precio%>" />
+      <input type="hidden" name="fechaRetiro" value="<%=d.getFechaRetiro()%>" />
       <div class="row justify-content-end">
       	<button class="btn btn-success mr-3 mb-4" type="submit" <%if(d.getVehiculo().getPatente().equals("")){%>disabled<%}%>>Registrar salida</button>
       </div>

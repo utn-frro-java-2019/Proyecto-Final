@@ -53,13 +53,14 @@ public class DiarioController extends IngresoController {
 
 			return new DiarioData().getOneActiveByComprobante(diario.getComprobante());
 		} catch (Exception e) {
+			lugar.setOcupado(false);
+			LugarController.updateOne(lugar);
 			throw new RuntimeException("Error al intentar guardar el ingreso en la base de datos");
 		}
 	}
 
-	public static Diario finalizeOne(Diario d) {
-		// TODO: Calculate price
-		Diario diario = new DiarioData().finalizeOne(d);
+	public static Diario finalizeOne(Diario d, Double price) {
+		Diario diario = new DiarioData().finalizeOne(d, price);
 		Lugar lugar = d.getLugar();
 		lugar.setOcupado(false);
 		LugarController.updateOne(lugar);

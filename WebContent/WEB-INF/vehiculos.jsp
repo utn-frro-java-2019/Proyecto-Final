@@ -25,16 +25,6 @@
     <div class="col col-auto d-flex">
       <a class="d-flex align-items-center btn btn-primary" href="/Cocheras/vehiculos/create">Añadir vehículo</a>
     </div>
-    <form class="col">
-      <div class="input-group">
-        <input type="text" class="form-control bg-light border border-primary p-4" placeholder="Buscar vehículo" aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
     </div>
     <div class="card shadow mb-4">
       <div class="card-body">

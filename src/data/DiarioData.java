@@ -161,14 +161,12 @@ public class DiarioData extends IngresoData {
 		return diario;
 	}
 
-	public Diario finalizeOne(Diario diario) {
+	public Diario finalizeOne(Diario diario, Double price) {
 		Diario d = new Diario();
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			stmt.executeUpdate(
-					"update ingresos set fechaRetiro=NOW()"
-							+ ", precioFinal=" + diario.getPrecioFinal() + ", estado='finalizado' where idIngreso="
-							+ diario.getIdIngreso());
+					"update ingresos set fechaRetiro=NOW(), precioFinal=" + price + ", estado='finalizado' where idIngreso=" + diario.getIdIngreso());
 
 			Statement stmtGet = FactoryConnection.getInstancia().getConn().createStatement();
 			ResultSet rs = stmtGet
