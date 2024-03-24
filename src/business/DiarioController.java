@@ -14,6 +14,10 @@ public class DiarioController extends IngresoController {
 		return new DiarioData().getAll();
 	}
 
+	public static Diario getOneActiveByComprobante(String comprobante) {
+		return new DiarioData().getOneActiveByComprobante(comprobante);
+	}
+
 	public static Diario generateNew(String patent, Integer idCochera) {
 		Cochera cochera = CocheraController.getOne(idCochera);
 		if (cochera == null) {
@@ -46,18 +50,19 @@ public class DiarioController extends IngresoController {
 			new DiarioData().insertOne(diario);
 			lugar.setOcupado(true);
 			LugarController.updateOne(lugar);
-			
-			return new DiarioData().getOneByComprobante(diario.getComprobante());
+
+			return new DiarioData().getOneActiveByComprobante(diario.getComprobante());
 		} catch (Exception e) {
 			throw new RuntimeException("Error al intentar guardar el ingreso en la base de datos");
 		}
 	}
 
-	public static void finalizeOne(Diario d) {
-		// Calculate price
-		new DiarioData().finalizeOne(d);
+	public static Diario finalizeOne(Diario d) {
+		// TODO: Calculate price
+		Diario diario = new DiarioData().finalizeOne(d);
 		Lugar lugar = d.getLugar();
 		lugar.setOcupado(false);
 		LugarController.updateOne(lugar);
+		return diario;
 	}
 }

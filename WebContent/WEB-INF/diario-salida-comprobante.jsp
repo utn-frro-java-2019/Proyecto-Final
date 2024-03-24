@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@page import="domain.Diario"%>
+<%Diario diario = (Diario) request.getAttribute("diario");%>
 
 <c:set var="bodyContent">
   <div class="row justify-content-md-center">
@@ -16,41 +18,33 @@
             La salida se ha registrado de forma exitosa.
           </div>
           <div class="form-group row">
-            <div class="col-sm-6 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="fechaI">Fecha de Ingreso</label>
-              <input class="form-control form-control-user" type="text" name="fechaI" value="">
-            </div>
-            <div class="col-sm-6">
-              <label class="mb-0 ml-1" for="horaI">Hora de Ingreso</label>
-              <input class="form-control form-control-user" type="text" name="horaI" value="">
+            <div class="col-sm-12 mb-3 mb-sm-0">
+              <label class="mb-0 ml-1" for="comprobante">Id de Ingreso</label>
+              <input class="form-control form-control-user" type="text" name="comprobante" value="<%=diario.getComprobante()%>">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="FechaS">Fecha de Salida</label>
-              <input class="form-control form-control-user" type="text" name="fechaS" value="">
+              <label class="mb-0 ml-1" for="fechaI">Fecha de Ingreso</label>
+              <input class="form-control form-control-user" type="text" name="fechaI" value="<%=diario.getFechaIngreso()%>">
             </div>
             <div class="col-sm-6">
-              <label class="mb-0 ml-1" for="HoraS">Hora de Salida</label>
-              <input class="form-control form-control-user" type="text" name="HoraS" value="">
+              <label class="mb-0 ml-1" for="fechaS">Fecha de Salida</label>
+              <input class="form-control form-control-user" type="text" name="fechaS" value="<%=diario.getFechaRetiro()%>">
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="patente">Patente</label>
-              <input class="form-control form-control-user" type="text" name="patente" value="">
+              <input class="form-control form-control-user" type="text" name="patente" value="<%=diario.getVehiculo().getPatente()%>">
             </div>
-            <div class="col-sm-4  mb-3 mb-sm-0">
-              <label class="mb-0 ml-1" for="id">Id de Ingreso</label>
-              <input class="form-control form-control-user" type="text" name="id" value="">
-            </div>
-            <div class="col-sm-2  mb-3 mb-sm-0">
+            <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="lugar">Lugar</label>
-              <input class="form-control form-control-user" type="text" name="lugar" value="">
+              <input class="form-control form-control-user" type="text" name="lugar" value="<%=diario.getLugar().getNroLugar()%>">
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-4">
               <label class="mb-0 ml-1" for="monto">Monto</label>
-              <input class="form-control form-control-user" type="text" name="monto" value="">
+              <input class="form-control form-control-user" type="text" name="monto" value="<%=diario.getPrecioFinal()%>">
             </div>
           </div>
         </div>

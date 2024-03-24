@@ -91,12 +91,13 @@ public class DiarioData extends IngresoData {
 		return d;
 	}
 
-	public Diario getOneByComprobante(String comprobante) {
+	public Diario getOneActiveByComprobante(String comprobante) {
 		Diario d = null;
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			ResultSet rs = stmt
-					.executeQuery("select * from ingresos where comprobante='" + comprobante + "' and tipoIngreso='diario'");
+					.executeQuery("select * from ingresos where comprobante='" + comprobante
+							+ "' and tipoIngreso='diario' and estado='activo'");
 
 			while (rs.next()) {
 				d = new Diario();
@@ -161,16 +162,47 @@ public class DiarioData extends IngresoData {
 	}
 
 	public Diario finalizeOne(Diario diario) {
+		Diario d = new Diario();
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			stmt.executeUpdate(
-					"update ingresos set fechaRetiro=" + "NOW()"
+					"update ingresos set fechaRetiro=NOW()"
 							+ ", precioFinal=" + diario.getPrecioFinal() + ", estado='finalizado' where idIngreso="
 							+ diario.getIdIngreso());
+
+			Statement stmtGet = FactoryConnection.getInstancia().getConn().createStatement();
+			ResultSet rs = stmtGet
+					.executeQuery(
+							"select * from ingresos where comprobante='" + diario.getComprobante()
+									+ "' and tipoIngreso='diario'");
+
+			while (rs.next()) {
+
+				d.setIdIngreso(rs.getInt("idIngreso"));
+				d.setComprobante(rs.getString("comprobante"));
+				d.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
+				d.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
+				d.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
+				d.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
+				d.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
+				d.setPrecioFinal(rs.getDouble("precioFinal"));
+				d.setEstado(rs.getString("estado"));
+				d.setPrecioFinal(rs.getDouble("precioFinal"));
+				d.setAutoEnCochera(rs.getBoolean("autoEnCochera"));
+			}
 
 			if (stmt != null) {
 				stmt.close();
 			}
+
+			if (stmtGet != null) {
+				stmtGet.close();
+			}
+
+			if (rs != null) {
+				rs.close();
+			}
+
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
@@ -179,7 +211,7 @@ public class DiarioData extends IngresoData {
 			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
 		}
 
-		return diario;
+		return d;
 	}
 
 }

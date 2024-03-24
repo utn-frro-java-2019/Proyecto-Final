@@ -35,12 +35,6 @@ public class DiariosServlet extends HttpServlet {
 			this.all(request, response);
 		} else if (path.equals("/ingreso")) {
 			this.ingreso(request, response);
-		} else if (path.startsWith("/comprobante-ingreso")) {
-			this.comprobanteI(request, response);
-		} else if (path.startsWith("/salida")) {
-			this.salida(request, response);
-		} else if (path.startsWith("/comprobante-salida")) {
-			this.comprobanteS(request, response);
 		} else if (path.startsWith("/salida")) {
 			this.salida(request, response);
 		} else if (path.startsWith("/delete")) {
@@ -92,7 +86,6 @@ public class DiariosServlet extends HttpServlet {
 
 	private void salida(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		request.getRequestDispatcher("/WEB-INF/diario-salida.jsp").forward(request, response);
-		// TODO
 	}
 
 	private void ingresoSearch(HttpServletRequest request, HttpServletResponse response)
@@ -127,24 +120,32 @@ public class DiariosServlet extends HttpServlet {
 
 	private void salidaSearch(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		String patente = request.getParameter("comprobante");
+		Diario diario = DiarioController.getOneActiveByComprobante(patente);
+		if (diario == null) {
+			WebAlertViewer.showAlertMessage(request,
+					"El comprobante solicitado no se corresponde con ningún ingreso activo en nuestra base de datos.",
+					"danger");
+		} else {
+			request.setAttribute("diario", diario);
+		}
 		this.salida(request, response);
-		// TODO
+
 	}
 
 	private void diarioFinish(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		request.getRequestDispatcher("/WEB-INF/diario-salida-comprobante.jsp").forward(request, response);
-		// TODO
-	}
+		try {
+			String comprobante = request.getParameter("comprobante");
+			Diario d = DiarioController.getOneActiveByComprobante(comprobante);
 
-	private void comprobanteI(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		// TODO
-	}
-
-	private void comprobanteS(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		// TODO
+			Diario diario = DiarioController.finalizeOne(d);
+			request.setAttribute("diario", diario);
+			request.getRequestDispatcher("/WEB-INF/diario-salida-comprobante.jsp").forward(request, response);
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+			this.salida(request, response);
+		}
 	}
 
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
