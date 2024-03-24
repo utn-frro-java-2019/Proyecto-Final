@@ -124,7 +124,6 @@
           <div class="bg-white py-2 collapse-inner rounded d-flex flex-column" style="gap: 0.25rem">
             <a class="collapse-item px-2" href="/Cocheras/diarios/ingreso"><i class="fas fa-arrow-circle-right pr-1"></i> Registrar ingreso</a>
             <a class="collapse-item px-2" href="/Cocheras/diarios/salida"><i class="fas fa-arrow-circle-left pr-1"></i> Registrar salida y cobro</a>
-            <a class="collapse-item px-2" href="#"><i class="far fa-list-alt pr-1"></i> Listar ingresos y salidas</a>
           </div>
         </div>
       </li>
