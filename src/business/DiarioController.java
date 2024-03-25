@@ -6,12 +6,8 @@ import domain.*;
 import util.UUIDGenerator;
 
 public class DiarioController extends IngresoController {
-	public static Diario getOne(int idIngreso) {
-		return new DiarioData().getOne(idIngreso);
-	}
-
-	public static ArrayList<Diario> getAll() {
-		return new DiarioData().getAll();
+	public static ArrayList<Diario> getAllByCochera(String idCochera) {
+		return new DiarioData().getAllByCochera(idCochera);
 	}
 
 	public static Diario getOneActiveByComprobante(String comprobante) {

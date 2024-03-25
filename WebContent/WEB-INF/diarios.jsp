@@ -5,6 +5,11 @@
 <%String webAlertMessage = (String)request.getAttribute("webAlertMessage");%>
 <%String webAlertType = (String)request.getAttribute("webAlertType");%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="domain.Diario"%>
+
+<%ArrayList<Diario> diarios = (ArrayList<Diario>)request.getAttribute("diarios");%>
+
 <c:set var="bodyContent">
 
   <%if(webAlertMessage != null){%>
@@ -30,6 +35,7 @@
               <th class="nw">Patente</th>
               <th class="nw">Fecha y Hora de Ingreso</th>
               <th class="nw">Fecha y Hora de Salida</th>
+              <th class="nw">Tiempo Transcurrido</th>
               <th class="nw">Monto</th>
               <th class="nw">Estado</th>
             </tr>
@@ -41,65 +47,28 @@
               <th class="nw">Patente</th>
               <th class="nw">Fecha y Hora de Ingreso</th>
               <th class="nw">Fecha y Hora de Salida</th>
+              <th class="nw">Tiempo Transcurrido</th>
               <th class="nw">Monto</th>
               <th class="nw">Estado</th>
             </tr>
           </tfoot>
           <tbody>
+          <%for(Diario diario : diarios){%>
             <tr>
-              <td class="nw">1221</td>
-              <td class="nw">18</td>
-              <td class="nw">xxx111</td>
-              <td class="nw">xx/xx/xxxx xx:xxx</td>
-              <td class="nw">yy/yy/yyyy yy:yy</td>
-              <td class="nw">$150</td>
-              <td class="nw"><span class="badge badge-pill badge-dark">Finalizado</span></td>
+              <td class="nw"><%=diario.getComprobante()%></td>
+              <td class="nw"><%=diario.getLugar().getNroLugar()%></td>
+              <td class="nw"><%=diario.getVehiculo().getPatente()%></td>
+              <td class="nw"><%=diario.getFechaIngreso()%></td>
+              <td class="nw"><%=diario.getFechaRetiro() == null ? "Sin retiro" : diario.getFechaRetiro()%></td>
+              <%if(diario.getFechaRetiro() != null){%>
+              <td class="nw"><%=(diario.getFechaRetiro().getTime() - diario.getFechaIngreso().getTime())/(60 * 60 * 1000)%> horas, <%=(diario.getFechaRetiro().getTime() - diario.getFechaIngreso().getTime())/ (60 * 1000) % 60%> minutos</td>
+              <%}else{%>
+              <td class="nw">Sin retiro</td>
+              <%}%>
+              <td class="nw">$<%=diario.getPrecioFinal()%></td> 
+              <td class="nw"><span class="badge badge-pill badge-<%=diario.getEstado().equals("activo") ? "info" : "dark"%>"><%=diario.getEstado()%></span></td>
             </tr>
-            <tr>
-              <td class="nw">1225</td>
-              <td class="nw">12</td>
-              <td class="nw">xxx111</td>
-              <td class="nw">ee/ee/eeee ee:ee</td>
-              <td class="nw">---</td>
-              <td class="nw">---</td>
-              <td class="nw"><span class="badge badge-pill badge-info">En curso</span></td>
-            </tr>
-            <tr>
-              <td class="nw">1231</td>
-              <td class="nw">13</td>
-              <td class="nw">xxx111</td>
-              <td class="nw">xx/xx/xxxx xx:xxx</td>
-              <td class="nw">yy/yy/yyyy yy:yy</td>
-              <td class="nw">$220</td>
-              <td class="nw"><span class="badge badge-pill badge-dark">Finalizado</span></td>
-            </tr>
-            <tr>
-              <td class="nw">1232</td>
-              <td class="nw">2</td>
-              <td class="nw">xxx111</td>
-              <td class="nw">uu/uu/uuuu uu:uuu</td>
-              <td class="nw">pp/pp/pppp pp:pp/td>
-              <td class="nw">$80</td>
-              <td class="nw"><span class="badge badge-pill badge-dark">Finalizado</span></td>
-            </tr>
-            <tr>
-              <td class="nw">1236</td>
-              <td class="nw">52</td>
-              <td class="nw">xxx111</td>
-              <td class="nw">ss/ss/ssss ss:sss</td>
-              <td class="nw">hh/hh/hhhh hh:hh</td>
-              <td class="nw">$110</td>
-              <td class="nw"><span class="badge badge-pill badge-dark">Finalizado</span></td>
-            </tr>
-            <tr>
-              <td class="nw">1242</td>
-              <td class="nw">8</td>
-              <td class="nw">xxx111</td>
-              <td class="nw">hh/hh/hhhh hh:hh</td>
-              <td class="nw">---</td>
-              <td class="nw">---</td>
-              <td class="nw"><span class="badge badge-pill badge-info">En curso</span></td>
-            </tr>
+          <%}%>
           </tbody>
         </table>
       </div>

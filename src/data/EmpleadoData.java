@@ -155,8 +155,8 @@ public class EmpleadoData {
 			pstmt.setString(6, e.getTelefono2());
 			pstmt.setString(7, e.getUsuario());
 			pstmt.setString(8, e.getPassword());
-			pstmt.setInt(9, e.getTurno().getIdTurno());
-			pstmt.setInt(10, e.getCochera().getIdCochera());	
+			pstmt.setInt(9, e.getCochera().getIdCochera());	
+			pstmt.setInt(10, e.getTurno().getIdTurno());
 			
 
 			pstmt.executeUpdate();

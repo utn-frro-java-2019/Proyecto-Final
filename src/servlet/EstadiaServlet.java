@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import business.EstadiaController;
-import business.IngresoController;
 import domain.Estadia;
 import util.AccountHasPermissions;
 import util.WebAlertViewer;

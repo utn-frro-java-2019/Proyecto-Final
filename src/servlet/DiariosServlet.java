@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,11 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import business.DiarioController;
 import business.PrecioPorHoraController;
 import business.VehiculoController;
-import data.DiarioData;
 import data.UtilsData;
 import domain.Diario;
-import domain.PrecioPorHora;
-import domain.TipoVehiculo;
 import domain.Vehiculo;
 import util.AccountHasPermissions;
 import util.WebAlertViewer;
@@ -43,8 +39,6 @@ public class DiariosServlet extends HttpServlet {
 			this.ingreso(request, response);
 		} else if (path.startsWith("/salida")) {
 			this.salida(request, response);
-		} else if (path.startsWith("/delete")) {
-			this.delete(request, response);
 		} else {
 			this.error(request, response);
 		}
@@ -62,8 +56,6 @@ public class DiariosServlet extends HttpServlet {
 			this.diarioNew(request, response);
 		} else if (path.equals("/salida")) {
 			this.diarioFinish(request, response);
-		} else if (path.equals("/edit")) {
-			this.edit(request, response);
 		} else if (path.equals("/ingresoSearch")) {
 			this.ingresoSearch(request, response);
 		} else if (path.equals("/salidaSearch")) {
@@ -74,15 +66,12 @@ public class DiariosServlet extends HttpServlet {
 	}
 
 	private void all(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// TODO
-	}
-
-	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// TODO
-	}
-
-	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// TODO
+		try {
+			request.setAttribute("diarios", DiarioController.getAllByCochera(request.getSession().getAttribute("idCochera").toString()));
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
+		request.getRequestDispatcher("/WEB-INF/diarios.jsp").forward(request, response);
 	}
 
 	private void ingreso(HttpServletRequest request, HttpServletResponse response)
@@ -136,7 +125,7 @@ public class DiariosServlet extends HttpServlet {
 			diario.setFechaRetiro(new UtilsData().getToday());
 
 			Long diff = diario.getFechaRetiro().getTime() - diario.getFechaIngreso().getTime();
-			Long diffHours = diff / (60 * 60 * 1000) % 24;
+			Long diffHours = diff / (60 * 60 * 1000);
 			Long diffMinutes = diff / (60 * 1000) % 60;
 
 			Double multiplicador = diario.getVehiculo().getTipo().getPorcentajeMultiplicador();

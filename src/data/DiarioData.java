@@ -10,11 +10,11 @@ import domain.*;
 
 public class DiarioData extends IngresoData {
 
-	public ArrayList<Diario> getAll() {
+	public ArrayList<Diario> getAllByCochera(String idCochera) {
 		ArrayList<Diario> ingresos = new ArrayList<Diario>();
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmt.executeQuery("select * from ingresos where tipoIngreso='diario'");
+			ResultSet rs = stmt.executeQuery("select * from ingresos where tipoIngreso='diario' and idCochera='" + idCochera + "' order by fechaIngreso desc");
 
 			while (rs.next()) {
 				Diario d = new Diario();
@@ -49,46 +49,6 @@ public class DiarioData extends IngresoData {
 		}
 
 		return ingresos;
-	}
-
-	public Diario getOne(int idIngreso) {
-		Diario d = null;
-		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmt
-					.executeQuery("select * from ingresos where idIngreso=" + idIngreso + " and tipoIngreso='diario'");
-
-			while (rs.next()) {
-				d = new Diario();
-
-				d.setIdIngreso(rs.getInt("idIngreso"));
-				d.setComprobante(rs.getString("comprobante"));
-				d.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
-				d.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
-				d.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-				d.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
-				d.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
-				d.setPrecioFinal(rs.getDouble("precioFinal"));
-				d.setEstado(rs.getString("estado"));
-				d.setPrecioFinal(rs.getDouble("precioFinal"));
-				d.setAutoEnCochera(rs.getBoolean("autoEnCochera"));
-			}
-
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
-		} catch (SQLException e) {
-			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
-		} catch (Exception e) {
-			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
-		}
-
-		return d;
 	}
 
 	public Diario getOneActiveByComprobante(String comprobante) {
