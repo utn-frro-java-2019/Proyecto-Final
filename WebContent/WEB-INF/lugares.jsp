@@ -11,15 +11,12 @@
 <c:set var="bodyContent">
     <%Integer ocupados = 0;%>
     <%for(int i = 0; i < c.getCapacidad(); i++){
-
       for(Ingreso ingreso : ingresos){
         if(ingreso.getCochera().getIdCochera() == c.getIdCochera() && ingreso.getLugar().getNroLugar() == (i+1)){
           ocupados++;
         }
       }
     }%>
-
-
   <h1 class="h5 text-gray-800">Cochera: <b><%=c.getNombre()%></b></h1>
   <h1 class="h3 mb-4 text-gray-800">Lugares disponibles: <b><%=c.getCapacidad()-ocupados%>/<%=c.getCapacidad()%></b></h1>
   <div class="row mb-4" style="justify-content: center;">
