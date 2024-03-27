@@ -161,6 +161,23 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
+      <%if(tipoDeCuenta != null && tipoDeCuenta.equals("empleado")){%>
+      <!-- Heading -->
+      <div class="sidebar-heading my-0">
+        Cochera
+      </div>
+      
+      <!-- Nav Item - Vehículos -->
+      <li class="nav-item">
+        <a class="nav-link" href="/Cocheras/cocheras/estado/<%=request.getSession().getAttribute("idCochera")%>">
+          <i class="fas fa-map-marker"></i>
+          <span>Estado de la Cochera</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+      <%}%>
+
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>

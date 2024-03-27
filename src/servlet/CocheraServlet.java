@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import business.CocheraController;
+import business.IngresoController;
 import domain.Cochera;
+import domain.Ingreso;
 import util.AccountHasPermissions;
 import util.WebAlertViewer;
 
@@ -22,27 +24,32 @@ public class CocheraServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		boolean hasPermissions = AccountHasPermissions.boss(request, response);
-		if (!hasPermissions) {
-			return;
-		}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String path = request.getPathInfo();
 		if (path.equals("/all")) {
+			AccountHasPermissions.boss(request, response);
 			this.all(request, response);
 		} else if (path.equals("/create")) {
+			AccountHasPermissions.boss(request, response);
 			this.create(request, response);
 		} else if (path.startsWith("/details")) {
+			AccountHasPermissions.boss(request, response);
 			this.details(request, response);
+		} else if (path.startsWith("/estado")) {
+			this.estado(request, response);
 		} else if (path.startsWith("/delete")) {
+			AccountHasPermissions.boss(request, response);
 			this.delete(request, response);
 		} else {
+			AccountHasPermissions.boss(request, response);
 			this.error(request, response);
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		boolean hasPermissions = AccountHasPermissions.boss(request, response);
 		if (!hasPermissions) {
 			return;
@@ -64,12 +71,24 @@ public class CocheraServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/cocheras.jsp").forward(request, response);
 	}
 
-	private void details(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	private void details(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		String path = request.getPathInfo();
 		int id = Integer.parseInt(path.replace("/details/", ""));
 		Cochera cochera = CocheraController.getOne(id);
 		request.setAttribute("cochera", cochera);
 		request.getRequestDispatcher("/WEB-INF/cochera-details.jsp").forward(request, response);
+	}
+
+	private void estado(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		String path = request.getPathInfo();
+		int id = Integer.parseInt(path.replace("/estado/", ""));
+		Cochera cochera = CocheraController.getOne(id);
+		ArrayList<Ingreso> ingresos = IngresoController.getActivosByCochera(id);
+		request.setAttribute("cochera", cochera);
+		request.setAttribute("ingresos", ingresos);
+		request.getRequestDispatcher("/WEB-INF/lugares.jsp").forward(request, response);
 	}
 
 	private void create(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -85,7 +104,7 @@ public class CocheraServlet extends HttpServlet {
 		} catch (Exception e) {
 			WebAlertViewer.showError(request, e);
 		}
-		
+
 		this.all(request, response);
 	}
 

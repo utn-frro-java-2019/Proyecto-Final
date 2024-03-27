@@ -13,6 +13,7 @@ public class Ingreso {
 	private String estado;
 	private Double precioFinal;
 	private Boolean autoEnCochera;
+	private String tipo;
 
 	public Integer getIdIngreso() {
 		return idIngreso;
@@ -93,5 +94,12 @@ public class Ingreso {
 	public void setAutoEnCochera(Boolean autoEnCochera) {
 		this.autoEnCochera = autoEnCochera;
 	}
-	
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 }

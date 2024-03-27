@@ -75,10 +75,10 @@
                   <a href="/Cocheras/cocheras/delete/<%=c.getIdCochera()%>" class="d-flex align-items-center btn btn-danger m-1">
                     <i class="fas fa-trash-alt fa-xs m-1"></i>Eliminar
                   </a>
-                  <button type="button" class="d-flex align-items-center btn btn-primary m-1">
+                  <a href="/Cocheras/cocheras/estado/<%=c.getIdCochera()%>" class="d-flex align-items-center btn btn-primary m-1">
                     <i class="fas fa-map-marker-alt fa-xs m-1"></i>
                     <p class="d-none d-md-block m-0" style="white-space: nowrap">Estado actual de los lugares</p>
-                  </button>
+                  </a>
                 </td>
               </tr>
               <%}%>
