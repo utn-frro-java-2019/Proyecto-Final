@@ -26,9 +26,11 @@ public class UtilsData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar la fecha actual");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar la fecha actual");
 		}
 
 		return fecha;

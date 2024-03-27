@@ -71,8 +71,10 @@ public class IngresoData {
             FactoryConnection.getInstancia().releaseConn();
 
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
         }
 

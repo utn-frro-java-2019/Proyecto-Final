@@ -42,9 +42,11 @@ public class EstadiaData extends IngresoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
 		}
 
 		return ingresos;
@@ -81,9 +83,11 @@ public class EstadiaData extends IngresoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
 		}
 
 		return es;

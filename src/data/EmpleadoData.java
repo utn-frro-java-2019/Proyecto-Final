@@ -37,9 +37,11 @@ public class EmpleadoData {
 			}
 			FactoryConnection.getInstancia().releaseConn();
 
-		} catch (SQLException e) {
+		} catch (SQLException ee) {
+			System.out.println(ee.getMessage());
 			throw new RuntimeException("Error al recuperar los empleados");
-		} catch (Exception e) {
+		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
 			throw new RuntimeException("Error al recuperar los empleados");
 		}
 
@@ -77,8 +79,10 @@ public class EmpleadoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException ee) {
+			System.out.println(ee.getMessage());
 			throw new RuntimeException("Error al recuperar el empleado");
 		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
 			throw new RuntimeException("Error al recuperar el empleado");
 		}
 
@@ -116,8 +120,10 @@ public class EmpleadoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException ee) {
+			System.out.println(ee.getMessage());
 			throw new RuntimeException("Error al recuperar el empleado");
 		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
 			throw new RuntimeException("Error al recuperar el empleado");
 		}
 
@@ -135,9 +141,11 @@ public class EmpleadoData {
 			}
 			FactoryConnection.getInstancia().releaseConn();
 
-		} catch (SQLException e) {
+		} catch (SQLException ee) {
+			System.out.println(ee.getMessage());
 			throw new RuntimeException("Error al eliminar empleado");
-		} catch (Exception e) {
+		} catch (Exception ee) {
+			System.out.println(ee.getMessage());
 			throw new RuntimeException("Error al eliminar empleado");
 		}
 	}
@@ -155,9 +163,8 @@ public class EmpleadoData {
 			pstmt.setString(6, e.getTelefono2());
 			pstmt.setString(7, e.getUsuario());
 			pstmt.setString(8, e.getPassword());
-			pstmt.setInt(9, e.getCochera().getIdCochera());	
+			pstmt.setInt(9, e.getCochera().getIdCochera());
 			pstmt.setInt(10, e.getTurno().getIdTurno());
-			
 
 			pstmt.executeUpdate();
 
@@ -168,8 +175,10 @@ public class EmpleadoData {
 
 		} catch (SQLException e1) {
 			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 			throw new RuntimeException("Error al crear empleado");
 		} catch (Exception e1) {
+			System.out.println(e1.getMessage());
 			throw new RuntimeException("Error al crear empleado");
 		}
 	}
@@ -198,8 +207,10 @@ public class EmpleadoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e1) {
+			System.out.println(e1.getMessage());
 			throw new RuntimeException("Error al actualizar empleado");
 		} catch (Exception e1) {
+			System.out.println(e1.getMessage());
 			throw new RuntimeException("Error al actualizar empleado");
 		}
 	}

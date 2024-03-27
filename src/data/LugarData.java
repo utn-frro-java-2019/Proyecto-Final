@@ -37,9 +37,11 @@ public class LugarData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar obtener los lugares en la base de datos");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar obtener los lugares en la base de datos");
 		}
 
 		return lugares;
@@ -57,9 +59,11 @@ public class LugarData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar actualizar el lugar en la base de datos");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar actualizar el lugar en la base de datos");
 		}
 
 	}
@@ -76,9 +80,11 @@ public class LugarData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar guardar el lugar en la base de datos");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar guardar el lugar en la base de datos");
 		}
 	}
 
@@ -112,9 +118,11 @@ public class LugarData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar el lugar");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar el lugar");
 		}
 
 		return l;
@@ -125,7 +133,8 @@ public class LugarData {
 
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmt.executeQuery("select * from lugares where idCochera=" + idCochera + " and ocupado='false'");
+			ResultSet rs = stmt
+					.executeQuery("select * from lugares where idCochera=" + idCochera + " and ocupado='false'");
 
 			while (rs.next()) {
 				l = new Lugar();
@@ -149,9 +158,11 @@ public class LugarData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar un lugar libre");
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar un lugar libre");
 		}
 
 		return l;

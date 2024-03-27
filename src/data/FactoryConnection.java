@@ -21,6 +21,7 @@ public class FactoryConnection {
 		try {
 			Class.forName(driver);
 		} catch (ClassNotFoundException e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 	}
@@ -40,6 +41,7 @@ public class FactoryConnection {
 				conectados = 0;
 			}
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 		conectados++;
@@ -53,6 +55,7 @@ public class FactoryConnection {
 				conn.close();
 			}
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
 	}

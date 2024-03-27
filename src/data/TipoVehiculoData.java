@@ -35,9 +35,11 @@ public class TipoVehiculoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			new RuntimeException("Error al recuperar la lista de tipos de vehículos");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar la lista de tipos de vehículos");
 		} catch (Exception e) {
-			new RuntimeException("Error al recuperar la lista de tipos de vehículos");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar la lista de tipos de vehículos");
 		}
 
 		return tiposVehiculos;
@@ -67,9 +69,11 @@ public class TipoVehiculoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			new RuntimeException("Error al recuperar el tipo de vehículo");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar el tipo de vehículo");
 		} catch (Exception e) {
-			new RuntimeException("Error al recuperar el tipo de vehículo");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar el tipo de vehículo");
 		}
 
 		return tv;
@@ -86,16 +90,19 @@ public class TipoVehiculoData {
 			}
 
 		} catch (SQLException e) {
-			new RuntimeException("Error al eliminar el tipo de vehículo");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al eliminar el tipo de vehículo");
 		} catch (Exception e) {
-			new RuntimeException("Error al eliminar el tipo de vehículo");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al eliminar el tipo de vehículo");
 		}
 	}
 
 	public void insertOne(TipoVehiculo tv) {
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn()
-					.prepareStatement("insert into tipos_vehiculos (descripcion, porcentajeMultiplicador) values (?,?)");
+					.prepareStatement(
+							"insert into tipos_vehiculos (descripcion, porcentajeMultiplicador) values (?,?)");
 			pstmt.setString(1, tv.getDescripcion());
 			pstmt.setDouble(2, tv.getPorcentajeMultiplicador());
 
@@ -107,9 +114,11 @@ public class TipoVehiculoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			new RuntimeException("Error al crear el tipo de vehículo");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al crear el tipo de vehículo");
 		} catch (Exception e) {
-			new RuntimeException("Error al crear el tipo de vehículo");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al crear el tipo de vehículo");
 		}
 	}
 
@@ -129,9 +138,11 @@ public class TipoVehiculoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			new RuntimeException("Error al actualizar el tipo de vehículo");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al actualizar el tipo de vehículo");
 		} catch (Exception e) {
-			new RuntimeException("Error al actualizar el tipo de vehículo");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al actualizar el tipo de vehículo");
 		}
 	}
 }

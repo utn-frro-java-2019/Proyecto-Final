@@ -29,9 +29,11 @@ public class PrecioPorHoraData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			new RuntimeException("Error al recuperar el precio por hora");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar el precio por hora");
 		} catch (Exception e) {
-			new RuntimeException("Error al recuperar el precio por hora");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar el precio por hora");
 		}
 
 		return p;
@@ -52,9 +54,11 @@ public class PrecioPorHoraData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e1) {
-			new RuntimeException("Error al actualizar el precio por hora");
+			System.out.println(e1.getMessage());
+			throw new RuntimeException("Error al actualizar el precio por hora");
 		} catch (Exception e1) {
-			new RuntimeException("Error al actualizar el precio por hora");
+			System.out.println(e1.getMessage());
+			throw new RuntimeException("Error al actualizar el precio por hora");
 		}
 	}
 }

@@ -34,9 +34,11 @@ public class MultiplicadorEstadiaData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			new RuntimeException("Error al recuperar los multiplicadores de estadia");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar los multiplicadores de estadia");
 		} catch (Exception e) {
-			new RuntimeException("Error al recuperar los multiplicadores de estadia");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar los multiplicadores de estadia");
 		}
 
 		return multiplicadoresEstadias;
@@ -47,7 +49,8 @@ public class MultiplicadorEstadiaData {
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			ResultSet rs = stmt
-					.executeQuery("select * from multiplicadores_estadias where multiplicadorDesde =" + multiplicadorDesde);
+					.executeQuery(
+							"select * from multiplicadores_estadias where multiplicadorDesde =" + multiplicadorDesde);
 			while (rs.next()) {
 				me = new MultiplicadorEstadia();
 
@@ -64,9 +67,11 @@ public class MultiplicadorEstadiaData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			new RuntimeException("Error al recuperar el multiplicador de estadia");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar el multiplicador de estadia");
 		} catch (Exception e) {
-			new RuntimeException("Error al recuperar el multiplicador de estadia");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al recuperar el multiplicador de estadia");
 		}
 
 		return me;
@@ -104,9 +109,11 @@ public class MultiplicadorEstadiaData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			new RuntimeException("Error al crear el multiplicador de estadia");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al crear el multiplicador de estadia");
 		} catch (Exception e) {
-			new RuntimeException("Error al crear el multiplicador de estadia");
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al crear el multiplicador de estadia");
 		}
 	}
 }

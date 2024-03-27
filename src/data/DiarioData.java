@@ -14,7 +14,8 @@ public class DiarioData extends IngresoData {
 		ArrayList<Diario> ingresos = new ArrayList<Diario>();
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmt.executeQuery("select * from ingresos where tipoIngreso='diario' and idCochera='" + idCochera + "' order by fechaIngreso desc");
+			ResultSet rs = stmt.executeQuery("select * from ingresos where tipoIngreso='diario' and idCochera='"
+					+ idCochera + "' order by fechaIngreso desc");
 
 			while (rs.next()) {
 				Diario d = new Diario();
@@ -44,8 +45,10 @@ public class DiarioData extends IngresoData {
 
 		} catch (SQLException e) {
 
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
 		}
 
@@ -85,8 +88,10 @@ public class DiarioData extends IngresoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
 		}
 
@@ -111,8 +116,10 @@ public class DiarioData extends IngresoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al intentar guardar el ingreso en la base de datos");
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al intentar guardar el ingreso en la base de datos");
 		}
 
@@ -124,7 +131,8 @@ public class DiarioData extends IngresoData {
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			stmt.executeUpdate(
-					"update ingresos set fechaRetiro=NOW(), precioFinal=" + price + ", estado='finalizado' where idIngreso=" + diario.getIdIngreso());
+					"update ingresos set fechaRetiro=NOW(), precioFinal=" + price
+							+ ", estado='finalizado' where idIngreso=" + diario.getIdIngreso());
 
 			Statement stmtGet = FactoryConnection.getInstancia().getConn().createStatement();
 			ResultSet rs = stmtGet
@@ -162,8 +170,10 @@ public class DiarioData extends IngresoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
 		}
 

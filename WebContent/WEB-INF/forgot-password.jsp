@@ -48,7 +48,7 @@
                         Lo entendemos, estas cosas suelen suceder. Simplemente
                         ingrese su dirección de correo electrónico a
                         continuación y le enviaremos un enlace para restablecer
-                        su contraseña.
+                        su contraseña. <br /><br /> (NO IMPLEMENTADO)
                       </p>
                     </div>
                     <form class="user">

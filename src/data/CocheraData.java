@@ -32,8 +32,10 @@ public class CocheraData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al recuperar las cocheras");
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al recuperar las cocheras");
 		}
 
@@ -69,8 +71,10 @@ public class CocheraData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al recuperar la cochera");
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al recuperar la cochera");
 		}
 
@@ -86,7 +90,7 @@ public class CocheraData {
 			if (rs.next()) {
 				throw new RuntimeException("No se puede eliminar la cochera porque tiene empleados asignados");
 			}
-			
+
 			String consulta = "update cocheras set eliminado = 1 where idCochera = ?";
 			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
 			stmt.setString(1, Integer.toString(idCochera));
@@ -98,8 +102,10 @@ public class CocheraData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al eliminar la cochera");
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al eliminar la cochera");
 		}
 	}
@@ -135,8 +141,10 @@ public class CocheraData {
 			return id;
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al crear la cochera");
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al crear la cochera");
 		}
 	}
@@ -157,8 +165,10 @@ public class CocheraData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al actualizar la cochera");
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al actualizar la cochera");
 		}
 	}
