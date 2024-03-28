@@ -21,7 +21,8 @@ public class PerfilServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
 		if (!hasPermissions) {
 			return;
@@ -39,35 +40,5 @@ public class PerfilServlet extends HttpServlet {
 			request.getRequestDispatcher("/WEB-INF/perfil-empleado.jsp").forward(request, response);
 		}
 
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
-		if (!hasPermissions) {
-			return;
-		}
-
-		String path = request.getPathInfo();
-		if (path.startsWith("/editProfile")) {
-			this.editProfile(request, response);
-		} else if (path.startsWith("/editPassword")) {
-			this.editPassword(request, response);
-		} else {
-			this.error(request, response);
-		}
-	}
-
-	private void editProfile(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		// TODO
-	}
-
-	private void editPassword(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		// TODO
-	}
-
-	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/errors/404-error.jsp").forward(request, response);
 	}
 }

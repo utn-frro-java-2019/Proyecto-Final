@@ -19,7 +19,8 @@ public class LogoutServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
 		if (!hasPermissions) {
 			return;

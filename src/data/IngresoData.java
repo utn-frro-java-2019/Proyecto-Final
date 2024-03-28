@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 import domain.Ingreso;
 
@@ -46,13 +48,16 @@ public class IngresoData {
             while (rs.next()) {
                 Ingreso i = new Ingreso();
 
+                java.util.Calendar cal = Calendar.getInstance();
+                cal.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+
                 i.setIdIngreso(rs.getInt("idIngreso"));
                 i.setComprobante(rs.getString("comprobante"));
                 i.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
                 i.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
                 i.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-                i.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
-                i.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
+                i.setFechaIngreso(rs.getTimestamp("fechaIngreso", cal));
+                i.setFechaRetiro(rs.getTimestamp("fechaRetiro", cal));
                 i.setPrecioFinal(rs.getDouble("precioFinal"));
                 i.setEstado(rs.getString("estado"));
                 i.setPrecioFinal(rs.getDouble("precioFinal"));

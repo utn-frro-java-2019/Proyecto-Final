@@ -24,7 +24,8 @@ public class VehiculoServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
 		if (!hasPermissions) {
 			return;
@@ -44,7 +45,8 @@ public class VehiculoServlet extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
 		if (!hasPermissions) {
 			return;
@@ -61,45 +63,67 @@ public class VehiculoServlet extends HttpServlet {
 	}
 
 	private void all(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		ArrayList<Vehiculo> vehiculos = VehiculoController.getAll();
-		request.setAttribute("listaVehiculos", vehiculos);
+		try {
+			ArrayList<Vehiculo> vehiculos = VehiculoController.getAll();
+			request.setAttribute("listaVehiculos", vehiculos);
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		request.getRequestDispatcher("/WEB-INF/vehiculos.jsp").forward(request, response);
 	}
 
-	private void details(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String path = request.getPathInfo();
-		String patente = path.replace("/details/", "");
-		Vehiculo vehiculo = VehiculoController.getOne(patente);
-		request.setAttribute("vehiculo", vehiculo);
-		request.setAttribute("tipos", TipoVehiculoController.getAll());
+	private void details(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		try {
+			String path = request.getPathInfo();
+			String patente = path.replace("/details/", "");
+			Vehiculo vehiculo = VehiculoController.getOne(patente);
+			request.setAttribute("vehiculo", vehiculo);
+			request.setAttribute("tipos", TipoVehiculoController.getAll());
+
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		request.getRequestDispatcher("/WEB-INF/vehiculo-details.jsp").forward(request, response);
 	}
 
 	private void create(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		request.setAttribute("tipos", TipoVehiculoController.getAll());
+		try {
+			request.setAttribute("tipos", TipoVehiculoController.getAll());
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		request.getRequestDispatcher("/WEB-INF/vehiculo-create.jsp").forward(request, response);
 	}
 
 	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String path = request.getPathInfo();
-		String patente = path.replace("/delete/", "");
-		VehiculoController.deleteOne(patente);
-		WebAlertViewer.showAlertMessage(request, "El vehículo se ha eliminado correctamente.");
+		try {
+			String path = request.getPathInfo();
+			String patente = path.replace("/delete/", "");
+			VehiculoController.deleteOne(patente);
+			WebAlertViewer.showAlertMessage(request, "El vehículo se ha eliminado correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		this.all(request, response);
 	}
 
 	private void add(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String patente = request.getParameter("patente");
-		String modelo = request.getParameter("modelo");
-		String descripcion = request.getParameter("desc");
-		String marca = request.getParameter("marca");
-		String propietario = request.getParameter("propietario");
-		String telefonoContacto = request.getParameter("tel");
-		TipoVehiculo tipo = new TipoVehiculo();
-		tipo.setIdTipo(Integer.parseInt(request.getParameter("tipo")));
-		Vehiculo v = new Vehiculo(patente, modelo, descripcion, marca, tipo, propietario, telefonoContacto);
-		VehiculoController.insertOne(v);
-		WebAlertViewer.showAlertMessage(request, "El vehículo se ha añadido correctamente.");
+		try {
+			String patente = request.getParameter("patente");
+			String modelo = request.getParameter("modelo");
+			String descripcion = request.getParameter("desc");
+			String marca = request.getParameter("marca");
+			String propietario = request.getParameter("propietario");
+			String telefonoContacto = request.getParameter("tel");
+			TipoVehiculo tipo = new TipoVehiculo();
+			tipo.setIdTipo(Integer.parseInt(request.getParameter("tipo")));
+			Vehiculo v = new Vehiculo(patente, modelo, descripcion, marca, tipo, propietario, telefonoContacto);
+			VehiculoController.insertOne(v);
+			WebAlertViewer.showAlertMessage(request, "El vehículo se ha añadido correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		this.all(request, response);
 	}
 

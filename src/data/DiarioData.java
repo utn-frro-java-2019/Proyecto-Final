@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 import domain.*;
 
@@ -20,13 +22,16 @@ public class DiarioData extends IngresoData {
 			while (rs.next()) {
 				Diario d = new Diario();
 
+				java.util.Calendar cal = Calendar.getInstance();
+				cal.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+
 				d.setIdIngreso(rs.getInt("idIngreso"));
 				d.setComprobante(rs.getString("comprobante"));
 				d.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				d.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
 				d.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-				d.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
-				d.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
+				d.setFechaIngreso(rs.getTimestamp("fechaIngreso", cal));
+				d.setFechaRetiro(rs.getTimestamp("fechaRetiro", cal));
 				d.setPrecioFinal(rs.getDouble("precioFinal"));
 				d.setEstado(rs.getString("estado"));
 				d.setPrecioFinal(rs.getDouble("precioFinal"));
@@ -66,13 +71,16 @@ public class DiarioData extends IngresoData {
 			while (rs.next()) {
 				d = new Diario();
 
+				java.util.Calendar cal = Calendar.getInstance();
+				cal.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+
 				d.setIdIngreso(rs.getInt("idIngreso"));
 				d.setComprobante(rs.getString("comprobante"));
 				d.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				d.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
 				d.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-				d.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
-				d.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
+				d.setFechaIngreso(rs.getTimestamp("fechaIngreso", cal));
+				d.setFechaRetiro(rs.getTimestamp("fechaRetiro", cal));
 				d.setPrecioFinal(rs.getDouble("precioFinal"));
 				d.setEstado(rs.getString("estado"));
 				d.setPrecioFinal(rs.getDouble("precioFinal"));
@@ -141,14 +149,16 @@ public class DiarioData extends IngresoData {
 									+ "' and tipoIngreso='diario'");
 
 			while (rs.next()) {
+				java.util.Calendar cal = Calendar.getInstance();
+				cal.setTimeZone(TimeZone.getTimeZone("GMT-3"));
 
 				d.setIdIngreso(rs.getInt("idIngreso"));
 				d.setComprobante(rs.getString("comprobante"));
 				d.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				d.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
 				d.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-				d.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
-				d.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
+				d.setFechaIngreso(rs.getTimestamp("fechaIngreso", cal));
+				d.setFechaRetiro(rs.getTimestamp("fechaRetiro", cal));
 				d.setPrecioFinal(rs.getDouble("precioFinal"));
 				d.setEstado(rs.getString("estado"));
 				d.setPrecioFinal(rs.getDouble("precioFinal"));

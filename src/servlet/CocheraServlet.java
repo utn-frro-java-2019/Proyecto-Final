@@ -26,25 +26,26 @@ public class CocheraServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		String path = request.getPathInfo();
-		if (path.equals("/all")) {
-			AccountHasPermissions.boss(request, response);
-			this.all(request, response);
-		} else if (path.equals("/create")) {
-			AccountHasPermissions.boss(request, response);
-			this.create(request, response);
-		} else if (path.startsWith("/details")) {
-			AccountHasPermissions.boss(request, response);
-			this.details(request, response);
-		} else if (path.startsWith("/estado")) {
+
+		if (path.startsWith("/estado")) {
 			this.estado(request, response);
-		} else if (path.startsWith("/delete")) {
-			AccountHasPermissions.boss(request, response);
-			this.delete(request, response);
 		} else {
-			AccountHasPermissions.boss(request, response);
-			this.error(request, response);
+			boolean hasPermissions = AccountHasPermissions.boss(request, response);
+			if (!hasPermissions) {
+				return;
+			}
+			if (path.equals("/all")) {
+				this.all(request, response);
+			} else if (path.equals("/create")) {
+				this.create(request, response);
+			} else if (path.startsWith("/details")) {
+				this.details(request, response);
+			} else if (path.startsWith("/delete")) {
+				this.delete(request, response);
+			} else {
+				this.error(request, response);
+			}
 		}
 	}
 

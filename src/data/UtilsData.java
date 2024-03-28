@@ -3,7 +3,9 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class UtilsData {
 
@@ -14,7 +16,10 @@ public class UtilsData {
 					.prepareStatement("select now() as fecha");
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				fecha = rs.getTimestamp("fecha");
+				java.util.Calendar cal = Calendar.getInstance();
+				cal.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+
+				fecha = rs.getTimestamp("fecha", cal);
 			}
 
 			if (rs != null) {

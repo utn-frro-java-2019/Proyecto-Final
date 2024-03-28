@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.TimeZone;
 
 import domain.*;
 
@@ -18,13 +20,16 @@ public class EstadiaData extends IngresoData {
 			while (rs.next()) {
 				Estadia es = new Estadia();
 
+				java.util.Calendar cal = Calendar.getInstance();
+				cal.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+
 				es.setIdIngreso(rs.getInt("idIngreso"));
 				es.setComprobante(rs.getString("comprobante"));
 				es.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				es.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
 				es.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-				es.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
-				es.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
+				es.setFechaIngreso(rs.getTimestamp("fechaIngreso", cal));
+				es.setFechaRetiro(rs.getTimestamp("fechaRetiro", cal));
 				es.setPrecioFinal(rs.getDouble("precioFinal"));
 				es.setEstado(rs.getString("estado"));
 				es.setPrecioFinal(rs.getDouble("precioFinal"));
@@ -61,13 +66,16 @@ public class EstadiaData extends IngresoData {
 			while (rs.next()) {
 				es = new Estadia();
 
+				java.util.Calendar cal = Calendar.getInstance();
+				cal.setTimeZone(TimeZone.getTimeZone("GMT-3"));
+
 				es.setIdIngreso(rs.getInt("idIngreso"));
 				es.setComprobante(rs.getString("comprobante"));
 				es.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
 				es.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
 				es.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-				es.setFechaIngreso(rs.getTimestamp("fechaIngreso"));
-				es.setFechaRetiro(rs.getTimestamp("fechaRetiro"));
+				es.setFechaIngreso(rs.getTimestamp("fechaIngreso", cal));
+				es.setFechaRetiro(rs.getTimestamp("fechaRetiro", cal));
 				es.setPrecioFinal(rs.getDouble("precioFinal"));
 				es.setEstado(rs.getString("estado"));
 				es.setPrecioFinal(rs.getDouble("precioFinal"));

@@ -23,18 +23,21 @@ public class LoginJefeServlet extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/login-boss.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
 		try {
 			if (JefeController.authenticate(email, password)) {
 				Jefe jefe = JefeController.get();
-				SessionManager.SetAccountSession(request, jefe.getEmail(), jefe.getNombre(), jefe.getApellido(), "jefe");
+				SessionManager.SetAccountSession(request, jefe.getEmail(), jefe.getNombre(), jefe.getApellido(),
+						"jefe");
 				response.sendRedirect(request.getContextPath() + "/home");
 			} else {
 				WebAlertViewer.showAlertMessage(request, "Email o contraseña incorrectos", "danger");

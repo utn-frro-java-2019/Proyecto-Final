@@ -84,26 +84,6 @@
           <span>Editar precios y otros</span></a>
       </li>
 
-      <!-- Nav Item - Estadísticas Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStats" aria-expanded="true" aria-controls="collapseStats">
-          <i class="fas fa-chart-area"></i>
-          <span>Estadísticas</span>
-        </a>
-        <div id="collapseStats" class="collapse" aria-labelledby="headingStats" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded d-flex flex-column" style="gap: 0.25rem">
-            <h6 class="collapse-header">Estadísticas de tipo X</h6>
-            <a class="collapse-item px-2" href="#">Estadística 1</a>
-            <a class="collapse-item px-2" href="#">Estadística 2</a>
-            <a class="collapse-item px-2" href="#">Estadística 3</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Estadísticas de tipo Y</h6>
-            <a class="collapse-item px-2" href="#">Estadística 1</a>
-            <a class="collapse-item px-2" href="#">Estadística 2</a>
-            <a class="collapse-item px-2" href="#">Estadística 3</a>
-        </div>
-      </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
       <%}%>
