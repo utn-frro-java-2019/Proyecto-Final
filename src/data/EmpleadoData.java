@@ -174,7 +174,6 @@ public class EmpleadoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e1) {
-			e1.printStackTrace();
 			System.out.println(e1.getMessage());
 			throw new RuntimeException("Error al crear empleado");
 		} catch (Exception e1) {
