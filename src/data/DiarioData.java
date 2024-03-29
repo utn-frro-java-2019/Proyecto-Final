@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import domain.*;
-import util.CustomExceptions.DatabaseAccessException;;
+import util.CustomExceptions.DatabaseAccessException;
 
 public class DiarioData extends IngresoData {
 
