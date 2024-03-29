@@ -9,14 +9,17 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import domain.*;
+import util.CustomExceptions.DatabaseAccessException;;
 
 public class DiarioData extends IngresoData {
 
 	public ArrayList<Diario> getAllByCochera(String idCochera) {
 		ArrayList<Diario> ingresos = new ArrayList<Diario>();
+		Statement stmt = null;
+	    ResultSet rs = null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmt.executeQuery("select * from ingresos where tipoIngreso='diario' and idCochera='"
+			stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery("select * from ingresos where tipoIngreso='diario' and idCochera='"
 					+ idCochera + "' order by fechaIngreso desc");
 
 			while (rs.next()) {
@@ -40,31 +43,35 @@ public class DiarioData extends IngresoData {
 				ingresos.add(d);
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
+	        throw new DatabaseAccessException("Error SQL al intentar obtener los ingresos en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
+	        throw new DatabaseAccessException("Error general al intentar obtener los ingresos en la base de datos", e);
 		}
-
+		finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener ingresos", e);
+	        }		
+		}
 		return ingresos;
 	}
 
 	public Diario getOneActiveByComprobante(String comprobante) {
 		Diario d = null;
+		Statement stmt = null;
+	    ResultSet rs = null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmt
+			stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			rs = stmt
 					.executeQuery("select * from ingresos where comprobante='" + comprobante
 							+ "' and tipoIngreso='diario' and estado='activo'");
 
@@ -87,28 +94,32 @@ public class DiarioData extends IngresoData {
 				d.setAutoEnCochera(rs.getBoolean("autoEnCochera"));
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
+	        throw new DatabaseAccessException("Error SQL al intentar obtener un ingreso en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
+	        throw new DatabaseAccessException("Error general al intentar obtener un ingreso en la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener un ingreso", e);
+	        }		
 		}
 
 		return d;
 	}
 
 	public Diario insertOne(Diario diario) {
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
+			pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
 					"insert into ingresos (comprobante, idCochera, nroLugar, patente, fechaIngreso, estado, tipoIngreso) values (?, ?, ?, ?, NOW(), 'activo', 'diario')");
 
 			pstmt.setString(1, diario.getComprobante());
@@ -118,17 +129,21 @@ public class DiarioData extends IngresoData {
 
 			pstmt.executeUpdate();
 
-			if (pstmt != null) {
-				pstmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar guardar el ingreso en la base de datos");
+	        throw new DatabaseAccessException("Error SQL al intentar insertar el ingreso en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar guardar el ingreso en la base de datos");
+	        throw new DatabaseAccessException("Error al intentar insertar el ingreso en la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (pstmt != null) {
+	            	pstmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al insertar un ingreso", e);
+	        }		
 		}
 
 		return diario;
@@ -136,14 +151,17 @@ public class DiarioData extends IngresoData {
 
 	public Diario finalizeOne(Diario diario, Double price) {
 		Diario d = new Diario();
+		Statement stmt = null;
+		Statement stmtGet = null;
+		ResultSet rs = null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			stmt.executeUpdate(
 					"update ingresos set fechaRetiro=NOW(), precioFinal=" + price
 							+ ", estado='finalizado' where idIngreso=" + diario.getIdIngreso());
 
-			Statement stmtGet = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmtGet
+			stmtGet = FactoryConnection.getInstancia().getConn().createStatement();
+			rs = stmtGet
 					.executeQuery(
 							"select * from ingresos where comprobante='" + diario.getComprobante()
 									+ "' and tipoIngreso='diario'");
@@ -165,29 +183,32 @@ public class DiarioData extends IngresoData {
 				d.setAutoEnCochera(rs.getBoolean("autoEnCochera"));
 			}
 
-			if (stmt != null) {
-				stmt.close();
-			}
-
-			if (stmtGet != null) {
-				stmtGet.close();
-			}
-
-			if (rs != null) {
-				rs.close();
-			}
-
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
+	        throw new DatabaseAccessException("Error SQL al intentar finalizar el ingreso en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
+			throw new DatabaseAccessException("Error al intentar finalizar el ingreso en la base de datos");
 		}
+			finally {
+		        try {
+		            if (stmt != null) {
+		            	stmt.close();
+		            }
+		            if (stmtGet != null) {
+		            	stmtGet.close();
+		            }
+		            if (rs != null) {
+		            	rs.close();
+		            }
+		            FactoryConnection.getInstancia().releaseConn();
+		        } catch (SQLException e) {
+		            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al finalizar un ingreso", e);
+		        }		
+			}
 
 		return d;
 	}
-
+	
 }
+	
