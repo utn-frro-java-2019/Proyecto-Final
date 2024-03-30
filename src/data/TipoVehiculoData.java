@@ -7,14 +7,17 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import domain.*;
+import util.CustomExceptions.DatabaseAccessException;
 
 public class TipoVehiculoData {
 
 	public ArrayList<TipoVehiculo> getAll() {
 		ArrayList<TipoVehiculo> tiposVehiculos = new ArrayList<TipoVehiculo>();
+		Statement stmt = null;
+		ResultSet rs = null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmt.executeQuery("select * from tipos_vehiculos");
+			stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery("select * from tipos_vehiculos");
 
 			while (rs.next()) {
 				TipoVehiculo tv = new TipoVehiculo();
@@ -26,20 +29,23 @@ public class TipoVehiculoData {
 				tiposVehiculos.add(tv);
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar la lista de tipos de vehículos");
+	        throw new DatabaseAccessException("Error SQL al intentar obtener los tipos de vehiculo en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar la lista de tipos de vehículos");
+	        throw new DatabaseAccessException("Error al intentar obtener los tipos de vehiculo en la base de datos", e);
+		}
+		finally {
+	        try {
+	        	if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener los tipos de vehiculo", e);
+	        }		
 		}
 
 		return tiposVehiculos;
@@ -47,11 +53,13 @@ public class TipoVehiculoData {
 
 	public TipoVehiculo getOne(int idTipo) {
 		TipoVehiculo tv = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn()
+			pstmt = FactoryConnection.getInstancia().getConn()
 					.prepareStatement("select * from tipos_vehiculos where idTipo = ?");
 			pstmt.setInt(1, idTipo);
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				tv = new TipoVehiculo();
 
@@ -60,47 +68,57 @@ public class TipoVehiculoData {
 				tv.setPorcentajeMultiplicador(rs.getDouble("porcentajeMultiplicador"));
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-			if (pstmt != null) {
-				pstmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar el tipo de vehículo");
+	        throw new DatabaseAccessException("Error SQL al intentar obtener un tipo de vehiculo en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar el tipo de vehículo");
+	        throw new DatabaseAccessException("Error SQL al intentar obtener un tipo de vehiculo en la base de datos", e);
+		}
+		finally {
+	        try {
+	        	if (rs != null) {
+	                rs.close();
+	            }
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener un tipo de vehiculo", e);
+	        }		
 		}
 
 		return tv;
 	}
 
 	public void deleteOne(int idTipo) {
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn()
+			pstmt = FactoryConnection.getInstancia().getConn()
 					.prepareStatement("delete from tipos_vehiculos where idTipo = ?");
 			pstmt.setInt(1, idTipo);
 			pstmt.executeUpdate();
-			if (pstmt != null) {
-				pstmt.close();
-			}
+			
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al eliminar el tipo de vehículo");
+	        throw new DatabaseAccessException("Error SQL al intentar eliminar un tipo de vehiculo en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al eliminar el tipo de vehículo");
+	        throw new DatabaseAccessException("Error SQL al intentar eliminar un tipo de vehiculo en la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar el statement al obtener un tipo de vehiculo", e);
+	        }		
 		}
 	}
 
 	public void insertOne(TipoVehiculo tv) {
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn()
+			pstmt = FactoryConnection.getInstancia().getConn()
 					.prepareStatement(
 							"insert into tipos_vehiculos (descripcion, porcentajeMultiplicador) values (?,?)");
 			pstmt.setString(1, tv.getDescripcion());
@@ -108,23 +126,28 @@ public class TipoVehiculoData {
 
 			pstmt.executeUpdate();
 
-			if (pstmt != null) {
-				pstmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al crear el tipo de vehículo");
+	        throw new DatabaseAccessException("Error SQL al intentar insertar un tipo de vehiculo en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al crear el tipo de vehículo");
+	        throw new DatabaseAccessException("Error al intentar insertar un tipo de vehiculo en la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al insertar un tipo de vehiculo", e);
+	        }		
 		}
 	}
 
 	public void updateOne(TipoVehiculo tv) {
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
+			pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
 					"update tipos_vehiculos set descripcion = ? , porcentajeMultiplicador = ? where idTipo = ? ");
 			pstmt.setString(1, tv.getDescripcion());
 			pstmt.setDouble(2, tv.getPorcentajeMultiplicador());
@@ -132,17 +155,20 @@ public class TipoVehiculoData {
 
 			pstmt.executeUpdate();
 
-			if (pstmt != null) {
-				pstmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al actualizar el tipo de vehículo");
+	        throw new DatabaseAccessException("Error SQL al intentar modificar un tipo de vehiculo en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al actualizar el tipo de vehículo");
+	        throw new DatabaseAccessException("Error al intentar modificar un tipo de vehiculo en la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al modificar un tipo de vehiculo", e);
+	        }		
 		}
 	}
 }
