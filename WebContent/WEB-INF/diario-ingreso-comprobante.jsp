@@ -32,13 +32,13 @@
             El ingreso se ha registrado de forma exitosa.
           </div>
           <div class="form-group row">
-            <div class="col-sm-12 mb-3 mb-sm-0">
+            <div class="col-sm-12">
              <label class="mb-0 ml-1" for="id">Id de Ingreso</label>
               <input class="form-control form-control-user" type="text" name="id" value="<%=diario.getComprobante()%>" readonly>
             </div>
           </div>
           <div class="form-group row">
-            <div class="col-sm-5">
+            <div class="col-sm-5 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="fechaI">Fecha</label>
               <input class="form-control form-control-user" type="text" name="fechaI" value="<%=diario.getFechaIngreso()%>" readonly>
             </div>
@@ -46,11 +46,10 @@
               <label class="mb-0 ml-1" for="patente">Patente</label>
               <input class="form-control form-control-user" type="text" name="patente" value="<%=diario.getVehiculo().getPatente()%>" readonly>
             </div>
-            <div class="col-sm-3 mb-3 mb-sm-0">
+            <div class="col-sm-3">
               <label class="mb-0 ml-1" for="lugar">Lugar</label>
               <input class="form-control form-control-user" type="text" name="lugar" value="<%=diario.getLugar().getNroLugar()%>" readonly>
             </div>
-
           </div>
         </div>
       </div>

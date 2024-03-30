@@ -43,8 +43,8 @@
               <input class="form-control form-control-user" type="text" name="lugar" value="<%=diario.getLugar().getNroLugar()%>" readonly>
             </div>
             <div class="col-sm-4">
-              <label class="mb-0 ml-1" for="monto">Monto</label>
-              <input class="form-control form-control-user" type="text" name="monto" value="<%=diario.getPrecioFinal()%>" readonly>
+              <label class="mb-0 ml-1" for="precio">Precio</label>
+              <input class="form-control form-control-user" type="text" name="precio" value="$<%=diario.getPrecioFinal()%>" readonly>
             </div>
           </div>
         </div>
