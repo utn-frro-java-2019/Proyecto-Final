@@ -21,7 +21,7 @@
             <div class="form-group row">
               <div class="col-sm-4 mb-3 mb-sm-0">
                 <label class="mb-0 ml-1" for="Patente">Patente</label>
-                <input class="form-control form-control-user" type="text" name="patente" value="<%=v.getPatente()%>" required>
+                <input class="form-control form-control-user" type="text" name="patente" value="<%=v.getPatente()%>" required readonly>
               </div>
               <div class="col-sm-8">
                 <label class="mb-0 ml-1" for="Propietario">Propietario</label>

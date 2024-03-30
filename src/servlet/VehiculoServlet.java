@@ -128,7 +128,22 @@ public class VehiculoServlet extends HttpServlet {
 	}
 
 	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// TODO
+		try {
+			String patente = request.getParameter("patente");
+			String modelo = request.getParameter("modelo");
+			String descripcion = request.getParameter("desc");
+			String marca = request.getParameter("marca");
+			String propietario = request.getParameter("propietario");
+			String telefonoContacto = request.getParameter("tel");
+			TipoVehiculo tipo = new TipoVehiculo();
+			tipo.setIdTipo(Integer.parseInt(request.getParameter("tipo")));
+			Vehiculo v = new Vehiculo(patente, modelo, descripcion, marca, tipo, propietario, telefonoContacto);
+			VehiculoController.updateOne(v);
+			WebAlertViewer.showAlertMessage(request, "El vehículo se ha editado correctamente.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
+		this.all(request, response);
 	}
 
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -33,24 +33,23 @@ public class VehiculoData {
 				vehiculos.add(v);
 			}
 
-
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar recuperar los vehiculos de la base de datos", e);
+			throw new DatabaseAccessException("Error SQL al intentar recuperar los vehiculos de la base de datos", e);
 		} catch (Exception e) {
-	        throw new DatabaseAccessException("Error al intentar recuperar los vehiculos de la base de datos", e);
-		}
-		finally {
-	        try {
-	        	if (rs != null) {
-	            	rs.close();
-	            }
-	            if (stmt != null) {
-	            	stmt.close();
-	            }
-	            FactoryConnection.getInstancia().releaseConn();
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al recuperar los vehiculos", e);
-	        }		
+			throw new DatabaseAccessException("Error al intentar recuperar los vehiculos de la base de datos", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw new DatabaseAccessException(
+						"Error al intentar cerrar la conexión o el statement al recuperar los vehiculos", e);
+			}
 		}
 
 		return vehiculos;
@@ -78,22 +77,22 @@ public class VehiculoData {
 			}
 
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar recuperar un vehiculo de la base de datos", e);
+			throw new DatabaseAccessException("Error SQL al intentar recuperar un vehiculo de la base de datos", e);
 		} catch (Exception e) {
-	        throw new DatabaseAccessException("Error SQL al intentar recuperar un vehiculo de la base de datos", e);
-		}
-		finally {
-	        try {
-	        	if (rs != null) {
-	            	rs.close();
-	            }
-	            if (pstmt != null) {
-	            	pstmt.close();
-	            }
-	            FactoryConnection.getInstancia().releaseConn();
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al recuperar un vehiculo", e);
-	        }		
+			throw new DatabaseAccessException("Error SQL al intentar recuperar un vehiculo de la base de datos", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw new DatabaseAccessException(
+						"Error al intentar cerrar la conexión o el statement al recuperar un vehiculo", e);
+			}
 		}
 
 		return v;
@@ -111,18 +110,17 @@ public class VehiculoData {
 			}
 
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar eliminar un vehiculo de la base de datos", e);
+			throw new DatabaseAccessException("Error SQL al intentar eliminar un vehiculo de la base de datos", e);
 		} catch (Exception e) {
-	        throw new DatabaseAccessException("Error al intentar eliminar un vehiculo de la base de datos", e);
-		}
-		finally {
-	        try {
-	            if (pstmt != null) {
-	            	pstmt.close();
-	            }
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar el statement al eliminar un vehiculo", e);
-	        }		
+			throw new DatabaseAccessException("Error al intentar eliminar un vehiculo de la base de datos", e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				throw new DatabaseAccessException("Error al intentar cerrar el statement al eliminar un vehiculo", e);
+			}
 		}
 	}
 
@@ -141,23 +139,50 @@ public class VehiculoData {
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar insertar un vehiculo de la base de datos", e);
+			throw new DatabaseAccessException("Error SQL al intentar insertar un vehiculo de la base de datos", e);
 		} catch (Exception e) {
-	        throw new DatabaseAccessException("Error al intentar insertar un vehiculo de la base de datos", e);
-		}
-		finally {
-	        try {
-	            if (pstmt != null) {
-	            	pstmt.close();
-	            }
-	            FactoryConnection.getInstancia().releaseConn();
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al insertar un vehiculo", e);
-	        }		
+			throw new DatabaseAccessException("Error al intentar insertar un vehiculo de la base de datos", e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw new DatabaseAccessException(
+						"Error al intentar cerrar la conexión o el statement al insertar un vehiculo", e);
+			}
 		}
 	}
 
 	public void updateOne(Vehiculo v) {
-		// TODO
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
+					"update vehiculos set modelo = ?, descripcion = ?, marca = ?, idTipo = ?, propietario = ?, telefonoContacto = ? where patente = ?");
+			pstmt.setString(1, v.getModelo());
+			pstmt.setString(2, v.getDescripcion());
+			pstmt.setString(3, v.getMarca());
+			pstmt.setInt(4, v.getTipo().getIdTipo());
+			pstmt.setString(5, v.getPropietario());
+			pstmt.setString(6, v.getTelefonoContacto());
+			pstmt.setString(7, v.getPatente());
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new DatabaseAccessException("Error SQL al intentar actualizar un vehiculo de la base de datos", e);
+		} catch (Exception e) {
+			throw new DatabaseAccessException("Error al intentar actualizar un vehiculo de la base de datos", e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw new DatabaseAccessException(
+						"Error al intentar cerrar la conexión o el statement al actualizar un vehiculo", e);
+			}
+		}
 	}
 }

@@ -6,22 +6,42 @@ import domain.*;
 
 public class VehiculoController {
 	public static ArrayList<Vehiculo> getAll() {
-		return new VehiculoData().getAll();
+		try {
+			return new VehiculoData().getAll();
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static Vehiculo getOne(String patente) {
-		return new VehiculoData().getOne(patente);
+		try {
+			return new VehiculoData().getOne(patente);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void deleteOne(String patente) {
-		new VehiculoData().deleteOne(patente);
+		try {
+			new VehiculoData().deleteOne(patente);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void insertOne(Vehiculo v) {
-		new VehiculoData().insertOne(v);
+		try {
+			new VehiculoData().insertOne(v);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 
 	public static void updateOne(Vehiculo v) {
-		// TODO
+		try {
+			new VehiculoData().updateOne(v);
+		} catch (Exception e) {
+			throw e;
+		}
 	}
 }
