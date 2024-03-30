@@ -214,7 +214,7 @@ CREATE TABLE `precio_por_hora` (
 
 LOCK TABLES `precio_por_hora` WRITE;
 /*!40000 ALTER TABLE `precio_por_hora` DISABLE KEYS */;
-INSERT INTO `precio_por_hora` VALUES ('1',60);
+INSERT INTO `precio_por_hora` VALUES ('1',1000);
 /*!40000 ALTER TABLE `precio_por_hora` ENABLE KEYS */;
 UNLOCK TABLES;
 
