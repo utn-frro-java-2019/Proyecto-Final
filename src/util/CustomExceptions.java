@@ -51,5 +51,126 @@ public class CustomExceptions {
 			super(message, cause);
 		}
     }
+	
+	public static class CocheraNullException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = 9206785505356728565L;
 
+		public CocheraNullException(String message) {
+            super(message);
+        }
+
+		public CocheraNullException(String message, Throwable cause) {
+			super(message, cause);
+		}
+    }
+	public static class VehiculoNullException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = -3437231938853899010L;
+
+		public VehiculoNullException(String message) {
+            super(message);
+        }
+
+		public VehiculoNullException(String message, Throwable cause) {
+			super(message, cause);
+		}
+    }
+	public static class VehiculoExistenteException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = 6502573891487734025L;
+
+		public VehiculoExistenteException(String message) {
+            super(message);
+        }
+
+		public VehiculoExistenteException(String message, Throwable cause) {
+			super(message, cause);
+		}
+    }
+	public static class VehiculoEstacionadoException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = 3543432749440589939L;
+
+		public VehiculoEstacionadoException(String message) {
+            super(message);
+        }
+
+		public VehiculoEstacionadoException(String message, Throwable cause) {
+			super(message, cause);
+		}
+    }
+	public static class LugarNullException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = -3437231938853899010L;
+
+		public LugarNullException(String message) {
+            super(message);
+        }
+
+		public LugarNullException(String message, Throwable cause) {
+			super(message, cause);
+		}
+    }
+	public static class MultiplicadorInvalidoException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = -7101252010564130286L;
+
+		public MultiplicadorInvalidoException(String message) {
+            super(message);
+        }
+
+		public MultiplicadorInvalidoException(String message, Throwable cause) {
+			super(message, cause);
+		}
+    }
+	public static class PorcentajeMultiplicadorInvalidoException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = 714411139467892471L;
+
+		public PorcentajeMultiplicadorInvalidoException(String message) {
+            super(message);
+        }
+
+		public PorcentajeMultiplicadorInvalidoException(String message, Throwable cause) {
+			super(message, cause);
+		}
+    }
+	public static class MultiplicadorExistenteException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = -7101252010564130286L;
+
+		public MultiplicadorExistenteException(String message) {
+            super(message);
+        }
+
+		public MultiplicadorExistenteException(String message, Throwable cause) {
+			super(message, cause);
+		}
+    }
+	public static class PorcentajeMultiplicadorExistenteException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = 714411139467892471L;
+
+		public PorcentajeMultiplicadorExistenteException(String message) {
+            super(message);
+        }
+
+		public PorcentajeMultiplicadorExistenteException(String message, Throwable cause) {
+			super(message, cause);
+		}
+	}
+	public static class PrecioPorHoraInvalidoException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = 714411139467892471L;
+
+		public PrecioPorHoraInvalidoException(String message) {
+            super(message);
+        }
+
+		public PrecioPorHoraInvalidoException(String message, Throwable cause) {
+			super(message, cause);
+		}
+	}
+	public static class EstadiaNullException extends RuntimeException implements Serializable {
+		private static final long serialVersionUID = -3418618285071918130L;
+
+		public EstadiaNullException(String message) {
+            super(message);
+        }
+
+		public EstadiaNullException(String message, Throwable cause) {
+			super(message, cause);
+		}
+    }
 }

@@ -9,14 +9,17 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import domain.*;
+import util.CustomExceptions.DatabaseAccessException;
 
 public class EstadiaData extends IngresoData {
 
 	public ArrayList<Estadia> getAllByCochera(String idCochera) {
 		ArrayList<Estadia> ingresos = new ArrayList<Estadia>();
+		Statement stmt = null;
+		ResultSet rs = null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmt.executeQuery("select * from ingresos where tipoIngreso='estadia' and idCochera='"
+			stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery("select * from ingresos where tipoIngreso='estadia' and idCochera='"
 					+ idCochera + "' order by fechaIngreso desc");
 
 			while (rs.next()) {
@@ -40,20 +43,23 @@ public class EstadiaData extends IngresoData {
 				ingresos.add(e);
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
+			throw new DatabaseAccessException("Error SQL al intentar insertar una estadia en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
+			throw new DatabaseAccessException("Error al intentar insertar una estadia en la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al insertar una estadia", e);
+	        }		
 		}
 
 		return ingresos;
@@ -61,9 +67,11 @@ public class EstadiaData extends IngresoData {
 
 	public Estadia getOneActiveByComprobante(String comprobante) {
 		Estadia d = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmt
+			stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			rs = stmt
 					.executeQuery("select * from ingresos where comprobante='" + comprobante
 							+ "' and tipoIngreso='estadia' and estado='activo'");
 
@@ -86,28 +94,32 @@ public class EstadiaData extends IngresoData {
 				d.setAutoEnCochera(rs.getBoolean("autoEnCochera"));
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
+			throw new DatabaseAccessException("Error SQL al intentar obtener una estadia activa por comprobante", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar obtener el ingreso en la base de datos");
+			throw new DatabaseAccessException("Error al intentar obtener una estadia activa por comprobante", e);
+		}
+		finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener una estadia activa por comprobante", e);
+	        }		
 		}
 
 		return d;
 	}
 
 	public Estadia insertOne(Estadia estadia) {
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
+			pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
 					"insert into ingresos (comprobante, idCochera, nroLugar, patente, fechaIngreso, estado, tipoIngreso, fechaRetiro, precioFinal, autoEnCochera) values (?, ?, ?, ?, NOW(), 'activo', 'estadia', ?, ?, ?)");
 
 			pstmt.setString(1, estadia.getComprobante());
@@ -126,76 +138,92 @@ public class EstadiaData extends IngresoData {
 			FactoryConnection.getInstancia().releaseConn();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar guardar el ingreso en la base de datos");
+			throw new DatabaseAccessException("Error SQL al intentar insertar una estadia en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar guardar el ingreso en la base de datos");
+			throw new DatabaseAccessException("Error al intentar insertar una estadia en la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (pstmt != null) {
+	                pstmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al insertaruna estadia", e);
+	        }		
 		}
 
 		return estadia;
 	}
 
 	public void salidaVehiculo(Integer idIngreso) {
+		Statement stmt = null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			stmt.executeUpdate("update ingresos set autoEnCochera=false where idIngreso=" + idIngreso);
 
-			if (stmt != null) {
-				stmt.close();
-			}
-
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar sacar el vehículo de la cochera en la base de datos");
+			throw new DatabaseAccessException("Error SQL al intentar modificar la salida de vehiculo en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar sacar el vehículo de la cochera en la base de datos");
+			throw new DatabaseAccessException("Error al intentar modificar la salida de vehiculo en la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al modificar la salida de vehiculo", e);
+	        }		
 		}
 
 	}
 
 	public void ingresoVehiculo(Integer idIngreso) {
+		Statement stmt = null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			stmt.executeUpdate("update ingresos set autoEnCochera=true where idIngreso=" + idIngreso);
 
-			if (stmt != null) {
-				stmt.close();
-			}
-
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar ingresar el vehículo a la cochera en la base de datos");
+			throw new DatabaseAccessException("Error SQL al intentar actualizar el ingreso de vehiculo al lugar por estadia en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar ingresar el vehículo a la cochera en la base de datos");
+			throw new DatabaseAccessException("Error al intentar actualizar el ingreso de vehiculo al lugar por estadia en la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al actualizar el ingreso de vehiculo al lugar por estadia", e);
+	        }		
 		}
 
 	}
 
 	public void finalizeOne(Integer idIngreso) {
+		Statement stmt = null;
 		try {
-			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			stmt.executeUpdate("update ingresos set estado='finalizado' where idIngreso=" + idIngreso);
 
-			if (stmt != null) {
-				stmt.close();
-			}
-
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
+			throw new DatabaseAccessException("Error SQL al intentar finalizar la estadia la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
+			throw new DatabaseAccessException("Error al intentar finalizar la estadia la base de datos", e);
+		}
+		finally {
+	        try {
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al intentar finalizar la estadia", e);
+	        }		
 		}
 	}
 

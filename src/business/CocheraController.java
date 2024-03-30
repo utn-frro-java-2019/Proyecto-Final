@@ -8,7 +8,12 @@ import util.CustomExceptions.*;
 
 public class CocheraController {
 	public static ArrayList<Cochera> getAll() {
+		try {
 		return new CocheraData().getAll();
+		}
+		catch(DatabaseAccessException e){
+			throw new DatabaseAccessException("Error al intentar obtener las cocheras en la base de datos", e);
+		}
 	}
 
 	public static Cochera getOne(int idCochera) {
