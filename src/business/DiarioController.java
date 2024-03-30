@@ -56,10 +56,14 @@ public class DiarioController extends IngresoController {
 	}
 
 	public static Diario finalizeOne(Diario d, Double price) {
-		Diario diario = new DiarioData().finalizeOne(d, price);
-		Lugar lugar = d.getLugar();
-		lugar.setOcupado(false);
-		LugarController.updateOne(lugar);
-		return diario;
+		try {
+			Diario diario = new DiarioData().finalizeOne(d, price);
+			Lugar lugar = d.getLugar();
+			lugar.setOcupado(false);
+			LugarController.updateOne(lugar);
+			return diario;
+		} catch (Exception e) {
+			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
+		}
 	}
 }

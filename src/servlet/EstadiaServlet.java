@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,12 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import business.DiarioController;
 import business.EstadiaController;
 import business.MultiplicadorEstadiaController;
 import business.PrecioPorHoraController;
 import business.VehiculoController;
-import domain.Diario;
 import domain.Estadia;
 import domain.Vehiculo;
 import util.AccountHasPermissions;
@@ -41,6 +38,12 @@ public class EstadiaServlet extends HttpServlet {
 			this.all(request, response);
 		} else if (path.equals("/add")) {
 			this.add(request, response);
+		} else if (path.startsWith("/salida-v")) {
+			this.salidaV(request, response);
+		} else if (path.startsWith("/ingreso-v")) {
+			this.ingresoV(request, response);
+		} else if (path.startsWith("/finalizar")) {
+			this.finalizar(request, response);
 		} else if (path.startsWith("/get-precio-final")) {
 			this.getPrecioFinal(request, response);
 		} else {
@@ -161,6 +164,51 @@ public class EstadiaServlet extends HttpServlet {
 			this.add(request, response);
 		}
 
+	}
+
+	private void ingresoV(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		try {
+			String path = request.getPathInfo();
+			String comprobante = path.replace("/ingreso-v/", "");
+
+			EstadiaController.ingresoVehiculo(comprobante);
+			WebAlertViewer.showAlertMessage(request, "El vehículo ha sido ingresado.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
+
+		this.all(request, response);
+	}
+
+	private void salidaV(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		try {
+			String path = request.getPathInfo();
+			String comprobante = path.replace("/salida-v/", "");
+
+			EstadiaController.salidaVehiculo(comprobante);
+			WebAlertViewer.showAlertMessage(request, "El vehículo ha sido retirado.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
+
+		this.all(request, response);
+	}
+
+	private void finalizar(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		try {
+			String path = request.getPathInfo();
+			String comprobante = path.replace("/finalizar/", "");
+
+			EstadiaController.finalizeOne(comprobante);
+			WebAlertViewer.showAlertMessage(request, "La estadía ha sido finalizada.");
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
+
+		this.all(request, response);
 	}
 
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

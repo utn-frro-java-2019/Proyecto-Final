@@ -62,12 +62,12 @@
               <td class="nw"><%=dateFormat.format(estadia.getFechaRetiro())%></td>
               <td class="nw">$<%=estadia.getPrecioFinal()%></td> 
               <td class="nw"><span class="badge badge-pill badge-<%=estadia.getEstado().equals("activo") ? "info" : "dark"%>"><%=estadia.getEstado()%></span></td>
-              <td class="nw"><%=estadia.getAutoEnCochera() ? "Sí" : "No"%></td>
+              <td class="nw"><div class="badge badge-pill badge-<%=estadia.getAutoEnCochera() ? "success" : "warning"%>"><%=estadia.getAutoEnCochera() ? "Sí" : "No"%></div></td>
                 <td class="d-flex align-items-center p-0">
                   <%if(estadia.getAutoEnCochera()){%>
-                  <a style="white-space: nowrap" href="/Cocheras/estadia/egreso/<%=estadia.getComprobante()%>" class="d-flex align-items-center btn btn-info m-1">Retirar Vehículo</a>
+                  <a style="white-space: nowrap" href="/Cocheras/estadias/salida-v/<%=estadia.getComprobante()%>" class="d-flex align-items-center btn btn-info m-1">Retirar Vehículo</a>
                   <%} else {%>
-                  <a style="white-space: nowrap" href="/Cocheras/estadias/ingreso/<%=estadia.getComprobante()%>" class="d-flex align-items-center btn btn-info m-1">Ingresar Vehículo</a>
+                  <a style="white-space: nowrap" href="/Cocheras/estadias/ingreso-v/<%=estadia.getComprobante()%>" class="d-flex align-items-center btn btn-info m-1">Ingresar Vehículo</a>
                   <%}%>
                   <a style="white-space: nowrap" href="/Cocheras/estadias/finalizar/<%=estadia.getComprobante()%>" class="d-flex align-items-center btn btn-success m-1 <%=estadia.getEstado().equals("activo") ? "" : "disabled"%>">Finalizar Estadía</a>
                   <a style="white-space: nowrap" target="_Blank" href="https://api.whatsapp.com/send?phone=<%=estadia.getVehiculo().getTelefonoContacto()%>" class="d-flex align-items-center btn btn-primary m-1">

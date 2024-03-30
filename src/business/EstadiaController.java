@@ -60,12 +60,46 @@ public class EstadiaController extends IngresoController {
 		}
 	}
 
-	public static Estadia finalizeOne(Estadia d, Double price) {
-		// TODO: implementar
-		Estadia diario = new EstadiaData().finalizeOne(d, price);
-		Lugar lugar = d.getLugar();
-		lugar.setOcupado(false);
-		LugarController.updateOne(lugar);
-		return diario;
+	public static void salidaVehiculo(String comprobante) {
+		Estadia estadia = getOneActiveByComprobante(comprobante);
+		if (estadia == null) {
+			throw new RuntimeException("El comprobante solicitado no se corresponde con ningún ingreso activo en nuestra base de datos.");
+		}
+
+		try {
+			new EstadiaData().salidaVehiculo(estadia.getIdIngreso());
+		} catch (Exception e) {
+			throw new RuntimeException("Error al intentar sacar el vehículo de la cochera en la base de datos");
+		}
+	}
+
+	public static void ingresoVehiculo(String comprobante) {
+		Estadia estadia = getOneActiveByComprobante(comprobante);
+		if (estadia == null) {
+			throw new RuntimeException("El comprobante solicitado no se corresponde con ningún ingreso activo en nuestra base de datos.");
+		}
+	
+		try {
+			new EstadiaData().ingresoVehiculo(estadia.getIdIngreso());
+		} catch (Exception e) {
+			throw new RuntimeException("Error al intentar ingresar el vehículo a la cochera en la base de datos");
+		}
+	}
+
+	public static void finalizeOne(String comprobante) {
+		Estadia estadia = getOneActiveByComprobante(comprobante);
+		if (estadia == null) {
+			throw new RuntimeException("El comprobante solicitado no se corresponde con ningún ingreso activo en nuestra base de datos.");
+		}
+
+		try {
+			new EstadiaData().finalizeOne(estadia.getIdIngreso());
+			Lugar lugar = estadia.getLugar();
+			lugar.setOcupado(false);
+			LugarController.updateOne(lugar);
+		} catch (Exception e) {
+			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
+		}
+
 	}
 }

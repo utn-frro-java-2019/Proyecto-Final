@@ -109,7 +109,7 @@ public class EstadiaData extends IngresoData {
 		try {
 			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(
 					"insert into ingresos (comprobante, idCochera, nroLugar, patente, fechaIngreso, estado, tipoIngreso, fechaRetiro, precioFinal, autoEnCochera) values (?, ?, ?, ?, NOW(), 'activo', 'estadia', ?, ?, ?)");
-			
+
 			pstmt.setString(1, estadia.getComprobante());
 			pstmt.setInt(2, estadia.getCochera().getIdCochera());
 			pstmt.setInt(3, estadia.getLugar().getNroLugar());
@@ -136,48 +136,56 @@ public class EstadiaData extends IngresoData {
 		return estadia;
 	}
 
-	public Estadia finalizeOne(Estadia estadia, Double price) {
-		// TODO: Implementar
-		Estadia d = new Estadia();
+	public void salidaVehiculo(Integer idIngreso) {
 		try {
 			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-			stmt.executeUpdate(
-					"update ingresos set fechaRetiro=NOW(), precioFinal=" + price
-							+ ", estado='finalizado' where idIngreso=" + estadia.getIdIngreso());
-
-			Statement stmtGet = FactoryConnection.getInstancia().getConn().createStatement();
-			ResultSet rs = stmtGet
-					.executeQuery(
-							"select * from ingresos where comprobante='" + estadia.getComprobante()
-									+ "' and tipoIngreso='estadia'");
-
-			while (rs.next()) {
-				java.util.Calendar cal = Calendar.getInstance();
-				cal.setTimeZone(TimeZone.getTimeZone("GMT-3"));
-
-				d.setIdIngreso(rs.getInt("idIngreso"));
-				d.setComprobante(rs.getString("comprobante"));
-				d.setCochera(new data.CocheraData().getOne(rs.getInt("idCochera")));
-				d.setLugar(new data.LugarData().getOne(rs.getInt("nroLugar"), rs.getInt("idCochera")));
-				d.setVehiculo(new data.VehiculoData().getOne(rs.getString("patente")));
-				d.setFechaIngreso(rs.getTimestamp("fechaIngreso", cal));
-				d.setFechaRetiro(rs.getTimestamp("fechaRetiro", cal));
-				d.setPrecioFinal(rs.getDouble("precioFinal"));
-				d.setEstado(rs.getString("estado"));
-				d.setPrecioFinal(rs.getDouble("precioFinal"));
-				d.setAutoEnCochera(rs.getBoolean("autoEnCochera"));
-			}
+			stmt.executeUpdate("update ingresos set autoEnCochera=false where idIngreso=" + idIngreso);
 
 			if (stmt != null) {
 				stmt.close();
 			}
 
-			if (stmtGet != null) {
-				stmtGet.close();
+			FactoryConnection.getInstancia().releaseConn();
+
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar sacar el vehículo de la cochera en la base de datos");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar sacar el vehículo de la cochera en la base de datos");
+		}
+
+	}
+
+	public void ingresoVehiculo(Integer idIngreso) {
+		try {
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt.executeUpdate("update ingresos set autoEnCochera=true where idIngreso=" + idIngreso);
+
+			if (stmt != null) {
+				stmt.close();
 			}
 
-			if (rs != null) {
-				rs.close();
+			FactoryConnection.getInstancia().releaseConn();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar ingresar el vehículo a la cochera en la base de datos");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException("Error al intentar ingresar el vehículo a la cochera en la base de datos");
+		}
+
+	}
+
+	public void finalizeOne(Integer idIngreso) {
+		try {
+			Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
+			stmt.executeUpdate("update ingresos set estado='finalizado' where idIngreso=" + idIngreso);
+
+			if (stmt != null) {
+				stmt.close();
 			}
 
 			FactoryConnection.getInstancia().releaseConn();
@@ -189,8 +197,6 @@ public class EstadiaData extends IngresoData {
 			System.out.println(e.getMessage());
 			throw new RuntimeException("Error al intentar finalizar el ingreso en la base de datos");
 		}
-
-		return d;
 	}
 
 }
