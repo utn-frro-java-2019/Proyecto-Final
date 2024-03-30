@@ -296,7 +296,7 @@ CREATE TABLE `vehiculos` (
 
 LOCK TABLES `vehiculos` WRITE;
 /*!40000 ALTER TABLE `vehiculos` DISABLE KEYS */;
-INSERT INTO `vehiculos` VALUES ('GKD-280','Megane','Auto 2 puertas','Renault',1,'Gonzalez, Rodrigo','+5493411376456'),('ICI-350','Ranger 2019','Camioneta 2 puertas utilitaria','Ford',2,'Juarez, Hernan','+5493417865123'),('MKG-462','Zr 150','Moto blanca con asiento negro','Zanella',3,'Abril, Fisher','+5493412459871'),('NAS-570','147','Auto 2 puertas','Fiat',1,'Perez, Gerardo','+5493418512659');
+INSERT INTO `vehiculos` VALUES ('GKD-280','Megane','Auto 2 puertas','Renault',1,'Gonzalez, Rodrigo','5493411376456'),('ICI-350','Ranger 2019','Camioneta 2 puertas utilitaria','Ford',2,'Juarez, Hernan','5493417865123'),('MKG-462','Zr 150','Moto blanca con asiento negro','Zanella',3,'Abril, Fisher','5493412459871'),('NAS-570','147','Auto 2 puertas','Fiat',1,'Perez, Gerardo','5493418512659');
 /*!40000 ALTER TABLE `vehiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -20,31 +20,31 @@
           <div class="form-group row">
             <div class="col-sm-12 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="comprobante">Id de Ingreso</label>
-              <input class="form-control form-control-user" type="text" name="comprobante" value="<%=diario.getComprobante()%>">
+              <input class="form-control form-control-user" type="text" name="comprobante" value="<%=diario.getComprobante()%>" readonly>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="fechaI">Fecha de Ingreso</label>
-              <input class="form-control form-control-user" type="text" name="fechaI" value="<%=diario.getFechaIngreso()%>">
+              <input class="form-control form-control-user" type="text" name="fechaI" value="<%=diario.getFechaIngreso()%>" readonly>
             </div>
             <div class="col-sm-6">
               <label class="mb-0 ml-1" for="fechaS">Fecha de Salida</label>
-              <input class="form-control form-control-user" type="text" name="fechaS" value="<%=diario.getFechaRetiro()%>">
+              <input class="form-control form-control-user" type="text" name="fechaS" value="<%=diario.getFechaRetiro()%>" readonly>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="patente">Patente</label>
-              <input class="form-control form-control-user" type="text" name="patente" value="<%=diario.getVehiculo().getPatente()%>">
+              <input class="form-control form-control-user" type="text" name="patente" value="<%=diario.getVehiculo().getPatente()%>" readonly>
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="lugar">Lugar</label>
-              <input class="form-control form-control-user" type="text" name="lugar" value="<%=diario.getLugar().getNroLugar()%>">
+              <input class="form-control form-control-user" type="text" name="lugar" value="<%=diario.getLugar().getNroLugar()%>" readonly>
             </div>
             <div class="col-sm-4">
               <label class="mb-0 ml-1" for="monto">Monto</label>
-              <input class="form-control form-control-user" type="text" name="monto" value="<%=diario.getPrecioFinal()%>">
+              <input class="form-control form-control-user" type="text" name="monto" value="<%=diario.getPrecioFinal()%>" readonly>
             </div>
           </div>
         </div>

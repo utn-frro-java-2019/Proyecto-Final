@@ -57,35 +57,35 @@
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="patente">Patente</label>
-              <input class="form-control form-control-user" type="text" name="patente" value="<%=d.getVehiculo().getPatente()%>">
+              <input class="form-control form-control-user" type="text" name="patente" value="<%=d.getVehiculo().getPatente()%>" readonly>
             </div>
             <div class="col-sm-8">
               <label class="mb-0 ml-1" for="propietario">Propietario</label>
-              <input class="form-control form-control-user" type="text" name="propietario" value="<%=d.getVehiculo().getPropietario()%>">
+              <input class="form-control form-control-user" type="text" name="propietario" value="<%=d.getVehiculo().getPropietario()%>" readonly>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="tipo">Tipo</label>
-              <input class="form-control form-control-user" type="text" name="tipo" value="<%=d.getVehiculo().getTipo().getDescripcion()%>">
+              <input class="form-control form-control-user" type="text" name="tipo" value="<%=d.getVehiculo().getTipo().getDescripcion()%>" readonly>
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="marca">Marca</label>
-              <input class="form-control form-control-user" type="text" name="marca" value="<%=d.getVehiculo().getMarca()%>">
+              <input class="form-control form-control-user" type="text" name="marca" value="<%=d.getVehiculo().getMarca()%>" readonly>
             </div>
             <div class="col-sm-4">
               <label class="mb-0 ml-1" for="modelo">Modelo</label>
-              <input class="form-control form-control-user" type="text" name="modelo" value="<%=d.getVehiculo().getModelo()%>">
+              <input class="form-control form-control-user" type="text" name="modelo" value="<%=d.getVehiculo().getModelo()%>" readonly>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-7 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="desc">Descripción</label>
-              <input class="form-control form-control-user" type="text" name="desc" value="<%=d.getVehiculo().getDescripcion()%>">
+              <input class="form-control form-control-user" type="text" name="desc" value="<%=d.getVehiculo().getDescripcion()%>" readonly>
             </div>
             <div class="col-sm-5">
               <label class="mb-0 ml-1" for="tel">Teléfono de contacto</label>
-              <input class="form-control form-control-user" type="text" name="tel" value="<%=d.getVehiculo().getTelefonoContacto()%>">
+              <input class="form-control form-control-user" type="text" name="tel" value="<%=d.getVehiculo().getTelefonoContacto()%>" readonly>
             </div>
           </div>
         </div>
@@ -98,11 +98,11 @@
           <div class="form-group row">
             <div class="col-sm-7 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="id">Id de ingreso</label>
-              <input class="form-control form-control-user" type="text" name="comprobante" value="<%=d.getComprobante()%>">
+              <input class="form-control form-control-user" type="text" name="comprobante" value="<%=d.getComprobante()%>" readonly>
             </div>
             <div class="col-sm-5">
               <label class="mb-0 ml-1" for="fechaI">Fecha</label>
-              <input class="form-control form-control-user" type="text" name="fecha" value="<%=d.getFechaIngreso() == null ? "" : d.getFechaIngreso()%>">
+              <input class="form-control form-control-user" type="text" name="fecha" value="<%=d.getFechaIngreso() == null ? "" : d.getFechaIngreso()%>" readonly>
             </div>
           </div>
         </div>
@@ -113,8 +113,8 @@
         <p class="mb-0"><%=precioMessage%></p>
       </div>
       <%}%>
-      <input type="hidden" name="precio" value="<%=precio%>" />
-      <input type="hidden" name="fechaRetiro" value="<%=d.getFechaRetiro()%>" />
+      <input type="hidden" name="precio" value="<%=precio%>" readonly />
+      <input type="hidden" name="fechaRetiro" value="<%=d.getFechaRetiro()%>" readonly />
       <div class="row justify-content-end">
       	<button class="btn btn-success mr-3 mb-4" type="submit" <%if(d.getVehiculo().getPatente().equals("")){%>disabled<%}%>>Registrar salida</button>
       </div>

@@ -29,36 +29,44 @@ public class MultiplicadorEstadiaData {
 			}
 
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar obtener los multiplicadores de estadias en la base de datos", e);
+			throw new DatabaseAccessException(
+					"Error SQL al intentar obtener los multiplicadores de estadias en la base de datos", e);
 		} catch (Exception e) {
-	        throw new DatabaseAccessException("Error SQL al intentar obtener los multiplicadores de estadias en la base de datos", e);
-		}
-		finally {
-	        try {
-	            if (rs != null) {
-	                rs.close();
-	            }
-	            if (stmt != null) {
-	                stmt.close();
-	            }
-	            FactoryConnection.getInstancia().releaseConn();
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener los multiplicadores de estadia", e);
-	        }		
+			throw new DatabaseAccessException(
+					"Error SQL al intentar obtener los multiplicadores de estadias en la base de datos", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw new DatabaseAccessException(
+						"Error al intentar cerrar la conexión o el statement al obtener los multiplicadores de estadia",
+						e);
+			}
 		}
 
 		return multiplicadoresEstadias;
 	}
 
 	public MultiplicadorEstadia getOne(int multiplicadorDesde) {
-		MultiplicadorEstadia me = null;
+
+		MultiplicadorEstadia me = new MultiplicadorEstadia();
+		me.setPorcentajeMultiplicador(1);
+		me.setMultiplicadorDesde(1);
 		Statement stmt = null;
 		ResultSet rs = null;
+
 		try {
 			stmt = FactoryConnection.getInstancia().getConn().createStatement();
 			rs = stmt
 					.executeQuery(
-							"select * from multiplicadores_estadias where multiplicadorDesde =" + multiplicadorDesde);
+							"select * from multiplicadores_estadias where multiplicadorDesde <= " + multiplicadorDesde
+									+ " order by multiplicadorDesde desc limit 1");
 			while (rs.next()) {
 				me = new MultiplicadorEstadia();
 
@@ -66,27 +74,28 @@ public class MultiplicadorEstadiaData {
 				me.setPorcentajeMultiplicador(rs.getDouble("porcentajeMultiplicador"));
 			}
 
-
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar obtener un multiplicador de estadias en la base de datos", e);
+			throw new DatabaseAccessException(
+					"Error SQL al intentar obtener un multiplicador de estadias en la base de datos", e);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-	        throw new DatabaseAccessException("Error al intentar obtener un multiplicador de estadias en la base de datos", e);
+			throw new DatabaseAccessException(
+					"Error al intentar obtener un multiplicador de estadias en la base de datos", e);
+		} finally {
+			try {
+				if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw new DatabaseAccessException(
+						"Error al intentar cerrar la conexión o el statement al obtener un multiplicador de estadia",
+						e);
+			}
 		}
-		finally {
-	        try {
-	            if (rs != null) {
-	                rs.close();
-	            }
-	            if (stmt != null) {
-	                stmt.close();
-	            }
-	            FactoryConnection.getInstancia().releaseConn();
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener un multiplicador de estadia", e);
-	        }		
-		}
-		
 
 		return me;
 	}
@@ -103,18 +112,20 @@ public class MultiplicadorEstadiaData {
 			}
 
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar eliminar un multiplicador de estadias en la base de datos", e);
+			throw new DatabaseAccessException(
+					"Error SQL al intentar eliminar un multiplicador de estadias en la base de datos", e);
 		} catch (Exception e) {
-	        throw new DatabaseAccessException("Error al intentar eliminar un multiplicador de estadias en la base de datos", e);
-		}
-		finally {
-	        try {
-	            if (pstmt != null) {
-	                pstmt.close();
-	            }
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar el statement conexión al eliminar un multiplicador de estadia", e);
-	        }		
+			throw new DatabaseAccessException(
+					"Error al intentar eliminar un multiplicador de estadias en la base de datos", e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+			} catch (SQLException e) {
+				throw new DatabaseAccessException(
+						"Error al intentar cerrar el statement conexión al eliminar un multiplicador de estadia", e);
+			}
 		}
 	}
 
@@ -130,20 +141,23 @@ public class MultiplicadorEstadiaData {
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-	        throw new DatabaseAccessException("Error SQL al intentar insertar un multiplicador de estadias en la base de datos", e);
+			throw new DatabaseAccessException(
+					"Error SQL al intentar insertar un multiplicador de estadias en la base de datos", e);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-	        throw new DatabaseAccessException("Error al intentar insertar un multiplicador de estadias en la base de datos", e);
-		}
-		finally {
-	        try {
-	            if (pstmt != null) {
-	                pstmt.close();
-	            }
-	            FactoryConnection.getInstancia().releaseConn();
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al insertar un multiplicador de estadia", e);
-	        }		
+			throw new DatabaseAccessException(
+					"Error al intentar insertar un multiplicador de estadias en la base de datos", e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw new DatabaseAccessException(
+						"Error al intentar cerrar la conexión o el statement al insertar un multiplicador de estadia",
+						e);
+			}
 		}
 	}
 }

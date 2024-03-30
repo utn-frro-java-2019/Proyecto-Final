@@ -38,7 +38,7 @@
       <div class="text-white-50 small"><%=ocupado ? "Ocupado" : "Libre"%></div>
       <%if(ocupado){%>
       <div class="text-white-50 small"><%=patente%></div>
-      <div class="text-white-50 small">Tipo: <span class="badge badge-pill badge-warning"><%=tipo%></span></div>
+      <div class="text-white-50 small">Tipo: <span class="badge badge-pill badge-<%=tipo.equals("DIARIO") ? "light" : "info"%>"><%=tipo%></span></div>
       <%}%>
       </div>
     </div>

@@ -1,7 +1,8 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,8 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import business.DiarioController;
 import business.EstadiaController;
+import business.MultiplicadorEstadiaController;
+import business.PrecioPorHoraController;
+import business.VehiculoController;
+import domain.Diario;
 import domain.Estadia;
+import domain.Vehiculo;
 import util.AccountHasPermissions;
 import util.WebAlertViewer;
 
@@ -34,16 +41,8 @@ public class EstadiaServlet extends HttpServlet {
 			this.all(request, response);
 		} else if (path.equals("/add")) {
 			this.add(request, response);
-		} else if (path.startsWith("/comprobante-ingreso")) {
-			this.comprobanteI(request, response);
-		} else if (path.startsWith("/salida")) {
-			this.salida(request, response);
-		} else if (path.startsWith("/comprobante-salida")) {
-			this.comprobanteS(request, response);
-		} else if (path.startsWith("/salida")) {
-			this.salida(request, response);
-		} else if (path.startsWith("/delete")) {
-			this.delete(request, response);
+		} else if (path.startsWith("/get-precio-final")) {
+			this.getPrecioFinal(request, response);
 		} else {
 			this.error(request, response);
 		}
@@ -57,84 +56,111 @@ public class EstadiaServlet extends HttpServlet {
 		}
 
 		String path = request.getPathInfo();
-		if (path.equals("/ingreso")) {
-			this.diarioNew(request, response);
-		} else if (path.equals("/salida")) {
-			this.diarioFinish(request, response);
-		} else if (path.equals("/edit")) {
-			this.edit(request, response);
-		} else if (path.equals("/ingresoSearch")) {
+		if (path.equals("/ingresoSearch")) {
 			this.ingresoSearch(request, response);
-		} else if (path.equals("/salidaSearch")) {
-			this.salidaSearch(request, response);
+		} else if (path.equals("/ingreso")) {
+			this.ingreso(request, response);
 		} else {
 			this.error(request, response);
 		}
 	}
 
 	private void all(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		ArrayList<Estadia> estadias = EstadiaController.getAll();
-		request.setAttribute("listaEstadias", estadias);
+		try {
+			request.setAttribute("estadias",
+					EstadiaController.getAllByCochera(request.getSession().getAttribute("idCochera").toString()));
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+		}
 		request.getRequestDispatcher("/WEB-INF/estadias.jsp").forward(request, response);
-	}
-
-	private void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// TODO
-	}
-
-	private void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		// TODO
 	}
 
 	private void add(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		request.getRequestDispatcher("/WEB-INF/estadia-create.jsp").forward(request, response);
-		// TODO
-	}
-
-	private void salida(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		request.getRequestDispatcher("/WEB-INF/diario-salida.jsp").forward(request, response);
-		// TODO
 	}
 
 	private void ingresoSearch(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		String idEstadia = request.getParameter("idEstadia");
-		Estadia estadia = EstadiaController.getOne(Integer.parseInt(idEstadia));
-		if (estadia == null) {
+		String patente = request.getParameter("patente");
+		Vehiculo vehiculo = VehiculoController.getOne(patente);
+		if (vehiculo == null) {
 			WebAlertViewer.showAlertMessage(request,
 					"La patente solicitada no se corresponde con ningún vehículo en nuestra base de datos.", "danger");
 		} else {
-			request.setAttribute("vehiculo", estadia);
+			request.setAttribute("vehiculo", vehiculo);
 		}
 		this.add(request, response);
 	}
 
-	private void diarioNew(HttpServletRequest request, HttpServletResponse response)
+	private void getPrecioFinal(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		request.getRequestDispatcher("/WEB-INF/diario-ingreso-comprobante.jsp").forward(request, response);
-		// TODO
+		String fechaDeIngreso = request.getParameter("fechaDeIngreso");
+		String fechaDeEgreso = request.getParameter("fechaDeEgreso");
+		request.setAttribute("fechaDeEgreso", fechaDeEgreso);
+
+		String patente = request.getParameter("patente");
+		Vehiculo vehiculo = VehiculoController.getOne(patente);
+
+		if (vehiculo == null) {
+			WebAlertViewer.showAlertMessage(request,
+					"La patente solicitada no se corresponde con ningún vehículo en nuestra base de datos.", "danger");
+		} else {
+			try {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+				java.util.Date egreso = sdf.parse(fechaDeEgreso);
+				java.util.Date ingreso = sdf.parse(fechaDeIngreso);
+
+				Long diff = egreso.getTime() - ingreso.getTime();
+				Integer diffDays = Math.toIntExact((long) (diff / (1000 * 60 * 60 * 24)));
+				Double precioPorHora = PrecioPorHoraController.getPrecioPorHora().getPrecio();
+				Double porcentajeMultiplicadorTipoVehiculo = vehiculo.getTipo().getPorcentajeMultiplicador();
+				Double porcentajeMultiplicadorEstadia = MultiplicadorEstadiaController.getOne(diffDays)
+						.getPorcentajeMultiplicador();
+				Double precioFinal = diffDays * 24 * precioPorHora * porcentajeMultiplicadorTipoVehiculo
+						* porcentajeMultiplicadorEstadia;
+
+				String precioMessage = "En concepto de un total de " + diffDays + " días "
+						+ "para un vehículo de tipo "
+						+ vehiculo.getTipo().getDescripcion() + " cuyo porcentaje multiplicador es de "
+						+ porcentajeMultiplicadorTipoVehiculo + ". El descuento por estadía es de "
+						+ porcentajeMultiplicadorEstadia + ".";
+
+				request.setAttribute("precio", precioFinal);
+				request.setAttribute("precioMessage", precioMessage);
+
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+				WebAlertViewer.showError(request, e);
+			}
+
+			request.setAttribute("vehiculo", vehiculo);
+		}
+		this.add(request, response);
 	}
 
-	private void salidaSearch(HttpServletRequest request, HttpServletResponse response)
+	private void ingreso(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		this.salida(request, response);
-		// TODO
-	}
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-	private void diarioFinish(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		request.getRequestDispatcher("/WEB-INF/diario-salida-comprobante.jsp").forward(request, response);
-		// TODO
-	}
+		String patente = request.getParameter("patente");
+		String fechaDeEgreso = request.getParameter("fechaDeEgreso");
+		String precioFinal = request.getParameter("precio");
+		Integer idCochera = Integer.parseInt(request.getSession().getAttribute("idCochera").toString());
 
-	private void comprobanteI(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		// TODO
-	}
+		try {
+			java.util.Date egreso = sdf.parse(fechaDeEgreso);
 
-	private void comprobanteS(HttpServletRequest request, HttpServletResponse response)
-			throws IOException, ServletException {
-		// TODO
+			Estadia estadia = EstadiaController.generateNew(patente, idCochera, Double.parseDouble(precioFinal),
+					egreso);
+			request.setAttribute("estadia", estadia);
+			request.getRequestDispatcher("/WEB-INF/estadia-ingreso-comprobante.jsp").forward(request, response);
+
+		} catch (Exception e) {
+			WebAlertViewer.showError(request, e);
+			this.add(request, response);
+		}
+
 	}
 
 	private void error(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

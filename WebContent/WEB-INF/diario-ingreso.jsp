@@ -55,38 +55,38 @@
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="patente">Patente</label>
-              <input class="form-control form-control-user" type="text" name="patente" value="<%=v.getPatente()%>">
+              <input class="form-control form-control-user" type="text" name="patente" value="<%=v.getPatente()%>" readonly>
             </div>
             <div class="col-sm-8">
               <label class="mb-0 ml-1" for="propietario">Propietario</label>
-              <input class="form-control form-control-user" type="text" name="propietario" value="<%=v.getPropietario()%>">
+              <input class="form-control form-control-user" type="text" name="propietario" value="<%=v.getPropietario()%>" readonly>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="tipo">Tipo</label>
-              <input class="form-control form-control-user" type="text" name="tipo" value="<%=v.getTipo().getDescripcion()%>">
+              <input class="form-control form-control-user" type="text" name="tipo" value="<%=v.getTipo().getDescripcion()%>" readonly>
             </div>
             <div class="col-sm-4 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="marca">Marca</label>
-              <input class="form-control form-control-user" type="text" name="marca" value="<%=v.getMarca()%>">
+              <input class="form-control form-control-user" type="text" name="marca" value="<%=v.getMarca()%>" readonly>
             </div>
             <div class="col-sm-4">
               <label class="mb-0 ml-1" for="modelo">Modelo</label>
-              <input class="form-control form-control-user" type="text" name="modelo" value="<%=v.getModelo()%>">
+              <input class="form-control form-control-user" type="text" name="modelo" value="<%=v.getModelo()%>" readonly>
             </div>
           </div>
           <div class="form-group row">
             <div class="col-sm-7 mb-3 mb-sm-0">
               <label class="mb-0 ml-1" for="desc">Descripción</label>
-              <input class="form-control form-control-user" type="text" name="desc" value="<%=v.getDescripcion()%>">
+              <input class="form-control form-control-user" type="text" name="desc" value="<%=v.getDescripcion()%>" readonly>
             </div>
             <div class="col-sm-5">
               <label class="mb-0 ml-1" for="tel">Teléfono de contacto</label>
-              <input class="form-control form-control-user" type="text" name="tel" value="<%=v.getTelefonoContacto()%>">
+              <input class="form-control form-control-user" type="text" name="tel" value="<%=v.getTelefonoContacto()%>" readonly>
             </div>
 
-            <input type="hidden" name="idCochera" value="<%=session.getAttribute("idCochera")%>">
+            <input type="hidden" name="idCochera" value="<%=session.getAttribute("idCochera")%>" readonly>
           </div>
         </div>
       </div>

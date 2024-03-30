@@ -2,12 +2,15 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<%@page import="domain.Estadia"%>
-<%@page import="java.util.ArrayList"%>
-<%ArrayList<Estadia> le = (ArrayList<Estadia>)request.getAttribute("listaEstadias");%>
-
 <%String webAlertMessage = (String)request.getAttribute("webAlertMessage");%>
 <%String webAlertType = (String)request.getAttribute("webAlertType");%>
+
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="domain.Estadia"%>
+
+<%ArrayList<Estadia> estadias = (ArrayList<Estadia>)request.getAttribute("estadias");%>
+<%java.text.DateFormat dateFormat = new java.text.SimpleDateFormat("dd/MM/yyyy");%>
 
 <c:set var="bodyContent">
 
@@ -19,65 +22,65 @@
 	</button>
   </div>
   <%}%>
-  
-  <h1 class="h3 mb-4 text-gray-800">Listado de Estadias Registradas</h1>
-  <div class="row  mb-3">
-    <div class="col col-auto d-flex">
-      <a class="d-flex align-items-center btn btn-primary" href="#">Añadir Estadia</a>
-    </div>
-    <form class="col">
-      <div class="input-group">
-        <input type="text" class="form-control bg-light border border-primary p-4" placeholder="Buscar estadia" aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="card shadow mb-4">
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered dataTable" width="100%" cellspacing="0">
-            <thead>
-              <tr>
-                <th class="nw">Estado</th>
-                <th class="nw">Cochera</th>
-                <th class="nw">Fecha Ingreso</th>
-                <th class="nw">Fecha Retiro</th>
-                <th class="nw">Patente</th>
-                <th class="nw">Auto en Cochera</th>
-              </tr>
-            </thead>
-            <tfoot>
-              <tr>
-                <th class="nw">Estado</th>
-                <th class="nw">Cochera</th>
-                <th class="nw">Fecha Ingreso</th>
-                <th class="nw">Fecha Retiro</th>
-                <th class="nw">Patente</th>
-                <th class="nw">Auto en Cochera</th>
-              </tr>
-            </tfoot>
-            <tbody>
-              <%for(Estadia e: le){%>
-              <tr>
-                <td class="nw"><%=e.getEstado()%></td>
-                <td class="nw"><%=e.getCochera().getDescripcion()%></td>
-                <td class="nw"><%=e.getFechaIngreso()%></td>
-                <td class="nw"><%=e.getFechaRetiro()%></td>
-                <td class="nw"><%=e.getVehiculo().getPatente()%></td>
-                <td class="nw"><%=e.getAutoEnCochera()%></td>
+
+  <h1 class="h5 text-gray-800">Estadías</h1>
+  <h1 class="h3 mb-4 text-gray-800">Listado de Estadías</h1>
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th class="nw">Lugar</th>
+              <th class="nw">Patente</th>
+              <th class="nw">Ingreso</th>
+              <th class="nw">Salida</th>
+              <th class="nw">Monto</th>
+              <th class="nw">Estado</th>
+              <th class="nw">Auto en Cochera</th>
+              <th class="nw">Acciones</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th class="nw">Lugar</th>
+              <th class="nw">Patente</th>
+              <th class="nw">Ingreso</th>
+              <th class="nw">Salida</th>
+              <th class="nw">Monto</th>
+              <th class="nw">Estado</th>
+              <th class="nw">Auto en Cochera</th>
+              <th class="nw">Acciones</th>
+            </tr>
+          </tfoot>
+          <tbody>
+          <%for(Estadia estadia : estadias){%>
+            <tr>
+              <td class="nw"><%=estadia.getLugar().getNroLugar()%></td>
+              <td class="nw"><%=estadia.getVehiculo().getPatente()%></td>
+              <td class="nw"><%=dateFormat.format(estadia.getFechaIngreso())%></td>
+              <td class="nw"><%=dateFormat.format(estadia.getFechaRetiro())%></td>
+              <td class="nw">$<%=estadia.getPrecioFinal()%></td> 
+              <td class="nw"><span class="badge badge-pill badge-<%=estadia.getEstado().equals("activo") ? "info" : "dark"%>"><%=estadia.getEstado()%></span></td>
+              <td class="nw"><%=estadia.getAutoEnCochera() ? "Sí" : "No"%></td>
                 <td class="d-flex align-items-center p-0">
+                  <%if(estadia.getAutoEnCochera()){%>
+                  <a style="white-space: nowrap" href="/Cocheras/estadia/egreso/<%=estadia.getComprobante()%>" class="d-flex align-items-center btn btn-info m-1">Retirar Vehículo</a>
+                  <%} else {%>
+                  <a style="white-space: nowrap" href="/Cocheras/estadias/ingreso/<%=estadia.getComprobante()%>" class="d-flex align-items-center btn btn-info m-1">Ingresar Vehículo</a>
+                  <%}%>
+                  <a style="white-space: nowrap" href="/Cocheras/estadias/finalizar/<%=estadia.getComprobante()%>" class="d-flex align-items-center btn btn-success m-1 <%=estadia.getEstado().equals("activo") ? "" : "disabled"%>">Finalizar Estadía</a>
+                  <a style="white-space: nowrap" target="_Blank" href="https://api.whatsapp.com/send?phone=<%=estadia.getVehiculo().getTelefonoContacto()%>" class="d-flex align-items-center btn btn-primary m-1">
+                    <i class="fas fa-phone-alt fa-xs m-1"></i></i>Llamar al propietario
+                  </a>
                 </td>
-              </tr>
-              <%}%>
-            </tbody>
-          </table>
-        </div>
+            </tr>
+          <%}%>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
 </c:set>
 
 <t:template>

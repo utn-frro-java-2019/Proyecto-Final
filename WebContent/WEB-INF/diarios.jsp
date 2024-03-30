@@ -23,7 +23,6 @@
 
   <h1 class="h5 text-gray-800">Estacionamiento Diario</h1>
   <h1 class="h3 mb-4 text-gray-800">Listado de Ingresos y Salidas</h1>
-  <div class="row"></div>
   <div class="card shadow mb-4">
     <div class="card-body">
       <div class="table-responsive">
