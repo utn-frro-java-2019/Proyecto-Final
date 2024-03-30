@@ -23,6 +23,11 @@ public class VehiculoController {
 
 	public static void deleteOne(String patente) {
 		try {
+			Boolean yaTieneIngresosRealizados = IngresoController.checkThatVehicleNeverParked(patente);
+			if (!yaTieneIngresosRealizados) {
+				throw new RuntimeException("No se puede modificar un vehiculo que ya ha ingresado al estacionamiento");
+			}
+
 			new VehiculoData().deleteOne(patente);
 		} catch (Exception e) {
 			throw e;

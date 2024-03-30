@@ -12,9 +12,9 @@ import util.CustomExceptions.DatabaseAccessException;
 
 public class IngresoData {
     public Boolean checkThatVehicleIsNotInParking(String patent) {
-    	Statement stmt = null;
+        Statement stmt = null;
         ResultSet rs = null;
-    	try {
+        try {
             stmt = FactoryConnection.getInstancia().getConn().createStatement();
             rs = stmt
                     .executeQuery("select * from ingresos where patente='" + patent + "' and estado='activo'");
@@ -32,23 +32,74 @@ public class IngresoData {
             FactoryConnection.getInstancia().releaseConn();
 
         } catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar chequear si el vehiculo se encuentra en estacionamiento en la base de datos", e);
+            throw new DatabaseAccessException(
+                    "Error SQL al intentar chequear si el vehiculo se encuentra en estacionamiento en la base de datos",
+                    e);
         } catch (Exception e) {
-	        throw new DatabaseAccessException("Error al intentar chequear si el vehiculo se encuentra en estacionamiento en la base de datos", e);
+            throw new DatabaseAccessException(
+                    "Error al intentar chequear si el vehiculo se encuentra en estacionamiento en la base de datos", e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConnection.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                throw new DatabaseAccessException(
+                        "Error al intentar cerrar la conexión o el statement al chequear si el vehiculo se encuentra en estacionamiento",
+                        e);
+            }
         }
-        finally {
-	        try {
-	            if (rs != null) {
-	                rs.close();
-	            }
-	            if (stmt != null) {
-	                stmt.close();
-	            }
-	            FactoryConnection.getInstancia().releaseConn();
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al chequear si el vehiculo se encuentra en estacionamiento", e);
-	        }		
-		}
+
+        return true;
+
+    }
+
+    public Boolean checkThatVehicleNeverParked(String patent) {
+        Statement stmt = null;
+        ResultSet rs = null;
+        try {
+            stmt = FactoryConnection.getInstancia().getConn().createStatement();
+            rs = stmt
+                    .executeQuery("select * from ingresos where patente='" + patent + "'");
+
+            while (rs.next()) {
+                return false;
+            }
+
+            if (rs != null) {
+                rs.close();
+            }
+            if (stmt != null) {
+                stmt.close();
+            }
+            FactoryConnection.getInstancia().releaseConn();
+
+        } catch (SQLException e) {
+            throw new DatabaseAccessException(
+                    "Error SQL al intentar chequear si el vehiculo ha ingresado alguna vez",
+                    e);
+        } catch (Exception e) {
+            throw new DatabaseAccessException(
+                    "Error al intentar chequear si el vehiculo ha ingresado alguna vez", e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConnection.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                throw new DatabaseAccessException(
+                        "Error al intentar cerrar la conexión o el statement al chequear si el vehiculo ha ingresado alguna vez",
+                        e);
+            }
+        }
 
         return true;
 
@@ -86,23 +137,26 @@ public class IngresoData {
             }
 
         } catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar obtener los ingresos activos por cochera en la base de datos", e);
+            throw new DatabaseAccessException(
+                    "Error SQL al intentar obtener los ingresos activos por cochera en la base de datos", e);
         } catch (Exception e) {
-	        throw new DatabaseAccessException("Error al intentar obtener los ingresos activos por cochera en la base de datos", e);
+            throw new DatabaseAccessException(
+                    "Error al intentar obtener los ingresos activos por cochera en la base de datos", e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                FactoryConnection.getInstancia().releaseConn();
+            } catch (SQLException e) {
+                throw new DatabaseAccessException(
+                        "Error al intentar cerrar la conexión o el statement al obtener los ingresos activos por cochera",
+                        e);
+            }
         }
-        finally {
-	        try {
-	            if (rs != null) {
-	                rs.close();
-	            }
-	            if (stmt != null) {
-	                stmt.close();
-	            }
-	            FactoryConnection.getInstancia().releaseConn();
-	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener los ingresos activos por cochera", e);
-	        }		
-		}
 
         return ingresos;
     }

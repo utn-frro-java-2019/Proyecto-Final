@@ -10,6 +10,11 @@ public class IngresoController {
         return new IngresoData().checkThatVehicleIsNotInParking(patent);
     }
 
+    public static Boolean checkThatVehicleNeverParked(String patent) {
+        return new IngresoData().checkThatVehicleNeverParked(patent);
+    }
+
+
     public static ArrayList<Ingreso> getActivosByCochera(Integer idCochera) {
         return new IngresoData().getActivosByCochera(idCochera);
     }
