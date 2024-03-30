@@ -7,14 +7,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import util.CustomExceptions.DatabaseAccessException;
+
 public class UtilsData {
 
 	public Date getToday() {
 		Date fecha = new Date();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
-			PreparedStatement pstmt = FactoryConnection.getInstancia().getConn()
+			pstmt = FactoryConnection.getInstancia().getConn()
 					.prepareStatement("select now() as fecha");
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				java.util.Calendar cal = Calendar.getInstance();
 				cal.setTimeZone(TimeZone.getTimeZone("GMT-3"));
@@ -22,20 +26,23 @@ public class UtilsData {
 				fecha = rs.getTimestamp("fecha", cal);
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-			if (pstmt != null) {
-				pstmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar la fecha actual");
+	        throw new DatabaseAccessException("Error SQL al intentar recuperar la fecha actual", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar la fecha actual");
+	        throw new DatabaseAccessException("Error al intentar recuperar la fecha actual", e);
+		}
+		finally {
+	        try {
+	        	if (rs != null) {
+	            	rs.close();
+	            }
+	            if (pstmt != null) {
+	            	pstmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al recuperar la fecha actual", e);
+	        }		
 		}
 
 		return fecha;

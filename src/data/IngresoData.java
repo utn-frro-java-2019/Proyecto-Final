@@ -8,12 +8,15 @@ import java.util.Calendar;
 import java.util.TimeZone;
 
 import domain.Ingreso;
+import util.CustomExceptions.DatabaseAccessException;
 
 public class IngresoData {
     public Boolean checkThatVehicleIsNotInParking(String patent) {
-        try {
-            Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-            ResultSet rs = stmt
+    	Statement stmt = null;
+        ResultSet rs = null;
+    	try {
+            stmt = FactoryConnection.getInstancia().getConn().createStatement();
+            rs = stmt
                     .executeQuery("select * from ingresos where patente='" + patent + "' and estado='activo'");
 
             while (rs.next()) {
@@ -29,10 +32,23 @@ public class IngresoData {
             FactoryConnection.getInstancia().releaseConn();
 
         } catch (SQLException e) {
-            e.printStackTrace();
+	        throw new DatabaseAccessException("Error SQL al intentar chequear si el vehiculo se encuentra en estacionamiento en la base de datos", e);
         } catch (Exception e) {
-            e.printStackTrace();
+	        throw new DatabaseAccessException("Error al intentar chequear si el vehiculo se encuentra en estacionamiento en la base de datos", e);
         }
+        finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al chequear si el vehiculo se encuentra en estacionamiento", e);
+	        }		
+		}
 
         return true;
 
@@ -40,9 +56,11 @@ public class IngresoData {
 
     public ArrayList<Ingreso> getActivosByCochera(Integer idCochera) {
         ArrayList<Ingreso> ingresos = new ArrayList<Ingreso>();
+        Statement stmt = null;
+        ResultSet rs = null;
         try {
-            Statement stmt = FactoryConnection.getInstancia().getConn().createStatement();
-            ResultSet rs = stmt.executeQuery("select * from ingresos where estado='activo' and idCochera='"
+            stmt = FactoryConnection.getInstancia().getConn().createStatement();
+            rs = stmt.executeQuery("select * from ingresos where estado='activo' and idCochera='"
                     + idCochera + "' order by fechaIngreso desc");
 
             while (rs.next()) {
@@ -67,21 +85,24 @@ public class IngresoData {
                 ingresos.add(i);
             }
 
-            if (rs != null) {
-                rs.close();
-            }
-            if (stmt != null) {
-                stmt.close();
-            }
-            FactoryConnection.getInstancia().releaseConn();
-
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
+	        throw new DatabaseAccessException("Error SQL al intentar obtener los ingresos activos por cochera en la base de datos", e);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException("Error al intentar obtener los ingresos en la base de datos");
+	        throw new DatabaseAccessException("Error al intentar obtener los ingresos activos por cochera en la base de datos", e);
         }
+        finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener los ingresos activos por cochera", e);
+	        }		
+		}
 
         return ingresos;
     }

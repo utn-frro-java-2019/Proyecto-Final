@@ -4,15 +4,19 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import domain.*;
+import util.CustomExceptions.CocheraConEmpleadosException;
+import util.CustomExceptions.DatabaseAccessException;
 
 public class CocheraData {
 
 	public ArrayList<Cochera> getAll() {
 		ArrayList<Cochera> cocheras = new ArrayList<Cochera>();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		try {
 			String consulta = "select * from cocheras where eliminado is not true";
-			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
-			ResultSet rs = stmt.executeQuery();
+			stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			rs = stmt.executeQuery();
 			while (rs.next()) {
 				Cochera c = new Cochera();
 				c.setIdCochera(rs.getInt("idCochera"));
@@ -23,20 +27,23 @@ public class CocheraData {
 				cocheras.add(c);
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar las cocheras");
+	        throw new DatabaseAccessException("Error SQL al intentar obtener las cocheras en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar las cocheras");
+	        throw new DatabaseAccessException("Error al intentar obtener las cocheras en la base de datos", e);
+		}
+		finally {
+	        try {
+	        	if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener las cocheras", e);
+	        }		
 		}
 
 		return cocheras;
@@ -44,12 +51,14 @@ public class CocheraData {
 
 	public Cochera getOne(int idCochera) {
 		Cochera c = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
 		try {
 
 			String consulta = "select * from cocheras where idCochera = ? ";
-			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
 			stmt.setString(1, Integer.toString(idCochera));
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				c = new Cochera();
@@ -62,114 +71,141 @@ public class CocheraData {
 
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar la cochera");
+	        throw new DatabaseAccessException("Error SQL al intentar obtener una cochera en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al recuperar la cochera");
+	        throw new DatabaseAccessException("Error al intentar obtener una cochera en la base de datos", e);
+		}
+		finally {
+	        try {
+	        	if (rs != null) {
+					rs.close();
+				}
+				if (stmt != null) {
+					stmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener una cochera", e);
+	        }		
 		}
 
 		return c;
 	}
 
 	public void deleteOne(int idCochera) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		PreparedStatement eStmt = null;
 		try {
 			String empleadosCheck = "select * from empleados where idCochera = ?";
-			PreparedStatement eStmt = FactoryConnection.getInstancia().getConn().prepareStatement(empleadosCheck);
+			eStmt = FactoryConnection.getInstancia().getConn().prepareStatement(empleadosCheck);
 			eStmt.setString(1, Integer.toString(idCochera));
-			ResultSet rs = eStmt.executeQuery();
+			rs = eStmt.executeQuery();
 			if (rs.next()) {
-				throw new RuntimeException("No se puede eliminar la cochera porque tiene empleados asignados");
+				throw new CocheraConEmpleadosException("No se puede eliminar la cochera porque tiene empleados asignados");
 			}
 
 			String consulta = "update cocheras set eliminado = 1 where idCochera = ?";
-			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
-			stmt.setString(1, Integer.toString(idCochera));
-			stmt.executeUpdate();
-
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
+			pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			pstmt.setString(1, Integer.toString(idCochera));
+			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al eliminar la cochera");
+	        throw new DatabaseAccessException("Error SQL al intentar borrar una cochera en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al eliminar la cochera");
+	        throw new DatabaseAccessException("Error al intentar borrar una cochera en la base de datos", e);
+		}
+		finally {
+	        try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (rs != null) {
+					rs.close();
+				}
+				if (eStmt != null) {
+					eStmt.close();
+				}
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar el statement al borrar una cochera", e);
+	        }		
 		}
 	}
 
 	public Integer insertOne(Cochera c) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		PreparedStatement stmtID = null;
+		Integer id = 0;
 		try {
 			String getID = "select max(idCochera)+1 id from cocheras";
-			PreparedStatement stmtID = FactoryConnection.getInstancia().getConn().prepareStatement(getID);
-			ResultSet rs = stmtID.executeQuery();
-			Integer id = 0;
+			stmtID = FactoryConnection.getInstancia().getConn().prepareStatement(getID);
+			rs = stmtID.executeQuery();
+			
 			while (rs.next()) {
 				id = rs.getInt("id");
 			}
 
-			if (rs != null) {
-				rs.close();
-			}
-
 			String consulta = "insert into cocheras (nombre, ubicacion, descripcion, capacidad, idCochera) values (?, ?, ?, ?, ?)";
-			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
-			stmt.setString(1, c.getNombre());
-			stmt.setString(2, c.getUbicacion());
-			stmt.setString(3, c.getDescripcion());
-			stmt.setString(4, Integer.toString(c.getCapacidad()));
-			stmt.setString(5, Integer.toString(id));
-			stmt.executeUpdate();
-
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
-
-			return id;
+			pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			pstmt.setString(1, c.getNombre());
+			pstmt.setString(2, c.getUbicacion());
+			pstmt.setString(3, c.getDescripcion());
+			pstmt.setString(4, Integer.toString(c.getCapacidad()));
+			pstmt.setString(5, Integer.toString(id));
+			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al crear la cochera");
+	        throw new DatabaseAccessException("Error SQL al intentar insertar una cochera en la base de datos", e);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al crear la cochera");
+	        throw new DatabaseAccessException("Error al intentar insertar una cochera en la base de datos", e);
 		}
+		finally {
+	        try {
+	        	if (rs != null) {
+					rs.close();
+				}
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				if (stmtID != null) {
+					stmtID.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al insertar una cochera", e);
+	        }		
+		}
+		return id;
 	}
 
 	public void updateOne(Cochera c) {
+		PreparedStatement pstmt = null;
 		try {
 			String consulta = "update cocheras set nombre = ?, ubicacion = ?, descripcion = ? where idCochera = ?";
-			PreparedStatement stmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
-			stmt.setString(1, c.getNombre());
-			stmt.setString(2, c.getUbicacion());
-			stmt.setString(3, c.getDescripcion());
-			stmt.setString(4, Integer.toString(c.getIdCochera()));
-			stmt.executeUpdate();
-
-			if (stmt != null) {
-				stmt.close();
-			}
-			FactoryConnection.getInstancia().releaseConn();
+			pstmt = FactoryConnection.getInstancia().getConn().prepareStatement(consulta);
+			pstmt.setString(1, c.getNombre());
+			pstmt.setString(2, c.getUbicacion());
+			pstmt.setString(3, c.getDescripcion());
+			pstmt.setString(4, Integer.toString(c.getIdCochera()));
+			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al actualizar la cochera");
+	        throw new DatabaseAccessException("Error SQL al intentar modificar una cochera en la base de datos", e);
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new RuntimeException("Error al actualizar la cochera");
+	        throw new DatabaseAccessException("Error al intentar modificar una cochera en la base de datos", e);
+		}
+		finally {
+	        try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+				FactoryConnection.getInstancia().releaseConn();
+	        } catch (SQLException e) {
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al modificar una cochera", e);
+	        }		
 		}
 	}
 }

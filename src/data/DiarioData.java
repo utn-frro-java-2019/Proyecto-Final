@@ -45,9 +45,9 @@ public class DiarioData extends IngresoData {
 
 
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar obtener los ingresos en la base de datos", e);
+	        throw new DatabaseAccessException("Error SQL al intentar obtener los ingresos diarios por cochera en la base de datos", e);
 		} catch (Exception e) {
-	        throw new DatabaseAccessException("Error general al intentar obtener los ingresos en la base de datos", e);
+	        throw new DatabaseAccessException("Error general al intentar obtener los ingresos diarios por cochera en la base de datos", e);
 		}
 		finally {
 	        try {
@@ -59,7 +59,7 @@ public class DiarioData extends IngresoData {
 	            }
 	            FactoryConnection.getInstancia().releaseConn();
 	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener ingresos", e);
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener ingresos diarios por cochera", e);
 	        }		
 		}
 		return ingresos;
@@ -95,9 +95,9 @@ public class DiarioData extends IngresoData {
 			}
 
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar obtener un ingreso en la base de datos", e);
+	        throw new DatabaseAccessException("Error SQL al intentar obtener un ingreso diario activo por comprobante en la base de datos", e);
 		} catch (Exception e) {
-	        throw new DatabaseAccessException("Error general al intentar obtener un ingreso en la base de datos", e);
+	        throw new DatabaseAccessException("Error general al intentar obtener un ingreso diario por comprobante en la base de datos", e);
 		}
 		finally {
 	        try {
@@ -109,7 +109,7 @@ public class DiarioData extends IngresoData {
 	            }
 	            FactoryConnection.getInstancia().releaseConn();
 	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener un ingreso", e);
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al obtener un ingreso diario por comprobante", e);
 	        }		
 		}
 
@@ -129,11 +129,10 @@ public class DiarioData extends IngresoData {
 
 			pstmt.executeUpdate();
 
-
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar insertar el ingreso en la base de datos", e);
+	        throw new DatabaseAccessException("Error SQL al intentar insertar un ingreso diario en la base de datos", e);
 		} catch (Exception e) {
-	        throw new DatabaseAccessException("Error al intentar insertar el ingreso en la base de datos", e);
+	        throw new DatabaseAccessException("Error al intentar insertar un ingreso diario en la base de datos", e);
 		}
 		finally {
 	        try {
@@ -142,7 +141,7 @@ public class DiarioData extends IngresoData {
 	            }
 	            FactoryConnection.getInstancia().releaseConn();
 	        } catch (SQLException e) {
-	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al insertar un ingreso", e);
+	            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al insertar un ingreso diario", e);
 	        }		
 		}
 
@@ -183,12 +182,10 @@ public class DiarioData extends IngresoData {
 				d.setAutoEnCochera(rs.getBoolean("autoEnCochera"));
 			}
 
-			FactoryConnection.getInstancia().releaseConn();
-
 		} catch (SQLException e) {
-	        throw new DatabaseAccessException("Error SQL al intentar finalizar el ingreso en la base de datos", e);
+	        throw new DatabaseAccessException("Error SQL al intentar finalizar el ingreso diario en la base de datos", e);
 		} catch (Exception e) {
-			throw new DatabaseAccessException("Error al intentar finalizar el ingreso en la base de datos");
+			throw new DatabaseAccessException("Error al intentar finalizar el ingreso diario en la base de datos");
 		}
 			finally {
 		        try {
@@ -203,7 +200,7 @@ public class DiarioData extends IngresoData {
 		            }
 		            FactoryConnection.getInstancia().releaseConn();
 		        } catch (SQLException e) {
-		            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al finalizar un ingreso", e);
+		            throw new DatabaseAccessException("Error al intentar cerrar la conexión o el statement al finalizar un ingreso diario", e);
 		        }		
 			}
 
