@@ -1,5 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%String webAlertMessage = (String)request.getAttribute("webAlertMessage");%>
+<%String webAlertType = (String)request.getAttribute("webAlertType");%>
+
 <!DOCTYPE html>
 <html lang="en" class="h-100">
   <head>
@@ -49,6 +52,14 @@
                         >
                       </p>
                     </div>
+                    <%if(webAlertMessage != null){%>
+                    <div class="alert alert-<%=webAlertType%> alert-dismissible fade show webAlert" role="alert">
+                    <%=webAlertMessage%>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <%}%>
                     <form
                       class="user"
                       method="post"
@@ -102,5 +113,12 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+  <script type="text/javascript">
+    $(".webAlert").fadeTo(3500, 500).slideUp(500, function(){
+        $(".webAlert").slideUp(500);
+    });
+  </script>
+  
   </body>
 </html>
