@@ -11,7 +11,6 @@ public class EmpleadoController {
 			return new EmpleadoData().getAll();
 		} catch (DatabaseAccessException e) {
 			throw new DatabaseAccessException("Error al intentar obtener los empleados en la base de datos", e);
-
 		}
 	}
 

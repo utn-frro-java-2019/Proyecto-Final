@@ -265,7 +265,7 @@ CREATE TABLE `turnos` (
 
 LOCK TABLES `turnos` WRITE;
 /*!40000 ALTER TABLE `turnos` DISABLE KEYS */;
-INSERT INTO `turnos` VALUES (1,'Mañana','00:00:00','08:00:00'),(2,'Tarde','08:00:00','16:00:00'),(3,'Noche','16:00:00','24:00:00');
+INSERT INTO `turnos` VALUES (1,'Mañana','00:00:00','07:59:59'),(2,'Tarde','08:00:00','15:59:59'),(3,'Noche','16:00:00','23:59:59');
 /*!40000 ALTER TABLE `turnos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,4 +309,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-30 16:37:18
+-- Dump completed on 2024-03-30 16:59:31
