@@ -32,7 +32,6 @@
           <table class="table table-bordered dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
-                <th class="nw">Id</th>
                 <th class="nw">Nombre</th>
                 <th class="nw">Descripción</th>
                 <th class="nw">Ubicación</th>
@@ -42,7 +41,6 @@
             </thead>
             <tfoot>
               <tr>
-                <th class="nw">Id</th>
                 <th class="nw">Nombre</th>
                 <th class="nw">Descripción</th>
                 <th class="nw">Ubicación</th>
@@ -53,7 +51,6 @@
             <tbody>
               <%for(Cochera c: lc){%>
               <tr>
-                <td class="nw"><%=c.getIdCochera()%></td>
                 <td class="nw"><%=c.getNombre()%></td>
                 <td class="nw"><%=c.getDescripcion()%></td>
                 <td class="nw"><%=c.getUbicacion()%></td>

@@ -41,7 +41,7 @@ CREATE TABLE `cocheras` (
 
 LOCK TABLES `cocheras` WRITE;
 /*!40000 ALTER TABLE `cocheras` DISABLE KEYS */;
-INSERT INTO `cocheras` VALUES (0,'La del Norte','Zona Norte','2 pisos y acceso para vehiculos pesados',120, null),(1,'La del Sur','Zona Sur','4 pisos para vehiculos livianos',37,null),(2,'La Cocheria','Zona Centro','2 pisos para vehiculos livianos',70,null);
+INSERT INTO `cocheras` VALUES (0,'La del Norte','Zona Norte','2 pisos y acceso para vehiculos pesados',120,NULL),(1,'La del Sur','Zona Sur','4 pisos para vehiculos livianos',37,NULL),(2,'La Cocheria','Zona Centro','2 pisos para vehiculos livianos',70,NULL);
 /*!40000 ALTER TABLE `cocheras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -79,7 +79,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES ('11111111',0,1,'Franco','Giannassi','drazerjx@gmail.com','753421869','682435179','drazerjx','12345'),('22222222',0,2,'Martin','Oliva','martinoliva@gmail.com','123456789','124567892','zileanswagger','54321'),('33333333',1,3,'Vittorio','Retrivi','retrovitto@gmail.com','2477582031','159263487','motiontx','24680');
+INSERT INTO `empleados` VALUES ('11111111',0,1,'Franco','Giannassi','franco@gmail.com','3476306416','123456789','francogiannassi','12345'),('22222222',0,2,'Martin','Oliva','martin@gmail.com','3464563302','987654321','martinoliva','12345'),('33333333',1,3,'Vittorio','Retrivi','vitto@gmail.com','2477582031','123789456','vittorioretrivi','12345');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,7 +265,7 @@ CREATE TABLE `turnos` (
 
 LOCK TABLES `turnos` WRITE;
 /*!40000 ALTER TABLE `turnos` DISABLE KEYS */;
-INSERT INTO `turnos` VALUES (1,'Mañana','04:00:00','12:00:00'),(2,'Tarde','12:00:00','20:00:00'),(3,'Noche','20:00:00','04:00:00');
+INSERT INTO `turnos` VALUES (1,'Mañana','00:00:00','08:00:00'),(2,'Tarde','08:00:00','16:00:00'),(3,'Noche','16:00:00','24:00:00');
 /*!40000 ALTER TABLE `turnos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +296,7 @@ CREATE TABLE `vehiculos` (
 
 LOCK TABLES `vehiculos` WRITE;
 /*!40000 ALTER TABLE `vehiculos` DISABLE KEYS */;
-INSERT INTO `vehiculos` VALUES ('GKD-280','Megane','Auto 2 puertas','Renault',1,'Gonzalez, Rodrigo','5493411376456'),('ICI-350','Ranger 2019','Camioneta 2 puertas utilitaria','Ford',2,'Juarez, Hernan','5493417865123'),('MKG-462','Zr 150','Moto blanca con asiento negro','Zanella',3,'Abril, Fisher','5493412459871'),('NAS-570','147','Auto 2 puertas','Fiat',1,'Perez, Gerardo','5493418512659');
+INSERT INTO `vehiculos` VALUES ('ASD-246','X-Trail','Camioneta 5 puertas familiar','Nissan',2,'Fernandez, Sofia','5493415678901'),('BIC-001','Mountain Bike','Bicicleta de montaña','Specialized',4,'Lopez, Carlos','5493412345678'),('BIC-002','City Bike','Bicicleta urbana','Trek',4,'Gonzalez, Maria','5493413456789'),('BIC-003','Road Bike','Bicicleta de ruta','Giant',4,'Martinez, Laura','5493414567890'),('BIC-004','BMX','Bicicleta de estilo libre','Redline',4,'Perez, Juan','5493415678901'),('BIC-005','Cruiser','Bicicleta cruiser','Electra',4,'Fernandez, Sofia','5493416789012'),('BIC-006','Hybrid Bike','Bicicleta híbrida','Cannondale',4,'Gomez, Pablo','5493417890123'),('BNM-753','MT-07','Moto naked azul','Yamaha',3,'Luna, Federico','5493419012345'),('FGH-135','Street Twin','Moto café racer','Triumph',3,'Gomez, Pablo','5493416789012'),('GKD-280','Megane','Auto 2 puertas','Renault',1,'Gonzalez, Rodrigo','5493411376456'),('ICI-350','Ranger 2019','Camioneta 2 puertas utilitaria','Ford',2,'Juarez, Hernan','5493417865123'),('JKL-642','Voyage','Auto 4 puertas','Volkswagen',1,'Diaz, Andrea','5493417890123'),('MKG-462','Zr 150','Moto blanca con asiento negro','Zanella',3,'Abril, Fisher','5493412459871'),('NAS-570','147','Auto 2 puertas','Fiat',1,'Perez, Gerardo','5493418512659'),('PKL-123','Corsa Classic','Auto 4 puertas','Chevrolet',1,'Lopez, Maria','5493419876543'),('QWE-456','Hilux 4x4','Camioneta 4 puertas doble cabina','Toyota',2,'Gutierrez, Juan','5493412345678'),('RTY-789','CBR 600','Moto deportiva roja','Honda',3,'Martinez, Laura','5493413456789'),('TRK-001','Volvo FH','Camión de carga pesada','Volvo',5,'Lopez, Carlos','5493412345678'),('TRK-002','Kenworth T680','Camión de larga distancia','Kenworth',5,'Gonzalez, Maria','5493413456789'),('TRK-003','Scania R Series','Camión de transporte','Scania',5,'Martinez, Laura','5493414567890'),('TYU-369','F-150','Camioneta 4 puertas pick-up','Ford',2,'Torres, Lucas','5493411234567'),('UIO-987','A3','Auto 4 puertas','Audi',1,'Sanchez, Carlos','5493414567890'),('VBN-159','Civic','Auto 4 puertas','Honda',1,'Moreno, Ana','5493410123456'),('WER-246','Gixxer SF','Moto deportiva negra','Suzuki',3,'Pereyra, Valeria','5493412345678'),('ZXC-879','S10','Camioneta 4 puertas doble cabina','Chevrolet',2,'Rodriguez, Daniel','5493418901234');
 /*!40000 ALTER TABLE `vehiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -309,4 +309,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-19 20:08:20
+-- Dump completed on 2024-03-30 16:37:18
