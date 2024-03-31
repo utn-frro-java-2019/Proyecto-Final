@@ -106,7 +106,7 @@ CREATE TABLE `ingresos` (
   KEY `fk_ingresos_nroLugar_idx` (`nroLugar`),
   KEY `fk_ingresos_cochera_idx` (`idCochera`),
   KEY `fk_ingresos_patente_idx` (`patente`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +115,7 @@ CREATE TABLE `ingresos` (
 
 LOCK TABLES `ingresos` WRITE;
 /*!40000 ALTER TABLE `ingresos` DISABLE KEYS */;
-INSERT INTO `ingresos` VALUES (1,'1e9a3e24c7e24c55ab04991fe0351d18','diario',1,37,'GKD-280','2024-03-30 17:04:42','2024-03-30 21:02:28','finalizado',4000,NULL),(2,'5a5633b5ce294b67ba7cc8993561d7ba','diario',1,36,'BIC-002','2024-03-30 17:05:23','2024-03-30 20:26:43','finalizado',2400,NULL),(3,'ad2b6f438d2b4386a6be7dd553e2837d','diario',1,35,'BIC-006','2024-03-30 17:05:48','2024-03-30 19:52:04','finalizado',1800,NULL),(4,'c0c4c6674be94bcdb2f7032a16160b4b','diario',1,34,'FGH-135','2024-03-30 17:06:13','2024-03-30 18:54:37','finalizado',1600,NULL),(5,'12e0812343aa4b528f4ae8aa78c3702c','estadia',1,33,'QWE-456','2024-03-29 17:09:08','2024-04-06 03:00:00','activo',184320,1),(6,'79697637d94c466cbdf9c2ba8481953c','estadia',1,32,'RTY-789','2024-03-28 17:09:50','2024-05-10 03:00:00','activo',495360,0),(7,'28feb987e3bc4f88bbf5d872a4e8ad75','estadia',1,31,'TRK-003','2024-03-30 17:11:48','2024-03-31 03:00:00','finalizado',60000,1),(8,'ab6cf99a4c7544f2914c8e380654dbcd','estadia',1,31,'ZXC-879','2024-03-27 17:12:41','2024-04-24 03:00:00','activo',483840,1),(9,'3fc15e8676f740ee8471f9a5c5c72553','estadia',1,30,'VBN-159','2024-03-30 17:18:21','2024-03-31 03:00:00','finalizado',24000,1),(10,'952aacb622704de89f3f5bdf0eeccf97','estadia',1,30,'BIC-005','2024-03-30 17:20:16','2024-04-01 03:00:00','finalizado',28800,1),(11,'28feb987e3bc4f88bbf5d872a4e8ad74','estadia',1,25,'TRK-003','2024-03-23 17:11:48','2024-03-24 03:00:00','finalizado',60000,1),(12,'3fc15e8676f740ee8471f9a5c5c72552','estadia',1,24,'UIO-987','2024-03-23 17:18:21','2024-03-24 03:00:00','finalizado',24000,1),(13,'952aacb622704de89f3f5bdf0eeccf96','estadia',1,23,'BIC-004','2024-03-27 17:20:16','2024-04-29 03:00:00','finalizado',28800,1);
+INSERT INTO `ingresos` VALUES (1,'1e9a3e24c7e24c55ab04991fe0351d18','diario',1,37,'GKD-280','2024-03-22 17:12:42','2024-03-22 21:00:28','finalizado',4000,NULL),(2,'5a5633b5ce294b67ba7cc8993561d7ba','diario',1,36,'BIC-002','2024-03-23 17:05:23','2024-03-23 20:26:43','finalizado',2400,NULL),(3,'ad2b6f438d2b4386a6be7dd553e2837d','diario',1,35,'BIC-006','2024-03-18 17:05:48','2024-03-18 19:52:04','finalizado',1800,NULL),(4,'c0c4c6674be94bcdb2f7032a16160b4b','diario',1,34,'FGH-135','2024-03-18 17:06:13','2024-03-18 18:54:37','finalizado',1600,NULL),(5,'12e0812343aa4b528f4ae8aa78c3702c','estadia',1,33,'QWE-456','2024-03-29 17:09:08','2024-04-06 03:00:00','activo',184320,1),(6,'79697637d94c466cbdf9c2ba8481953c','estadia',1,32,'RTY-789','2024-03-28 17:09:50','2024-05-10 03:00:00','activo',495360,0),(7,'28feb987e3bc4f88bbf5d872a4e8ad75','estadia',1,31,'TRK-003','2024-03-30 17:11:48','2024-03-31 03:00:00','finalizado',60000,1),(8,'ab6cf99a4c7544f2914c8e380654dbcd','estadia',1,31,'ZXC-879','2024-03-27 17:12:41','2024-04-24 03:00:00','activo',483840,1),(9,'3fc15e8676f740ee8471f9a5c5c72553','estadia',1,30,'VBN-159','2024-03-30 17:18:21','2024-03-31 03:00:00','finalizado',24000,1),(10,'952aacb622704de89f3f5bdf0eeccf97','estadia',1,30,'BIC-005','2024-03-30 17:20:16','2024-04-01 03:00:00','finalizado',28800,1),(11,'28feb987e3bc4f88bbf5d872a4e8ad74','estadia',1,25,'TRK-003','2024-03-23 17:11:48','2024-03-24 03:00:00','finalizado',60000,1),(12,'3fc15e8676f740ee8471f9a5c5c72552','estadia',1,24,'UIO-987','2024-03-23 17:18:21','2024-03-24 03:00:00','finalizado',24000,1),(13,'952aacb622704de89f3f5bdf0eeccf96','estadia',1,23,'BIC-004','2024-03-27 17:20:16','2024-04-29 03:00:00','finalizado',28800,1),(14,'1e9a3e24c7e24c55ab04991fe0351d17','diario',1,27,'GKD-280','2024-03-21 16:04:42','2024-03-21 20:02:15','finalizado',4000,NULL);
 /*!40000 ALTER TABLE `ingresos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -310,4 +310,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-30 21:37:34
+-- Dump completed on 2024-03-30 21:42:52
