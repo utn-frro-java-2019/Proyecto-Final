@@ -29,6 +29,10 @@ public class CocheraServlet extends HttpServlet {
 		String path = request.getPathInfo();
 
 		if (path.startsWith("/estado")) {
+			boolean hasPermissions = AccountHasPermissions.authenticated(request, response);
+			if (!hasPermissions) {
+				return;
+			}
 			this.estado(request, response);
 		} else {
 			boolean hasPermissions = AccountHasPermissions.boss(request, response);
